@@ -1,0 +1,17 @@
+//
+//  CLLocation+Extension.swift
+//  FoursquareApp
+//
+//  Created by Bhoomika H P on 05/07/21.
+//
+
+import UIKit
+import MapKit
+
+extension CLLocation {
+    
+    func placemark(completion: @escaping (_ placemark: CLPlacemark?, _ error: Error?) -> ()) {
+        
+        CLGeocoder().reverseGeocodeLocation(self) { completion($0?.first, $1) }
+    }
+}
