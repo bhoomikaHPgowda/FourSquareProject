@@ -18,14 +18,18 @@ class HambergerMenuViewController: UIViewController {
     @IBOutlet weak var feedback: UIButton!
     @IBOutlet weak var aboutUs: UIButton!
     @IBOutlet weak var logout: UIButton!
-    @IBOutlet weak var profile: UIImageView!
+    @IBOutlet weak var profile: UIButton!
     var delegate: DismissSideMenu?
+    var imagePicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         view.addGestureRecognizer(tap)
-        profile.layer.cornerRadius = 42
+        profile.layer.cornerRadius = 0.5 * profile.bounds.size.width
+
+        imagePicker.delegate = self
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +37,14 @@ class HambergerMenuViewController: UIViewController {
        
         
     }
+    
+    @IBAction func addPhotos(_ sender: UIButton) {
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
+        
+    }
+    
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         
@@ -74,3 +86,16 @@ class HambergerMenuViewController: UIViewController {
         return .lightContent
     }
 }
+
+extension HambergerMenuViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            
+            profile.setImage(img, for: .normal)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
