@@ -40,3 +40,9 @@ enum SearchScreen: String {
     case emptyScreen = "emptyScreen"
     case searchScreen = "searchScreen"
 }
+
+enum AlertMessages: String {
+    case mailExistError = "EMAIL EXISTS"
+    case mailExistMessage = "EMAIL ALREADY EXIST PLEASE TRY WITH NEW EMAIL"
+        
+}
