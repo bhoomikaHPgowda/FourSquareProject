@@ -10,6 +10,7 @@ import UIKit
 class PopularViewController: UIViewController {
     var index: Int?
     var count = 10
+    var details: [PlaceDetail]?
     @IBOutlet weak var popularListTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return count
+        return details?.count ?? 0
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat

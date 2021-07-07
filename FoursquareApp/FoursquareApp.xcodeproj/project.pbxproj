@@ -38,6 +38,9 @@
 		AF35DE53268B2D1700742C78 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35DE52268B2D1700742C78 /* PopularViewController.swift */; };
 		AF35DE56268B2D6500742C78 /* CustomButtonForCollectionViewOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35DE55268B2D6500742C78 /* CustomButtonForCollectionViewOptions.swift */; };
 		AF35DE5A268B2DBF00742C78 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35DE59268B2DBF00742C78 /* UIColor+Extension.swift */; };
+		AF3FAD1D2695DA2800FDD878 /* PlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3FAD1C2695DA2800FDD878 /* PlaceDetail.swift */; };
+		AF3FAD202695E7C100FDD878 /* NetworkMangerToFetchPlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3FAD1F2695E7C100FDD878 /* NetworkMangerToFetchPlaceDetail.swift */; };
+		AF3FAD232695ECA300FDD878 /* FetchPlaceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3FAD222695ECA300FDD878 /* FetchPlaceDetailViewModel.swift */; };
 		AF66D0842692149F007F3D98 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF66D0832692149F007F3D98 /* RatingViewController.swift */; };
 		AF6F3A08268C6A17001A9FA0 /* HambergerMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F3A07268C6A17001A9FA0 /* HambergerMenuViewController.swift */; };
 		AF719674268CB87300C18522 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF719673268CB87300C18522 /* UIButton+Extension.swift */; };
@@ -105,6 +108,9 @@
 		AF35DE52268B2D1700742C78 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
 		AF35DE55268B2D6500742C78 /* CustomButtonForCollectionViewOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonForCollectionViewOptions.swift; sourceTree = "<group>"; };
 		AF35DE59268B2DBF00742C78 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		AF3FAD1C2695DA2800FDD878 /* PlaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetail.swift; sourceTree = "<group>"; };
+		AF3FAD1F2695E7C100FDD878 /* NetworkMangerToFetchPlaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMangerToFetchPlaceDetail.swift; sourceTree = "<group>"; };
+		AF3FAD222695ECA300FDD878 /* FetchPlaceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlaceDetailViewModel.swift; sourceTree = "<group>"; };
 		AF66D0832692149F007F3D98 /* RatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		AF6F3A07268C6A17001A9FA0 /* HambergerMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HambergerMenuViewController.swift; sourceTree = "<group>"; };
 		AF719673268CB87300C18522 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -229,6 +235,9 @@
 				AF35DE4C268B2C6300742C78 /* NearYouViewController.swift */,
 				AF35DE52268B2D1700742C78 /* PopularViewController.swift */,
 				AF0667B0268B8BD600918017 /* PopularTableViewCell.swift */,
+				AF3FAD1C2695DA2800FDD878 /* PlaceDetail.swift */,
+				AF3FAD1F2695E7C100FDD878 /* NetworkMangerToFetchPlaceDetail.swift */,
+				AF3FAD222695ECA300FDD878 /* FetchPlaceDetailViewModel.swift */,
 			);
 			path = "Home Page";
 			sourceTree = "<group>";
@@ -409,6 +418,7 @@
 				AF77ABCC268CE8A300DB6605 /* CustomSearchBar.swift in Sources */,
 				AF84251A268DDD6400164857 /* UIFont+Extension.swift in Sources */,
 				AF0667AB268B84CF00918017 /* CustomSddToFavouriteButton.swift in Sources */,
+				AF3FAD1D2695DA2800FDD878 /* PlaceDetail.swift in Sources */,
 				6A7A5076268AF4940080640E /* CustomButton.swift in Sources */,
 				AF71967D268CE22800C18522 /* AboutUsViewController.swift in Sources */,
 				AFFE65C7268EE416008CC7A6 /* CustomButtonforFilters.swift in Sources */,
@@ -419,6 +429,7 @@
 				6A540A0D26934FE80009A614 /* CollectionViewCell.swift in Sources */,
 				AFB9A0E32690B42700B6B6E5 /* DisplayCityListViewController.swift in Sources */,
 				AF77A8642694C2E0004E27E3 /* URL+Extension.swift in Sources */,
+				AF3FAD202695E7C100FDD878 /* NetworkMangerToFetchPlaceDetail.swift in Sources */,
 				AFFE65CE268F1E21008CC7A6 /* UITextView+Extension.swift in Sources */,
 				AFF4B73B2690DED500A8B970 /* DetailViewController.swift in Sources */,
 				AFFE65D8268F7A2A008CC7A6 /* SearchedListTableViewCell.swift in Sources */,
@@ -433,6 +444,7 @@
 				AF0667B5268BA2EB00918017 /* SideMenuViewController.swift in Sources */,
 				AF84251E268DE34800164857 /* FilterViewController.swift in Sources */,
 				AF35DE50268B2CE600742C78 /* Constants.swift in Sources */,
+				AF3FAD232695ECA300FDD878 /* FetchPlaceDetailViewModel.swift in Sources */,
 				6A540A0126934B210009A614 /* ForgotPasswordViewController.swift in Sources */,
 				6A540A192693579A0009A614 /* SearchViewController.swift in Sources */,
 				AF77A86B2694C5D8004E27E3 /* LoginViewModel.swift in Sources */,

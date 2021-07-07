@@ -543,31 +543,31 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_icon" translatesAutoresizingMaskIntoConstraints="NO" id="5qL-0E-9lu">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="137" height="137"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="121" height="137"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="137" id="cCX-Fg-hFw"/>
+                                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="121" id="foM-H6-7J3"/>
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNN-Wv-MZd">
-                                                                            <rect key="frame" x="152" y="106.5" width="34" height="19.5"/>
+                                                                            <rect key="frame" x="136" y="106.5" width="34" height="19.5"/>
                                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGs-Yh-qgD">
-                                                                            <rect key="frame" x="152" y="85.5" width="34" height="19.5"/>
+                                                                            <rect key="frame" x="136" y="85.5" width="34" height="19.5"/>
                                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3U-kP-wav">
-                                                                            <rect key="frame" x="152" y="11" width="51.5" height="29"/>
+                                                                            <rect key="frame" x="136" y="11" width="51.5" height="29"/>
                                                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="21"/>
                                                                             <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CU6-bj-GWu">
-                                                                            <rect key="frame" x="152" y="63" width="22" height="18"/>
+                                                                            <rect key="frame" x="136" y="63" width="22" height="18"/>
                                                                             <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -605,7 +605,10 @@
                                                                 </tableViewCellContentView>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <connections>
-                                                                    <outlet property="dcsd" destination="B3U-kP-wav" id="jFe-hJ-lzT"/>
+                                                                    <outlet property="address" destination="gNN-Wv-MZd" id="Vmr-YP-uqp"/>
+                                                                    <outlet property="detail" destination="nGs-Yh-qgD" id="6KO-cb-6os"/>
+                                                                    <outlet property="name" destination="B3U-kP-wav" id="CY5-zk-e07"/>
+                                                                    <outlet property="placeImage" destination="5qL-0E-9lu" id="D4S-Nr-tWl"/>
                                                                     <outlet property="rating" destination="CU6-bj-GWu" id="6FR-Cr-9WX"/>
                                                                 </connections>
                                                             </tableViewCell>
@@ -664,7 +667,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xNs-Qs-3bP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2271" y="936"/>
+            <point key="canvasLocation" x="2269.5999999999999" y="935.53223388305855"/>
         </scene>
         <!--Popular View Controller-->
         <scene sceneID="jHi-2Z-ecP">

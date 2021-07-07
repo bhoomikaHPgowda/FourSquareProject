@@ -93,6 +93,8 @@ extension HambergerMenuViewController: UIImagePickerControllerDelegate,UINavigat
         if let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             
             profile.setImage(img, for: .normal)
+            profile.layer.cornerRadius = 42
+            profile.clipsToBounds = true
         }
         dismiss(animated: true, completion: nil)
     }
