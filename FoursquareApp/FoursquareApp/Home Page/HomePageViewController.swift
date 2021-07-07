@@ -196,6 +196,8 @@ extension HomePageViewController: DismissSideMenu {
             let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "\(option.rawValue)") as! AboutUsViewController
             self.navigationController?.pushViewController(secondViewController, animated: true)
             
+        } else {
+            self.navigationController?.popViewController(animated: true)
         }
     }
     

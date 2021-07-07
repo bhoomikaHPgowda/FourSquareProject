@@ -9,7 +9,10 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var password: UITextField!
     @IBOutlet weak var orButton: UIButton!
+    var loginViewModel = LoginViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +21,28 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func login(_ sender: CustomButton) {
+        guard let email = email.text,
+              let password = password.text
+        else {
+            return
+        }
+        loginViewModel.authenticatUser(email: email, password: password, completionHandler: {
+            detail
+            in
+            print("data recived ")
+            print("\(detail.statusCode)")
+            DispatchQueue.main.async {
+                if detail.statusCode == 200 {
+                    let homePageViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomePageViewController") as! HomePageViewController
+                    self.navigationController?.pushViewController(homePageViewController, animated: true)
+                }
+            }
+           
+            
+        })
+    }
+    
     /*
     // MARK: - Navigation
 
