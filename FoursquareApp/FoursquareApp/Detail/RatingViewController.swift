@@ -9,12 +9,16 @@ import UIKit
 
 class RatingViewController: UIViewController {
 
+    @IBOutlet weak var overAllRating: UILabel!
     @IBOutlet weak var cancel: UIButton!
+    var rating = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
         cancel.layer.cornerRadius = 11
         cancel.clipsToBounds = true
-
+        overAllRating.text = "\(rating)"
+        cancel.layer.borderWidth = 1
+        cancel.layer.borderColor = UIColor.lightGray.cgColor
         // Do any additional setup after loading the view.
     }
     @IBAction func cancelTapped(_ sender: UIButton) {

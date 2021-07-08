@@ -58,12 +58,13 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
             let dataForIndex = data[indexPath.row]
             cell.name.text = dataForIndex.placeName
             cell.rating.text = "\(round(dataForIndex.rating))"
-            cell.detail.text = "\(dataForIndex.placeType)" + "\u{2022}" + String(repeating: "\u{20B9}", count: dataForIndex.cost) + " \(round(dataForIndex.distance))Km"
+            cell.detail.text = "\(dataForIndex.placeType.components(separatedBy:" ")[0]))" + " \u{2022} " + String(repeating: "\u{20B9}", count: dataForIndex.cost) + "  \(round(dataForIndex.distance))Km"
             cell.address.text = dataForIndex.address
             cell.placeImage.image = detailViewModel.fetchImageForGivenPlace(url: dataForIndex.imageUrl)
             cell.layer.borderColor = UIColor.colorFoeCellSpace().cgColor
             cell.address.tintColor = UIColor.colorForControlSegmentMormalState()
-            cell.detail.textColor = UIColor.colorForControlSegmentMormalState()
+            cell.detail.textColor = .darkGray
+            cell.address.textColor = .darkGray
                cell.layer.borderWidth = 3
             return cell
         } else {

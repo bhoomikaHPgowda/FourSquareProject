@@ -30,7 +30,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
    
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        locationManager.delegate = self
         self.collectionViewForHome.delegate = self
         self.collectionViewForHome.dataSource = self
         collectionViewForHome.autoresizesSubviews = false
@@ -39,16 +39,21 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         self.locationManager.requestWhenInUseAuthorization()
         locationManager.requestWhenInUseAuthorization()
         
-        var currentLoc: CLLocation!
+        
+        
+        
+//        signInVc.loc(lat: 123.56)
+//        add(asChildViewController: self.signInVc, index: 0, finished: {
+//           // signInVc.add()
+//            signInVc.loc(lat: 123.56)
+//        })
+//        signInVc.loc(lat: 123.56)
        
-           currentLoc = locationManager.location
-            print("+++++++++++++++++")
-           print(currentLoc.coordinate.latitude)
-           print(currentLoc.coordinate.longitude)
-            print("============")
+    }
+    
+    func fetchDataForNearViewController(latitude: Double, longitude: Double) {
         
-        
-        detailViewModel.fetchDetails(latitude: 09, optionType: .nearYour, complitionHandler: {
+        detailViewModel.fetchDetails(latitude: latitude, longitude: longitude, optionType: .nearYour, complitionHandler: {
             
             details
             in
@@ -72,13 +77,6 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             
         })
-//        signInVc.loc(lat: 123.56)
-//        add(asChildViewController: self.signInVc, index: 0, finished: {
-//           // signInVc.add()
-//            signInVc.loc(lat: 123.56)
-//        })
-//        signInVc.loc(lat: 123.56)
-       
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -134,10 +132,13 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("cell did selected \(indexPath)")
+        guard let location = locationManager.location?.coordinate else {
+            return
+        }
         let cell = collectionView.cellForItem(at: indexPath) as! HomePageCollectionViewCell
             cell.buttonName.textColor = UIColor.colorForHighlightedLabel()
         guard let option = cell.buttonName.text else {
-            
+            print("wrong locatiojjjsjjdjdjdjdjdd")
             return
         }
         if indexPath == selectindexpath {
@@ -146,7 +147,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         } else if option == CollectionViewOptions.popular.rawValue{
             print("popular is selectef")
             remove(asChildViewController: signInVc)
-            detailViewModel.fetchDetails(latitude: 10.0, optionType: .popular, complitionHandler: {
+            detailViewModel.fetchDetails(latitude: location.latitude, longitude: location.longitude, optionType: .popular, complitionHandler: {
             
                 details
                 in
@@ -170,7 +171,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
             
     
         } else if option == CollectionViewOptions.topPick.rawValue{
-            detailViewModel.fetchDetails(latitude: 10.0, optionType: .topPick, complitionHandler: {
+            detailViewModel.fetchDetails(latitude: location.latitude, longitude: location.longitude, optionType: .topPick, complitionHandler: {
                 
                 details
                 in
@@ -290,16 +291,21 @@ extension HomePageViewController : CLLocationManagerDelegate {
        
         
     }
-
+    func addddd() {
+        print("locatuiajfcjsafjdskfjhdskjhfksdhjfsdfksdfkhdskfhjsdkff")
+    }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
-        if locations.first != nil {
-            print("location:: \(locations)")
+        if let location = locations.first, location != nil {
+          //  print("location:: \(locations)")
+            fetchDataForNearViewController(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         }
         
         if let location = locations.first {
+            print("-----------45869045860546546456546456546546456")
             print(location.coordinate.latitude)
             print(location.coordinate.longitude)
+           addddd()
            
         }
 

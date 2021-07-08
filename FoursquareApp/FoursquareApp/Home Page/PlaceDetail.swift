@@ -19,8 +19,11 @@ class PlaceDetail {
     var overview: String
     var imageUrl: String
     var distance: Double
+    var latitude: Double
+    var longitude: Double
     
-    init(placeId: Int, placeName: String, placeType: String, rating: Double, cost: Int, phone: Int, address: String, overview: String, imageUrl: String, distance: Double) {
+    
+    init(placeId: Int, placeName: String, placeType: String, rating: Double, cost: Int, phone: Int, address: String, overview: String, imageUrl: String, distance: Double, latitude: Double, longitude: Double) {
         
         self.placeId = placeId
         self.placeName = placeName
@@ -32,5 +35,7 @@ class PlaceDetail {
         self.overview = overview
         self.imageUrl = imageUrl
         self.distance = distance
+        self.latitude = latitude
+        self.longitude = longitude
     }
 }
