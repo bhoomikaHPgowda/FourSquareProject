@@ -18,6 +18,7 @@ class URLs {
         
         return URL(string: "\(instanceId)/authenticate")
     }
+
     static func urlforFetchPlace(type: CollectionViewOptions ) -> URL? {
         
         if type == .nearYour {
@@ -32,4 +33,12 @@ class URLs {
         }
         
     }
+
+    
+    static func changePassword() -> URL? {
+    
+        return URL(string: "\(instanceId)/changePassword")
+    }
+    
+
 }

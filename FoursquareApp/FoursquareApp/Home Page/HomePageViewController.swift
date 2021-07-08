@@ -37,22 +37,48 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         sideMenu.isHidden = true
         self.navigationController?.navigationBar.isHidden = true
         self.locationManager.requestWhenInUseAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         
-        if CLLocationManager.locationServicesEnabled() {
+        var currentLoc: CLLocation!
+       
+           currentLoc = locationManager.location
+            print("+++++++++++++++++")
+           print(currentLoc.coordinate.latitude)
+           print(currentLoc.coordinate.longitude)
+            print("============")
+        
+        
+        detailViewModel.fetchDetails(latitude: 09, optionType: .nearYour, complitionHandler: {
             
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
+            details
+            in
         
-        if let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate  {
-            print("error")
-            print("latitude== \(locValue.latitude)")
-            print("longitute == \(locValue.longitude)")
-            return
-        }
-        add(asChildViewController: self.signInVc, index: 0, finished: {})
-        signInVc.add()
+            DispatchQueue.main.async {
+                
+                self.remove(asChildViewController: self.popularViewController)
+                print("c1")
+                print("near you count==\(details.count)")
+              //  self.popularViewController.index = 102
+                self.signInVc.details1 = details
+                //self.signInVc.nearYouTableView.reloadData()
+              //  self.popularViewController.added()
+                self.signInVc.add(count: details.count)
+                self.add(asChildViewController: self.signInVc, index: 0, finished: {
+                    self.signInVc.add(count: details.count)
+                    print("data for popular")
+                    self.signInVc.nearYouTableView.reloadData()
+                })
+            }
+            
+            
+        })
+//        signInVc.loc(lat: 123.56)
+//        add(asChildViewController: self.signInVc, index: 0, finished: {
+//           // signInVc.add()
+//            signInVc.loc(lat: 123.56)
+//        })
+//        signInVc.loc(lat: 123.56)
+       
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -120,8 +146,8 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         } else if option == CollectionViewOptions.popular.rawValue{
             print("popular is selectef")
             remove(asChildViewController: signInVc)
-            detailViewModel.fetchDetails(optionType: .popular, complitionHandler: {
-                
+            detailViewModel.fetchDetails(latitude: 10.0, optionType: .popular, complitionHandler: {
+            
                 details
                 in
             
@@ -144,7 +170,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
             
     
         } else if option == CollectionViewOptions.topPick.rawValue{
-            detailViewModel.fetchDetails(optionType: .topPick, complitionHandler: {
+            detailViewModel.fetchDetails(latitude: 10.0, optionType: .topPick, complitionHandler: {
                 
                 details
                 in
@@ -251,6 +277,31 @@ extension HomePageViewController: DismissSideMenu {
 
 }
 
-extension HomePageViewController: CLLocationManagerDelegate  {
-   
+extension HomePageViewController : CLLocationManagerDelegate {
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+         print("error:: \(error.localizedDescription)")
+    }
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        }
+       
+        
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+        if locations.first != nil {
+            print("location:: \(locations)")
+        }
+        
+        if let location = locations.first {
+            print(location.coordinate.latitude)
+            print(location.coordinate.longitude)
+           
+        }
+
+    }
 }

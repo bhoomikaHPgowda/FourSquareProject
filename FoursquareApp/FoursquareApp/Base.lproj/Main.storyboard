@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xuh-sc-CHC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xuh-sc-CHC">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -96,6 +96,9 @@
                                                 <state key="normal" title="Get in ! ">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="V44-Ue-pCR" kind="show" id="UgL-tg-8Ot"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -145,10 +148,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NBH-cD-IKe"/>
+                    <connections>
+                        <outlet property="OTP" destination="LMq-dN-081" id="Qby-Q4-Zya"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cnj-DI-PKB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2648.8000000000002" y="-0.44977511244377816"/>
+            <point key="canvasLocation" x="1999" y="23"/>
         </scene>
         <!--Home Page View Controller-->
         <scene sceneID="41j-hr-IEB">
@@ -484,21 +490,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wo-Lr-Hro" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3607" y="-1322"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="6I9-jQ-Hos">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ccX-Gp-0t8" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="w72-Mo-hrp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4cN-Ed-d9g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-114.40000000000001" y="0.44977511244377816"/>
         </scene>
         <!--Near You View Controller-->
         <scene sceneID="4pn-Ic-fFe">
@@ -1949,7 +1940,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17G-Oc-hwu">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5CS-IP-MUf">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="676"/>
@@ -2037,6 +2028,9 @@
                                                         <state key="normal" title="Submit">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="changePasswordSubmit:" destination="V44-Ue-pCR" eventType="touchUpInside" id="pv9-LK-3Yg"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -2103,10 +2097,15 @@
                             <constraint firstItem="17G-Oc-hwu" firstAttribute="top" secondItem="Gwg-1l-3Nq" secondAttribute="top" id="vtU-Vl-7T1"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="IBn-Td-sh3"/>
+                    <connections>
+                        <outlet property="conformPassword" destination="lqB-zw-QbY" id="Gid-D7-YgO"/>
+                        <outlet property="password" destination="Wq3-95-aT0" id="dAQ-1g-ieo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nvs-4B-Xb7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="441" y="784"/>
+            <point key="canvasLocation" x="2737" y="23"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Wd9-wh-TKg">
@@ -3882,7 +3881,7 @@
         <!--Login View Controller-->
         <scene sceneID="28B-Lt-Vl0">
             <objects>
-                <viewController id="1bd-fe-M5A" customClass="LoginViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="1bd-fe-M5A" customClass="LoginViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DAC-1q-s5u" customClass="CustomBackgroundForView" customModule="FoursquareApp" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4110,7 +4109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fY-dX-mue" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1756" y="34.632683658170919"/>
+            <point key="canvasLocation" x="1282" y="23"/>
         </scene>
         <!--Register User View Controller-->
         <scene sceneID="w8H-ec-9Fv">
@@ -4380,7 +4379,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NC5-ig-Xk5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="816.79999999999995" y="34.632683658170919"/>
+            <point key="canvasLocation" x="449" y="23"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
