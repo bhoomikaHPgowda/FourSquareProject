@@ -8,11 +8,57 @@
 import UIKit
 
 class ChangePasswordViewController: UIViewController {
+    
+    var OTP = 0
+    var emailID = " "
+    var loginViewModel = LoginViewModel()
 
+    @IBOutlet weak var conformPassword: UITextField!
+    @IBOutlet weak var password: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.navigationBar.isHidden = true
+ 
         // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func changePasswordSubmit(_ sender: Any) {
+        
+        guard let password = password.text,
+              let conformPasword = conformPassword.text
+        else {
+            return
+        }
+        if (password == conformPasword) && (OTP == 1234) {
+            
+            loginViewModel.changePassword(email: emailID, password: password, completionHandler: {
+                statusCode
+                in
+                
+                DispatchQueue.main.async {
+                    if statusCode == 200 {
+                        print("Update Password sucessfully")
+                    }
+                    
+                    if statusCode == 204{
+                        self.displayAlertMessage(title: AlertMessages.mailNotExist.rawValue,  Discription: AlertMessages.properMailid.rawValue)
+                    }
+                    
+                    let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+                    self.navigationController?.pushViewController(loginViewController, animated: true)
+                }
+            })
+        }else{
+            if(password != conformPasword) {
+                displayAlertMessage(title: AlertMessages.passwordMissmatch.rawValue,  Discription: AlertMessages.enterPassword.rawValue)
+            }else {
+                displayAlertMessage(title: AlertMessages.optImproper.rawValue, Discription: AlertMessages.properOTP.rawValue)
+                navigationController?.dismiss(animated: true, completion: nil)
+            }
+           
+        }
+        
     }
     
 

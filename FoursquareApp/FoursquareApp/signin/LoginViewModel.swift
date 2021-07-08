@@ -27,4 +27,16 @@ class LoginViewModel {
             completionHandler(userData)
         })
     }
+    
+    func changePassword(email: String, password: String, completionHandler: @escaping(Int) -> ()) {
+        
+        networkManger.updatePassword(email: email, password: password, completionHandler: {
+            statusCode
+            in
+            print("network manger returned")
+            completionHandler(statusCode)
+        })
+    }
+    
+   
 }

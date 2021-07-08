@@ -16,7 +16,7 @@ class UserDetail {
     var email: String
     var token: String
     
-    init(statuscode: Int, message: String, id: Int, imageUrl: String, email: String, token: String) {
+    init(statuscode: Int, message: String, id: Int, imageUrl: String, email: String, token: String, otp: Int?) {
         
         self.statusCode = statuscode
         self.message = message

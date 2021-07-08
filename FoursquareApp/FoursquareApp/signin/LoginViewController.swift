@@ -43,6 +43,14 @@ class LoginViewController: UIViewController {
         })
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let temp = segue.destination as? ForgotPasswordViewController {
+            temp.email = email.text ?? "nil"
+            
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 

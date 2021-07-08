@@ -18,4 +18,10 @@ class URLs {
         
         return URL(string: "\(instanceId)/authenticate")
     }
+    
+    static func changePassword() -> URL? {
+    
+        return URL(string: "\(instanceId)/changePassword")
+    }
+    
 }

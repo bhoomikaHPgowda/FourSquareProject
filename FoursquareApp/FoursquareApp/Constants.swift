@@ -42,7 +42,12 @@ enum SearchScreen: String {
 }
 
 enum AlertMessages: String {
-    case mailExistError = "EMAIL EXISTS"
-    case mailExistMessage = "EMAIL ALREADY EXIST PLEASE TRY WITH NEW EMAIL"
-        
+    case mailExistError = "email exist"
+    case mailExistMessage = "email alredy exist please try with new email"
+    case passwordMissmatch = "password missmatch"
+    case enterPassword = "enter the password shown above"
+    case mailNotExist = "email not found"
+    case properMailid = "enter proper email to login"
+    case optImproper = "OTP Improper"
+    case properOTP = "plese enter proper OTP"
 }
