@@ -11,7 +11,12 @@ class PopularViewController: UIViewController {
     var index: Int?
     var count = 10
     var details: [PlaceDetail]?
+    var detailViewModel = FetchPlaceDetailViewModel()
     @IBOutlet weak var popularListTableView: UITableView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var rating: UILabel!
+    @IBOutlet weak var detail: UILabel!
+    @IBOutlet weak var address: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,13 +51,20 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PopularTableViewCell {
-            if let index = index {
-                cell.dcsd.text = "\(index)"
+            guard let data = details
+            else {
+                return PopularTableViewCell()
             }
-           // cell.dcsd.text = "sushanth"
+            let dataForIndex = data[indexPath.row]
+            cell.name.text = dataForIndex.placeName
+            cell.rating.text = "\(round(dataForIndex.rating))"
+            cell.detail.text = "\(dataForIndex.placeType)" + "\u{2022}" + String(repeating: "\u{20B9}", count: dataForIndex.cost) + " \(round(dataForIndex.distance))Km"
+            cell.address.text = dataForIndex.address
+            cell.placeImage.image = detailViewModel.fetchImageForGivenPlace(url: dataForIndex.imageUrl)
             cell.layer.borderColor = UIColor.colorFoeCellSpace().cgColor
+            cell.address.tintColor = UIColor.colorForControlSegmentMormalState()
+            cell.detail.textColor = UIColor.colorForControlSegmentMormalState()
                cell.layer.borderWidth = 3
-            //reloads()
             return cell
         } else {
             

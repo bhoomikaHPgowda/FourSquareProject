@@ -9,6 +9,10 @@ import UIKit
 
 class PopularTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var placeImage: UIImageView!
+    @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var detail: UILabel!
+    @IBOutlet weak var name: UILabel!
     @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var dcsd: UILabel!
     override func awakeFromNib() {

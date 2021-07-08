@@ -752,7 +752,10 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="dcsd" destination="gT6-Nm-3op" id="UPe-6c-hW1"/>
+                                            <outlet property="address" destination="Vf4-Un-fBN" id="n0t-jL-yBw"/>
+                                            <outlet property="detail" destination="JXS-ha-t9K" id="h0C-SF-XFn"/>
+                                            <outlet property="name" destination="gT6-Nm-3op" id="ZCr-vH-Nja"/>
+                                            <outlet property="placeImage" destination="Di4-qs-GEP" id="ifN-0Z-cAH"/>
                                             <outlet property="rating" destination="etd-qx-eUe" id="MZa-0S-SXr"/>
                                         </connections>
                                     </tableViewCell>

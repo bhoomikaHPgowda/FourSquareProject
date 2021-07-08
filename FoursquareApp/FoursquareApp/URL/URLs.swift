@@ -23,9 +23,12 @@ class URLs {
         if type == .nearYour {
             return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/PlaceApi/nearBy?latitude=13.343528531501212&longitude=74.74668065517001&pageNo=0&pageSize=7")
         } else if type == .popular {
-            return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/PlaceApi/popular?latitude=13.343528531501212&longitude=74.74668065517001&pageNo=0&pageSize=8")
+            return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/PlaceApi/nearBy?latitude=13.343528531501212&longitude=74.74668065517001&pageNo=0&pageSize=4")
+           
         } else {
-            return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/PlaceApi/topPick?latitude=13.371324&longitude=74.760691&pageNo=0&pageSize=5")
+            
+            return URL(string:"http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/PlaceApi/topPick?latitude=13.371324&longitude=74.760691&pageNo=0&pageSize=3")
+           
         }
         
     }
