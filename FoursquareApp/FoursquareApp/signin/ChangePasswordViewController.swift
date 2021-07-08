@@ -43,6 +43,7 @@ class ChangePasswordViewController: UIViewController {
                     
                     if statusCode == 204{
                         self.displayAlertMessage(title: AlertMessages.mailNotExist.rawValue,  Discription: AlertMessages.properMailid.rawValue)
+                        print("enter proper email in login screen")
                     }
                     
                     let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
@@ -50,13 +51,8 @@ class ChangePasswordViewController: UIViewController {
                 }
             })
         }else{
-            if(password != conformPasword) {
-                displayAlertMessage(title: AlertMessages.passwordMissmatch.rawValue,  Discription: AlertMessages.enterPassword.rawValue)
-            }else {
-                displayAlertMessage(title: AlertMessages.optImproper.rawValue, Discription: AlertMessages.properOTP.rawValue)
-                navigationController?.dismiss(animated: true, completion: nil)
-            }
-           
+        
+            displayAlertMessage(title: AlertMessages.passwordMissmatch.rawValue,  Discription: AlertMessages.enterPassword.rawValue)
         }
         
     }

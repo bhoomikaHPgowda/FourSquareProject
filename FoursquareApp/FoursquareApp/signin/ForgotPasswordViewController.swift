@@ -23,13 +23,19 @@ class ForgotPasswordViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let temp = segue.destination as? ChangePasswordViewController {
-            if let otpValue = Int(OTP.text ?? " "){
-                temp.OTP = otpValue
-                temp.emailID = email
+        if (OTP.text == "1234"){
+            if let temp = segue.destination as? ChangePasswordViewController {
+                if let otpValue = Int(OTP.text ?? " "){
+                    temp.OTP = otpValue
+                    temp.emailID = email
+                }
+               
             }
-           
+            
+        }else{
+            displayAlertMessage(title: AlertMessages.optImproper.rawValue, Discription: AlertMessages.properOTP.rawValue)
         }
+       
     }
     
     
