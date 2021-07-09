@@ -44,6 +44,47 @@ class NetworkManagerForFetchPlaceDetail {
         }
         dataTask.resume()
     }
+    
+    func getHotelPhoto(placeID: Int, pageNo: Int, pageSize: Int, completionHandler: @escaping(Int,[String]) -> ()){
+        
+        guard let photoURL = URLs.getHotalPhotos(placeID: placeID, pageNo: pageNo, pageSize: pageSize) else {
+            
+            return
+        }
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: photoURL)  {
+            
+            [weak self]
+            (data, response, error) in
+            if error != nil {
+                
+                print(error.debugDescription)
+            }
+            
+            guard let photoData = data else {
+                
+                return
+            }
+            do {
+                
+                let newData = try JSONSerialization.jsonObject(with: photoData, options: [])
+                print(newData)
+                if let data = self?.parseStatusCode(code: newData) {
+                    print(data.0)
+                    print(data.1)
+                     completionHandler(data.0, data.1)
+                }
+            } catch {
+                
+                print(error.localizedDescription)
+            }
+        }
+        dataTask.resume()
+        
+    }
+    
+    
     func popularParse(data: Any) -> PlaceDetail? {
         
         guard let nearByPlaces = data as? [String: Any],
@@ -219,4 +260,23 @@ class NetworkManagerForFetchPlaceDetail {
         }
         return 0
     }
+    
+    func parseStatusCode(code: Any) -> (Int,[String]){
+        var images = [String]()
+        guard let code = code as? [String: Any],
+              let statusCode = code["status"] as? Int,
+              let photosDetails =  code["data"] as? [Any]
+        else {
+            return (0, [""])
+        }
+        for photodetail in photosDetails{
+            if let detail = photodetail as? [String:Any]{
+                let image = detail["image"] as? String ?? "nil"
+                images.append(image)
+            }
+            
+        }
+        return (statusCode, images)
+    }
+        
 }

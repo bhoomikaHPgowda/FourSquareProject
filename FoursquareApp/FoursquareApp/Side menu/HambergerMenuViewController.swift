@@ -44,7 +44,8 @@ class HambergerMenuViewController: UIViewController {
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
-        sideMenuViewModel.getphoto(userID: userDetails.id, token: userDetails.token, imageName: imageaddress, completionHandler:{
+        
+        sideMenuViewModel.getphoto(userID: userDetails.id, token: userDetails.token, imageName: "/Users/bhoomikahp/Library/Developer/CoreSimulator/Devices/963050C7-AF98-4F83-B448-02B8FF01B2C8/data/Containers/Data/Application/3D3E978C-8A58-46C6-AFE1-E3EEDE052564/Documents/7D26D258-8276-45B4-9893-D839351468BE.jpeg", completionHandler:{
             statusCode
             in
             print("data recived ")
@@ -52,11 +53,11 @@ class HambergerMenuViewController: UIViewController {
                 if statusCode == 200 {
                     print("profile pic Added sucessesfully")
                 }
-                
+
             }
-            
+
         })
-        
+
     }
     
     
@@ -106,9 +107,10 @@ extension HambergerMenuViewController: UIImagePickerControllerDelegate,UINavigat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL
         let imageName = imageURL?.lastPathComponent
-        imageaddress = imageName ?? "nil"
-       print(imageName)
-       // print(imageURL)
+        print(imageName)
+        print(imageURL)
+        getImage(imgName: imageName!)
+       
         if let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             
             profile.setImage(img, for: .normal)
@@ -116,6 +118,19 @@ extension HambergerMenuViewController: UIImagePickerControllerDelegate,UINavigat
             profile.clipsToBounds = true
         }
         dismiss(animated: true, completion: nil)
+    }
+    
+    func getImage(imgName: String){
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let userDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
+        let paths             = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        if let dirPath        = paths.first
+        {
+           let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent(imgName)
+            print(imageURL.path)
+            imageaddress = imageURL.path
+        }
+        
     }
     
 }

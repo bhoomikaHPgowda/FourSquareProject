@@ -76,7 +76,6 @@ class NetworkManger {
         let params = [
             "email" : email,
             "password" : password
-
         ]
         
         guard let url = URLs.authenticateUser() else {

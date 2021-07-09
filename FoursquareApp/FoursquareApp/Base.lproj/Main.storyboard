@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xuh-sc-CHC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7kd-aB-TLq">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -2905,6 +2905,9 @@
                                                     <constraint firstAttribute="height" constant="40" id="SRM-8N-H7q"/>
                                                 </constraints>
                                                 <state key="normal" image="photo"/>
+                                                <connections>
+                                                    <segue destination="TeV-p1-yIC" kind="show" id="vDT-1a-VsZ"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Taa-TP-if4">
                                                 <rect key="frame" x="275" y="257" width="40" height="40"/>
@@ -3217,7 +3220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rig-TS-Kdo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6510" y="-1036"/>
+            <point key="canvasLocation" x="6510" y="-1136"/>
         </scene>
         <!--Rating View Controller-->
         <scene sceneID="cOF-ey-10d">
@@ -3452,7 +3455,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hfa-gu-0b0">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Yy-O1-cYy">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -3482,7 +3485,7 @@
                                                         </constraints>
                                                         <state key="normal" image="camera_1"/>
                                                         <connections>
-                                                            <action selector="addPhotos:" destination="TeV-p1-yIC" eventType="touchUpInside" id="j7P-ns-lo3"/>
+                                                            <action selector="addPhotos:" destination="TeV-p1-yIC" eventType="touchUpInside" id="YM2-V4-ada"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -3578,7 +3581,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="3br-aS-zg7"/>
                     <connections>
-                        <outlet property="collectionView" destination="GG9-PA-Fz0" id="Ax0-Nt-wfq"/>
+                        <outlet property="collectionView" destination="bPQ-I3-9Ro" id="HLn-W8-4Tb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pdC-dV-cgL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
