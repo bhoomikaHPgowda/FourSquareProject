@@ -28,6 +28,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     var detail:PlaceDetail?
     var id: Int?
     var detailViewModel = DetailViewModel()
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ")
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -35,22 +36,18 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
        // gradientView.isHidden = true
         //ratingView.isHidden = true
         setCircularShapeForButton()
-        // Do any additional setup after loading the view.
-        if let placeid = id {
-            detailViewModel.fetchDetails(id: placeid, complitionHandler: {
-                
-                detailRecieved
-                in
-                
-                DispatchQueue.main.async {
-                    
-                    print("detail === \(detailRecieved.cost)")
-                    self.detail = detailRecieved
-                    self.updateValuesReceived()
-                }
-            })
-        }
        
+       
+        detailViewModel.fetchDetails(id: 16, complitionHandler: {
+            details
+            in
+            print("details received from api")
+            DispatchQueue.main.async {
+                self.updateValuesReceived()
+            }
+        })
+            
+        self.updateValuesReceived()
         
     }
     
@@ -98,7 +95,10 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         let ratingViewController = self.storyboard?.instantiateViewController(withIdentifier: "RatingViewController") as! RatingViewController
         if let data = detail {
             ratingViewController.rating = data.rating
+            ratingViewController.placeId = data.placeId
         }
+        ratingViewController.userDetails = userDetails
+         
         ratingViewController.modalPresentationStyle = .overFullScreen
         present(ratingViewController, animated: true, completion: nil)
         

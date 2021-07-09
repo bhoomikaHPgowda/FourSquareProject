@@ -24,15 +24,22 @@ class RegisterUserViewController: UIViewController {
     @IBAction func SubmitTapped(_ sender: CustomButton) {
         guard let email = email.text,
               let mobileNumber = mobileNumber.text,
-              let password = password.text
+              let password = password.text,
+              let confirmPassword = confirmPassword.text
         else {
             return
         }
-        loginViewModel.registerUser(email: email, mobileNumber: mobileNumber, password: password, completionHandler: {
-            ()
-            in
-            print("added succefully")
-        })
+        if password != confirmPassword {
+            displayAlertMessage(title: AlertMessages.passwordMissmatch.rawValue,  Discription: AlertMessages.enterPassword.rawValue)
+        } else {
+            loginViewModel.registerUser(email: email, mobileNumber: mobileNumber, password: password, completionHandler: {
+                statusCode
+                in
+                print("recived")
+            })
+            self.navigationController?.popViewController(animated: true)
+        }
+        
         
     }
 

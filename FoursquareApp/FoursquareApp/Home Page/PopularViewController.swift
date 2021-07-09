@@ -12,6 +12,7 @@ class PopularViewController: UIViewController {
     var count = 10
     var details: [PlaceDetail]?
     var detailViewModel = FetchPlaceDetailViewModel()
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ")
     @IBOutlet weak var popularListTableView: UITableView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var rating: UILabel!
@@ -22,6 +23,7 @@ class PopularViewController: UIViewController {
         
         popularListTableView.delegate = self
         popularListTableView.dataSource = self
+        print("user -----------\(userDetails.email)")
     }
     func added() {
         if let index = index {

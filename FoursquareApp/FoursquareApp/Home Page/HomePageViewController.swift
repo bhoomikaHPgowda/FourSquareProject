@@ -28,6 +28,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
     var popularViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopularViewController")  as! PopularViewController
     var detailViewModel = FetchPlaceDetailViewModel()
     var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ")
+    var user: UserDetail?
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,22 +40,12 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         self.navigationController?.navigationBar.isHidden = true
         self.locationManager.requestWhenInUseAuthorization()
         locationManager.requestWhenInUseAuthorization()
-        
-        
-        
-        
-//        signInVc.loc(lat: 123.56)
-//        add(asChildViewController: self.signInVc, index: 0, finished: {
-//           // signInVc.add()
-//            signInVc.loc(lat: 123.56)
-//        })
-//        signInVc.loc(lat: 123.56)
-       
+        print("\(userDetails.email) is received")
     }
     
     func fetchDataForNearViewController(latitude: Double, longitude: Double) {
         
-        detailViewModel.fetchDetails(latitude: latitude, longitude: longitude, optionType: .nearYour, complitionHandler: {
+        detailViewModel.fetchDetails(latitude: latitude, longitude: longitude, optionType: .nearMe, complitionHandler: {
             
             details
             in
@@ -62,12 +53,8 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
             DispatchQueue.main.async {
                 
                 self.remove(asChildViewController: self.popularViewController)
-                print("c1")
-                print("near you count==\(details.count)")
-              //  self.popularViewController.index = 102
                 self.signInVc.details1 = details
-                //self.signInVc.nearYouTableView.reloadData()
-              //  self.popularViewController.added()
+                self.signInVc.userDetails = self.userDetails
                 self.signInVc.add(count: details.count)
                 self.add(asChildViewController: self.signInVc, index: 0, finished: {
                     self.signInVc.add(count: details.count)
@@ -104,7 +91,6 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBAction func sideMenuTapped(_ sender: UIButton) {
         
         MainView.frame.origin.x = 260
-        //sideMenu.isHidden = false
         view.window!.layer.add(CATransition.transitionLeftToRight(), forKey: kCATransition)
     }
     
@@ -127,8 +113,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = view.frame.size.height
-        let width = view.frame.size.width
+      
  
         return CGSize(width: view.frame.width / 5, height: 50)
     }
@@ -141,7 +126,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         let cell = collectionView.cellForItem(at: indexPath) as! HomePageCollectionViewCell
             cell.buttonName.textColor = UIColor.colorForHighlightedLabel()
         guard let option = cell.buttonName.text else {
-            print("wrong locatiojjjsjjdjdjdjdjdd")
+          
             return
         }
         if indexPath == selectindexpath {
@@ -158,13 +143,13 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
                 DispatchQueue.main.async {
                     
                     self.remove(asChildViewController: self.popularViewController)
-                    print("c1")
-                    print("popular count==\(details.count)")
                     self.popularViewController.index = 102
                     self.popularViewController.details = details
+                    self.popularViewController.userDetails = self.userDetails
                     self.popularViewController.added()
-                    self.add(asChildViewController: self.popularViewController, index: 1, finished: {self.popularViewController.added()
-                        print("data for popular")
+                    self.add(asChildViewController: self.popularViewController, index: 1, finished: {
+                        self.popularViewController.added()
+                    
                         self.popularViewController.popularListTableView.reloadData()
                     })
                 }
@@ -185,6 +170,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
                     print("c1")
                     self.popularViewController.index = 106
                     self.popularViewController.details = details
+                    self.popularViewController.userDetails = self.userDetails
                     self.popularViewController.added()
                     self.add(asChildViewController: self.popularViewController, index: 1, finished: {self.popularViewController.added()
                         print("data for popular")
@@ -201,11 +187,8 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! HomePageCollectionViewCell
             cell.buttonName.textColor = UIColor.colorForNormalLabel()
-//        collectionView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UICollectionView.RowAnimation.None)
+
         collectionView.reloadItems(at: [indexPath])
-        
-        
-        
     }
 
   
@@ -295,7 +278,7 @@ extension HomePageViewController : CLLocationManagerDelegate {
         
     }
     func addddd() {
-        print("locatuiajfcjsafjdskfjhdskjhfksdhjfsdfksdfkhdskfhjsdkff")
+        
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
@@ -305,7 +288,7 @@ extension HomePageViewController : CLLocationManagerDelegate {
         }
         
         if let location = locations.first {
-            print("-----------45869045860546546456546456546546456")
+    
             print(location.coordinate.latitude)
             print(location.coordinate.longitude)
            addddd()

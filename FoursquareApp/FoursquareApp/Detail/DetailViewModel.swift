@@ -20,4 +20,18 @@ class DetailViewModel {
         })
         
     }
+    
+    func addRating(userId: Int, token: String, placeId: Int, rating: Int, completionHandler: @escaping(Int) -> ()) {
+        
+        networkManger.addRating(userId: userId, token: token, placeId: placeId, rating: rating, completionHandler: {
+            
+            statusCode
+            in
+            print("status code = \(statusCode)")
+            completionHandler(statusCode)
+        })
+    
+    }
+    
+  
 }
