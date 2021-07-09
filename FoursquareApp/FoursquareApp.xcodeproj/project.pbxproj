@@ -20,6 +20,8 @@
 		6A6FFA33269442500072C3A3 /* Alert+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FFA32269442500072C3A3 /* Alert+Extension.swift */; };
 		6A7A506E268AF3BA0080640E /* CustomBackgroundForView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A506D268AF3BA0080640E /* CustomBackgroundForView.swift */; };
 		6A7A5076268AF4940080640E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A5075268AF4940080640E /* CustomButton.swift */; };
+		6AD38FB82697457B0060AC24 /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD38FB72697457B0060AC24 /* SideMenuViewModel.swift */; };
+		6AD38FBB269746200060AC24 /* NetworkManagerForSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD38FBA269746200060AC24 /* NetworkManagerForSideMenu.swift */; };
 		AF0667AB268B84CF00918017 /* CustomSddToFavouriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0667AA268B84CF00918017 /* CustomSddToFavouriteButton.swift */; };
 		AF0667AE268B89E100918017 /* CustomAddToFavouriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0667AD268B89E100918017 /* CustomAddToFavouriteButton.swift */; };
 		AF0667B1268B8BD600918017 /* PopularTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0667B0268B8BD600918017 /* PopularTableViewCell.swift */; };
@@ -91,6 +93,8 @@
 		6A6FFA32269442500072C3A3 /* Alert+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Extension.swift"; sourceTree = "<group>"; };
 		6A7A506D268AF3BA0080640E /* CustomBackgroundForView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackgroundForView.swift; sourceTree = "<group>"; };
 		6A7A5075268AF4940080640E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		6AD38FB72697457B0060AC24 /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
+		6AD38FBA269746200060AC24 /* NetworkManagerForSideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerForSideMenu.swift; sourceTree = "<group>"; };
 		AF0667AA268B84CF00918017 /* CustomSddToFavouriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSddToFavouriteButton.swift; sourceTree = "<group>"; };
 		AF0667AD268B89E100918017 /* CustomAddToFavouriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddToFavouriteButton.swift; sourceTree = "<group>"; };
 		AF0667B0268B8BD600918017 /* PopularTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularTableViewCell.swift; sourceTree = "<group>"; };
@@ -182,7 +186,9 @@
 			isa = PBXGroup;
 			children = (
 				AF0667B4268BA2EB00918017 /* SideMenuViewController.swift */,
+				6AD38FBA269746200060AC24 /* NetworkManagerForSideMenu.swift */,
 				AF6F3A07268C6A17001A9FA0 /* HambergerMenuViewController.swift */,
+				6AD38FB72697457B0060AC24 /* SideMenuViewModel.swift */,
 				AF719679268CCE7500C18522 /* FeedbackViewController.swift */,
 				AF71967C268CE22800C18522 /* AboutUsViewController.swift */,
 				AF77ABC8268CE7FB00DB6605 /* FavouritesViewController.swift */,
@@ -416,6 +422,7 @@
 				AF77A85E2694C110004E27E3 /* RegisterUserViewController.swift in Sources */,
 				AF71967A268CCE7500C18522 /* FeedbackViewController.swift in Sources */,
 				6A540A16269355540009A614 /* ReviewDisplayCell.swift in Sources */,
+				6AD38FBB269746200060AC24 /* NetworkManagerForSideMenu.swift in Sources */,
 				AF35DE47268B2BD200742C78 /* HomePageCollectionViewCell.swift in Sources */,
 				6A7A506E268AF3BA0080640E /* CustomBackgroundForView.swift in Sources */,
 				AF842517268DA38A00164857 /* CustomControlSegment.swift in Sources */,
@@ -468,6 +475,7 @@
 				AF77A8682694C4FF004E27E3 /* URLs.swift in Sources */,
 				AF719674268CB87300C18522 /* UIButton+Extension.swift in Sources */,
 				AF77A86E2694DC22004E27E3 /* UserDetail.swift in Sources */,
+				6AD38FB82697457B0060AC24 /* SideMenuViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

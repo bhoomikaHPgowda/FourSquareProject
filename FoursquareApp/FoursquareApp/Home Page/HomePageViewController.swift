@@ -27,6 +27,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
     var signInVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NearYouViewController") as! NearYouViewController
     var popularViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopularViewController")  as! PopularViewController
     var detailViewModel = FetchPlaceDetailViewModel()
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ")
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +85,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         if let destination  = segue.destination as? HambergerMenuViewController {
             
             destination.delegate = self
+            destination.userDetails = userDetails
         }
     }
     
@@ -105,6 +107,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         //sideMenu.isHidden = false
         view.window!.layer.add(CATransition.transitionLeftToRight(), forKey: kCATransition)
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         

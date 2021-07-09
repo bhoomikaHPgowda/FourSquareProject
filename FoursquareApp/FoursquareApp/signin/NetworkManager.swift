@@ -47,9 +47,12 @@ class NetworkManger {
     func authenticateUserDetail(email: String, password: String, completionHandler: @escaping(UserDetail) -> ()) {
         
         let params = [
+<<<<<<< HEAD
 
          
 
+=======
+>>>>>>> 62b66de2d707d4f5dc4e317df72c59aeb5d4fa34
             "email" : email,
             "password" : password
 
@@ -69,11 +72,7 @@ class NetworkManger {
             data, response, error in
             print("url is called")
             print(data)
-//            guard let errors = error as? Error else {
-//
-//                print("\(error)")
-//                return
-//            }
+
             print(error)
          
             guard let userData = data else{

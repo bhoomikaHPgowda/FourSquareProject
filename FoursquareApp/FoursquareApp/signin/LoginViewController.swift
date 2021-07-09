@@ -44,6 +44,7 @@ class LoginViewController: UIViewController {
                 if detail.statusCode == 200 {
                     
                     let homePageViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomePageViewController") as! HomePageViewController
+                    homePageViewController.userDetails = detail
                     self.navigationController?.pushViewController(homePageViewController, animated: true)
                 } else if detail.statusCode == 404  {
                     

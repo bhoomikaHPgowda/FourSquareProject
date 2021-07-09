@@ -21,6 +21,9 @@ class HambergerMenuViewController: UIViewController {
     @IBOutlet weak var profile: UIButton!
     var delegate: DismissSideMenu?
     var imagePicker = UIImagePickerController()
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ")
+    var sideMenuViewModel = SideMenuViewModel()
+    var imageaddress = " "
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,16 +35,27 @@ class HambergerMenuViewController: UIViewController {
         imagePicker.delegate = self
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-       
-        
     }
     
     @IBAction func addPhotos(_ sender: UIButton) {
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
+        sideMenuViewModel.getphoto(userID: userDetails.id, token: userDetails.token, imageName: imageaddress, completionHandler:{
+            statusCode
+            in
+            print("data recived ")
+            DispatchQueue.main.async {
+                if statusCode == 200 {
+                    print("profile pic Added sucessesfully")
+                }
+                
+            }
+            
+        })
         
     }
     
@@ -90,6 +104,11 @@ class HambergerMenuViewController: UIViewController {
 extension HambergerMenuViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL
+        let imageName = imageURL?.lastPathComponent
+        imageaddress = imageName ?? "nil"
+       print(imageName)
+       // print(imageURL)
         if let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             
             profile.setImage(img, for: .normal)
