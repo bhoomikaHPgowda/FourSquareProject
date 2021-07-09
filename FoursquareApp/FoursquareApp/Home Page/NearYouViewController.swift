@@ -15,7 +15,9 @@ class NearYouViewController: UIViewController {
     @IBOutlet weak var nearYouTableView: UITableView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    var detailViewModel = FetchPlaceDetailViewModel()
     let locationManager = CLLocationManager()
+    var details1: [PlaceDetail]?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,17 +30,24 @@ class NearYouViewController: UIViewController {
         nearYouTableView.separatorStyle = .singleLine
         nearYouTableView.separatorInset = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 3)
         nearYouTableView.separatorColor = UIColor.green
+    
+        detailViewModel.fetchDetails(optionType: .nearYour,complitionHandler: {
+            details
+            in
+            self.details1 = details
+            print("\(details.count)")
+            self.add()
+        })
     }
     
-
-    /*
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func add() {
+       print("data is calledjhsfjhsdfjgsdfhjdsgfhdsjhfdsf")
+        print(details1?.count)
+        DispatchQueue.main.async {
+            self.nearYouTableView.reloadData()
+        }
+        
     }
-    */
 
 }
 extension NearYouViewController : CLLocationManagerDelegate {
@@ -58,10 +67,12 @@ extension NearYouViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
         if locations.first != nil {
-            print("location:: (location)")
+            print("location:: \(locations)")
         }
         
         if let location = locations.first {
+            print(location.coordinate.latitude)
+            print(location.coordinate.longitude)
             let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
                   let region = MKCoordinateRegion(center: location.coordinate, span: span)
                   mapView.setRegion(region, animated: true)
@@ -73,7 +84,7 @@ extension NearYouViewController : CLLocationManagerDelegate {
 
 extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return details1?.count ?? 0
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
@@ -81,11 +92,29 @@ extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
       
             return 195
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("cell pressed")
+        if let data = details1 {
+            print("Datatatatata\(data.count)")
+        }
+        
+    }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NearYouTableViewCell {
-            cell.dcsd.text = "sushanth"
+            guard let data = details1
+            else {
+                return NearYouTableViewCell()
+            }
+            let dataForIndex = data[indexPath.row]
+            cell.name.text = dataForIndex.placeName
+            cell.rating.text = "\(round(dataForIndex.rating))"
+//            cell.detail.text = "\(dataForIndex.placeType.split(separator: "").pop(0))" + "\u{2022}" + String(repeating: "\u{20B9}", count: dataForIndex.cost) + " \(round(dataForIndex.distance))Km"
+            cell.address.text = dataForIndex.address
+            cell.placeImage.image = detailViewModel.fetchImageForGivenPlace(url: dataForIndex.imageUrl)
             cell.layer.borderColor = UIColor.colorFoeCellSpace().cgColor
+            cell.address.tintColor = UIColor.colorForControlSegmentMormalState()
+            cell.detail.textColor = UIColor.colorForControlSegmentMormalState()
                cell.layer.borderWidth = 3
             return cell
         } else {

@@ -49,6 +49,7 @@ class NetworkManger {
         let params = [
             "email" : email,
             "password" : password
+
         ]
         
         guard let url = URLs.authenticateUser() else {
@@ -65,11 +66,7 @@ class NetworkManger {
             data, response, error in
             print("url is called")
             print(data)
-//            guard let errors = error as? Error else {
-//
-//                print("\(error)")
-//                return
-//            }
+
             print(error)
          
             guard let userData = data else{
@@ -108,7 +105,7 @@ class NetworkManger {
             else {
                 return nil
             }
-            let logedUserDetail = UserDetail(statuscode: statusCode, message: message, id: id, imageUrl: imageUrl, email: email, token: token, otp: 0)
+            let logedUserDetail = UserDetail(statuscode: statusCode, message: message, id: id, imageUrl: imageUrl, email: email, token: token)
 
             return logedUserDetail
         }

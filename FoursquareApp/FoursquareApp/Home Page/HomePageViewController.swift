@@ -21,29 +21,47 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var nearYouContainerView: UIView!
     
     let values: [String] = CollectionViewOptions.allCases.map { $0.rawValue }
+    let locationManager = CLLocationManager()
     var selectedCellIndexPath = [IndexPath] ()
     var selectindexpath: IndexPath = [0, 0]
     var signInVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NearYouViewController") as! NearYouViewController
-    var signUpVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopularViewController")  as! PopularViewController
+    var popularViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopularViewController")  as! PopularViewController
+    var detailViewModel = FetchPlaceDetailViewModel()
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ")
    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+  
         self.collectionViewForHome.delegate = self
         self.collectionViewForHome.dataSource = self
         collectionViewForHome.autoresizesSubviews = false
-        add(asChildViewController: signInVc, index: 0, finished: {})
         sideMenu.isHidden = true
         self.navigationController?.navigationBar.isHidden = true
-       
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        
+        if let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate  {
+            print("error")
+            print("latitude== \(locValue.latitude)")
+            print("longitute == \(locValue.longitude)")
+            return
+        }
+        add(asChildViewController: self.signInVc, index: 0, finished: {})
+        signInVc.add()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if let destination  = segue.destination as? HambergerMenuViewController {
             
             destination.delegate = self
+            destination.userDetails = userDetails
         }
     }
     
@@ -54,8 +72,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             return
         }
-        let height = view.frame.size.height
-        let width = view.frame.size.width
+       
         flowLayout.invalidateLayout()
         collectionViewForHome.reloadData()
     }
@@ -66,8 +83,6 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         //sideMenu.isHidden = false
         view.window!.layer.add(CATransition.transitionLeftToRight(), forKey: kCATransition)
     }
-    
-    
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -88,7 +103,6 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
         let height = view.frame.size.height
         let width = view.frame.size.width
  
@@ -100,30 +114,60 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         let cell = collectionView.cellForItem(at: indexPath) as! HomePageCollectionViewCell
             cell.buttonName.textColor = UIColor.colorForHighlightedLabel()
         guard let option = cell.buttonName.text else {
+            
             return
         }
         if indexPath == selectindexpath {
+            
             add(asChildViewController: signInVc, index: 0, finished: {})
         } else if option == CollectionViewOptions.popular.rawValue{
+            print("popular is selectef")
+            remove(asChildViewController: signInVc)
+            detailViewModel.fetchDetails(optionType: .popular, complitionHandler: {
+                
+                details
+                in
             
-            //remove(asChildViewController: signInVc)
-            remove(asChildViewController: signUpVc)
-            print("c1")
-            signUpVc.index = 10
-            signUpVc.added()
-            add(asChildViewController: signUpVc, index: 1, finished: {signUpVc.added()
-                signUpVc.popularListTableView.reloadData()
+                DispatchQueue.main.async {
+                    
+                    self.remove(asChildViewController: self.popularViewController)
+                    print("c1")
+                    print("popular count==\(details.count)")
+                    self.popularViewController.index = 102
+                    self.popularViewController.details = details
+                    self.popularViewController.added()
+                    self.add(asChildViewController: self.popularViewController, index: 1, finished: {self.popularViewController.added()
+                        print("data for popular")
+                        self.popularViewController.popularListTableView.reloadData()
+                    })
+                }
+                
+                
             })
+            
     
         } else if option == CollectionViewOptions.topPick.rawValue{
-          //  remove(asChildViewController: signInVc)
-          //  remove(asChildViewController: signUpVc)
-            print("c2")
-            signUpVc.index = 2
-            signUpVc.added()
-            add(asChildViewController: signUpVc, index: 1, finished: {signUpVc.added()
-                signUpVc.popularListTableView.reloadData()
+            detailViewModel.fetchDetails(optionType: .topPick, complitionHandler: {
+                
+                details
+                in
+                
+                DispatchQueue.main.async {
+                    print("toppick count==\(details.count)")
+                    self.remove(asChildViewController: self.popularViewController)
+                    print("c1")
+                    self.popularViewController.index = 106
+                    self.popularViewController.details = details
+                    self.popularViewController.added()
+                    self.add(asChildViewController: self.popularViewController, index: 1, finished: {self.popularViewController.added()
+                        print("data for popular")
+                        self.popularViewController.popularListTableView.reloadData()
+                    })
+                }
+                
+                
             })
+
         }
         
     }
@@ -208,4 +252,8 @@ extension HomePageViewController: DismissSideMenu {
     
     
 
+}
+
+extension HomePageViewController: CLLocationManagerDelegate  {
+   
 }

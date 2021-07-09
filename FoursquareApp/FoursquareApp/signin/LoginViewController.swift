@@ -27,6 +27,7 @@ class LoginViewController: UIViewController {
         else {
             return
         }
+        print("username == \(email) password== \(password)")
         loginViewModel.authenticatUser(email: email, password: password, completionHandler: {
             detail
             in
@@ -35,7 +36,11 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 if detail.statusCode == 200 {
                     let homePageViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomePageViewController") as! HomePageViewController
+                    homePageViewController.userDetails = detail
                     self.navigationController?.pushViewController(homePageViewController, animated: true)
+                } else {
+                    
+                    return
                 }
             }
            
