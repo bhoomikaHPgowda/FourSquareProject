@@ -119,11 +119,11 @@ extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
             let dataForIndex = data[indexPath.row]
             cell.name.text = dataForIndex.placeName
             cell.rating.text = "\(round(dataForIndex.rating))"
-<<<<<<< HEAD
+
             cell.detail.text = "\(dataForIndex.placeType.components(separatedBy:" ")[0]) " + " \u{2022} " + String(repeating: "\u{20B9}", count: dataForIndex.cost) + " \(round(dataForIndex.distance))Km"
-=======
-//            cell.detail.text = "\(dataForIndex.placeType.split(separator: "").pop(0))" + "\u{2022}" + String(repeating: "\u{20B9}", count: dataForIndex.cost) + " \(round(dataForIndex.distance))Km"
->>>>>>> 62b66de2d707d4f5dc4e317df72c59aeb5d4fa34
+
+
+
             cell.address.text = dataForIndex.address
             cell.placeImage.image = detailViewModel.fetchImageForGivenPlace(url: dataForIndex.imageUrl)
             cell.layer.borderColor = UIColor.colorFoeCellSpace().cgColor
