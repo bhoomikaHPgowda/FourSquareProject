@@ -31,29 +31,53 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
    
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        locationManager.delegate = self
         self.collectionViewForHome.delegate = self
         self.collectionViewForHome.dataSource = self
         collectionViewForHome.autoresizesSubviews = false
         sideMenu.isHidden = true
         self.navigationController?.navigationBar.isHidden = true
         self.locationManager.requestWhenInUseAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         
-        if CLLocationManager.locationServicesEnabled() {
+        
+        
+        
+//        signInVc.loc(lat: 123.56)
+//        add(asChildViewController: self.signInVc, index: 0, finished: {
+//           // signInVc.add()
+//            signInVc.loc(lat: 123.56)
+//        })
+//        signInVc.loc(lat: 123.56)
+       
+    }
+    
+    func fetchDataForNearViewController(latitude: Double, longitude: Double) {
+        
+        detailViewModel.fetchDetails(latitude: latitude, longitude: longitude, optionType: .nearYour, complitionHandler: {
             
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
+            details
+            in
         
-        if let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate  {
-            print("error")
-            print("latitude== \(locValue.latitude)")
-            print("longitute == \(locValue.longitude)")
-            return
-        }
-        add(asChildViewController: self.signInVc, index: 0, finished: {})
-        signInVc.add()
+            DispatchQueue.main.async {
+                
+                self.remove(asChildViewController: self.popularViewController)
+                print("c1")
+                print("near you count==\(details.count)")
+              //  self.popularViewController.index = 102
+                self.signInVc.details1 = details
+                //self.signInVc.nearYouTableView.reloadData()
+              //  self.popularViewController.added()
+                self.signInVc.add(count: details.count)
+                self.add(asChildViewController: self.signInVc, index: 0, finished: {
+                    self.signInVc.add(count: details.count)
+                    print("data for popular")
+                    self.signInVc.nearYouTableView.reloadData()
+                })
+            }
+            
+            
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,10 +135,13 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("cell did selected \(indexPath)")
+        guard let location = locationManager.location?.coordinate else {
+            return
+        }
         let cell = collectionView.cellForItem(at: indexPath) as! HomePageCollectionViewCell
             cell.buttonName.textColor = UIColor.colorForHighlightedLabel()
         guard let option = cell.buttonName.text else {
-            
+            print("wrong locatiojjjsjjdjdjdjdjdd")
             return
         }
         if indexPath == selectindexpath {
@@ -123,8 +150,8 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         } else if option == CollectionViewOptions.popular.rawValue{
             print("popular is selectef")
             remove(asChildViewController: signInVc)
-            detailViewModel.fetchDetails(optionType: .popular, complitionHandler: {
-                
+            detailViewModel.fetchDetails(latitude: location.latitude, longitude: location.longitude, optionType: .popular, complitionHandler: {
+            
                 details
                 in
             
@@ -147,7 +174,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
             
     
         } else if option == CollectionViewOptions.topPick.rawValue{
-            detailViewModel.fetchDetails(optionType: .topPick, complitionHandler: {
+            detailViewModel.fetchDetails(latitude: location.latitude, longitude: location.longitude, optionType: .topPick, complitionHandler: {
                 
                 details
                 in
@@ -254,6 +281,36 @@ extension HomePageViewController: DismissSideMenu {
 
 }
 
-extension HomePageViewController: CLLocationManagerDelegate  {
-   
+extension HomePageViewController : CLLocationManagerDelegate {
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+         print("error:: \(error.localizedDescription)")
+    }
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        }
+       
+        
+    }
+    func addddd() {
+        print("locatuiajfcjsafjdskfjhdskjhfksdhjfsdfksdfkhdskfhjsdkff")
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+        if let location = locations.first, location != nil {
+          //  print("location:: \(locations)")
+            fetchDataForNearViewController(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        }
+        
+        if let location = locations.first {
+            print("-----------45869045860546546456546456546546456")
+            print(location.coordinate.latitude)
+            print(location.coordinate.longitude)
+           addddd()
+           
+        }
+
+    }
 }

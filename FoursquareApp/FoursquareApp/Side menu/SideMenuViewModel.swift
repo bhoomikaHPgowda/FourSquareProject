@@ -12,7 +12,7 @@ class SideMenuViewModel{
     var networkManagerForSideMenu = NetworkManagerForSideMenu()
     
     func getphoto(userID: Int, token: String, imageName: String, completionHandler: @escaping(Int) -> ()) {
-        
+        print("hii")
         networkManagerForSideMenu.uploadProfilePhoto(userID: userID, token: token, imageName: imageName, completionHandler: {
             statusCode
             in

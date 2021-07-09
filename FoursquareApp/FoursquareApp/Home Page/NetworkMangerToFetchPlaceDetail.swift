@@ -8,9 +8,9 @@
 import Foundation
 class NetworkMangerToFetchPlaceDetail {
     
-    func nearMePlacedetail(optionType: CollectionViewOptions,completionHandler: @escaping([PlaceDetail]) -> ()) {
+    func nearMePlacedetail(latitude: Double, longitude: Double, optionType: CollectionViewOptions,completionHandler: @escaping([PlaceDetail]) -> ()) {
       
-        guard let weatherURl = URLs.urlforFetchPlace(type: optionType) else {
+        guard let weatherURl = URLs.urlforFetchPlace(latitude: latitude, longitude: longitude,type: optionType) else {
             
             return
         }
@@ -63,6 +63,8 @@ class NetworkMangerToFetchPlaceDetail {
                   let placeName = place["name"] as? String,
                   let cost = place["cost"] as? Int,
                   let rating = place["overallRating"] as? Double,
+                  let latitude = place["latitude"] as? Double,
+                  let longitude = place["longitude"] as? Double,
                   let phone = place["phone"] as? Int,
                   let address = place["address"] as? String,
                   let overview = place["overview"] as? String,
@@ -73,7 +75,7 @@ class NetworkMangerToFetchPlaceDetail {
                 
                 return nil
             }
-            let fetchDetail = PlaceDetail(placeId: placeid, placeName: placeName, placeType: "", rating: rating, cost: cost, phone: phone, address: address, overview: overview, imageUrl: imageUrl, distance: distance)
+            let fetchDetail = PlaceDetail(placeId: placeid, placeName: placeName, placeType: "", rating: rating, cost: cost, phone: phone, address: address, overview: overview, imageUrl: imageUrl, distance: distance, latitude: latitude, longitude: longitude )
             for data in placeType {
                 if let placetypeDetail = data as? [String: Any]{
                

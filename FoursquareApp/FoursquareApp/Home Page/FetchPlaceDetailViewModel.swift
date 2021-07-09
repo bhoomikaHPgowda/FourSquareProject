@@ -10,8 +10,9 @@ import UIKit
 class FetchPlaceDetailViewModel {
     var networkManger = NetworkMangerToFetchPlaceDetail()
     
-    func fetchDetails(optionType: CollectionViewOptions,complitionHandler: @escaping([PlaceDetail]) -> ()) {
-        networkManger.nearMePlacedetail(optionType: optionType, completionHandler: {
+    func fetchDetails(latitude: Double, longitude: Double, optionType: CollectionViewOptions,complitionHandler: @escaping([PlaceDetail]) -> ()) {
+        print("latitide === \(latitude) recived ")
+        networkManger.nearMePlacedetail(latitude: latitude, longitude: longitude, optionType: optionType, completionHandler: {
             objects
             in
             print("network manger returned")
