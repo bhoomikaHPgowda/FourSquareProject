@@ -47,7 +47,7 @@ class NetworkManagerForFetchPlaceDetail {
     
     func getHotelPhoto(placeID: Int, pageNo: Int, pageSize: Int, completionHandler: @escaping(Int,[String]) -> ()){
         
-        guard let photoURL = URLs.getHotalPhotos(placeID: placeID, pageNo: pageNo, pageSize: pageSize) else {
+        guard let photoURL = URLs.getHotelPhotos(placeID: placeID, pageNo: pageNo, pageSize: pageSize) else {
             
             return
         }

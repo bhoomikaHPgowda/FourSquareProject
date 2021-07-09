@@ -68,7 +68,7 @@ class URLs {
     }
     
 
-    static func getHotalPhotos(placeID: Int, pageNo: Int, pageSize: Int) -> URL? {
+    static func getHotelPhotos(placeID: Int, pageNo: Int, pageSize: Int) -> URL? {
         return URL(string: "\(instanceId)/getPictures?placeId=\(placeID)&pageNo=\(pageNo)&pageSize=\(pageSize)")
         
     }

@@ -36,7 +36,7 @@ class PhotoViewController: UIViewController {
     }
     
     func uploadPhotos() {
-        detailViewModel.getHotalPhotosForCollectionView(placeID: placeIdNum, pageNo: pageNumber, pageSize: pageSizeValue, complitionHandler: {
+        detailViewModel.getHotelPhotosForCollectionView(placeID: placeIdNum, pageNo: pageNumber, pageSize: pageSizeValue, complitionHandler: {
             statusCode,images
             in
             self.photos = images
