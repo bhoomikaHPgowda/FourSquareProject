@@ -26,7 +26,8 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet var stars: [UIButton]!
    
     var detail:PlaceDetail?
-    
+    var id: Int?
+    var detailViewModel = DetailViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -35,7 +36,22 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         //ratingView.isHidden = true
         setCircularShapeForButton()
         // Do any additional setup after loading the view.
-        updateValuesReceived()
+        if let placeid = id {
+            detailViewModel.fetchDetails(id: placeid, complitionHandler: {
+                
+                detailRecieved
+                in
+                
+                DispatchQueue.main.async {
+                    
+                    print("detail === \(detailRecieved.cost)")
+                    self.detail = detailRecieved
+                    self.updateValuesReceived()
+                }
+            })
+        }
+       
+        
     }
     
     func updateValuesReceived() {

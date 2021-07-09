@@ -96,18 +96,18 @@ extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
       
             return 195
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("cell pressed")
+       
         if let data = details1 {
-            print("Datatatatata\(data.count)")
+            
+            let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            self.navigationController?.pushViewController(detailViewController, animated: true)
+            if let data = details1 {
+                
+                detailViewController.id = data[indexPath.row].placeId
+            }
         }
-        let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        self.navigationController?.pushViewController(detailViewController, animated: true)
-        if let data = details1 {
-            detailViewController.detail = data[indexPath.row]
-        }
-        
-        
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -119,6 +119,7 @@ extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
             let dataForIndex = data[indexPath.row]
             cell.name.text = dataForIndex.placeName
             cell.rating.text = "\(round(dataForIndex.rating))"
+            cell.detail.text = "\(dataForIndex.placeType.components(separatedBy:" ")[0]) " + " \u{2022} " + String(repeating: "\u{20B9}", count: dataForIndex.cost) + " \(round(dataForIndex.distance))Km"
 
 
             cell.address.text = dataForIndex.address

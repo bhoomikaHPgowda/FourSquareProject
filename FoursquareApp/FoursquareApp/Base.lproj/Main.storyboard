@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xuh-sc-CHC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7kd-aB-TLq">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
@@ -2893,6 +2893,9 @@
                                                     <constraint firstAttribute="height" constant="40" id="SRM-8N-H7q"/>
                                                 </constraints>
                                                 <state key="normal" image="photo"/>
+                                                <connections>
+                                                    <segue destination="TeV-p1-yIC" kind="show" id="vDT-1a-VsZ"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Taa-TP-if4">
                                                 <rect key="frame" x="275" y="257" width="40" height="40"/>
@@ -3231,9 +3234,9 @@
                                                         <rect key="frame" x="24" y="94" width="327" height="423"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overall Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIB-pw-UAx">
-                                                                <rect key="frame" x="94" y="50" width="139.5" height="30.5"/>
+                                                                <rect key="frame" x="88.5" y="50" width="150" height="30.5"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="139.5" id="RoC-IZ-yGR"/>
+                                                                    <constraint firstAttribute="width" constant="150" id="RoC-IZ-yGR"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="22"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3246,7 +3249,7 @@
                                                                     <constraint firstAttribute="height" constant="40" id="DUq-Ry-cZL"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="22"/>
-                                                                <color key="textColor" red="0.21176470589999999" green="0.69019607839999997" blue="0.0" alpha="0.83896083050000003" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" red="0.21176470588235294" green="0.69019607843137254" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How would you rate your experience?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcV-kG-d1y">
@@ -3316,7 +3319,7 @@
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <state key="normal" title="Submit">
-                                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <color key="titleColor" red="0.20784313725490194" green="0.074509803921568626" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
                                                                     </button>
@@ -3435,7 +3438,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hfa-gu-0b0">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Yy-O1-cYy">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -3465,7 +3468,7 @@
                                                         </constraints>
                                                         <state key="normal" image="camera_1"/>
                                                         <connections>
-                                                            <action selector="addPhotos:" destination="TeV-p1-yIC" eventType="touchUpInside" id="j7P-ns-lo3"/>
+                                                            <action selector="addPhotos:" destination="TeV-p1-yIC" eventType="touchUpInside" id="YM2-V4-ada"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -3561,7 +3564,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="3br-aS-zg7"/>
                     <connections>
-                        <outlet property="collectionView" destination="GG9-PA-Fz0" id="Ax0-Nt-wfq"/>
+                        <outlet property="collectionView" destination="bPQ-I3-9Ro" id="HLn-W8-4Tb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pdC-dV-cgL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -4409,7 +4412,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vmK-zd-6kK"/>
         <segue reference="ofJ-xZ-UXU"/>
         <segue reference="9ES-5s-yzl"/>
         <segue reference="Mon-oO-2XH"/>

@@ -47,10 +47,8 @@ class NetworkManger {
     func authenticateUserDetail(email: String, password: String, completionHandler: @escaping(UserDetail) -> ()) {
         
         let params = [
-
-            "email" : "email",
-            "password" : "password"
-
+            "email" : email,
+            "password" : password
         ]
         
         guard let url = URLs.authenticateUser() else {
