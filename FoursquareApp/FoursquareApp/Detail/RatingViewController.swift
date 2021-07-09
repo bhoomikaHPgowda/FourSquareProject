@@ -16,7 +16,7 @@ class RatingViewController: UIViewController {
         super.viewDidLoad()
         cancel.layer.cornerRadius = 11
         cancel.clipsToBounds = true
-        overAllRating.text = "\(rating)"
+        overAllRating.text = "\(round(rating / 2))"
         cancel.layer.borderWidth = 1
         cancel.layer.borderColor = UIColor.lightGray.cgColor
         // Do any additional setup after loading the view.

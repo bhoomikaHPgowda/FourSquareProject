@@ -96,18 +96,18 @@ extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
       
             return 195
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("cell pressed")
+       
         if let data = details1 {
-            print("Datatatatata\(data.count)")
+            
+            let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            self.navigationController?.pushViewController(detailViewController, animated: true)
+            if let data = details1 {
+                
+                detailViewController.id = data[indexPath.row].placeId
+            }
         }
-        let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        self.navigationController?.pushViewController(detailViewController, animated: true)
-        if let data = details1 {
-            detailViewController.detail = data[indexPath.row]
-        }
-        
-        
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

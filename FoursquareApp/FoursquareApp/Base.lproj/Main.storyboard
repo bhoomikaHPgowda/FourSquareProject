@@ -3231,9 +3231,9 @@
                                                         <rect key="frame" x="24" y="94" width="327" height="423"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overall Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIB-pw-UAx">
-                                                                <rect key="frame" x="94" y="50" width="139.5" height="30.5"/>
+                                                                <rect key="frame" x="88.5" y="50" width="150" height="30.5"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="139.5" id="RoC-IZ-yGR"/>
+                                                                    <constraint firstAttribute="width" constant="150" id="RoC-IZ-yGR"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="22"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3246,7 +3246,7 @@
                                                                     <constraint firstAttribute="height" constant="40" id="DUq-Ry-cZL"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="22"/>
-                                                                <color key="textColor" red="0.21176470589999999" green="0.69019607839999997" blue="0.0" alpha="0.83896083050000003" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" red="0.21176470588235294" green="0.69019607843137254" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How would you rate your experience?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcV-kG-d1y">
@@ -3316,7 +3316,7 @@
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <state key="normal" title="Submit">
-                                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <color key="titleColor" red="0.20784313725490194" green="0.074509803921568626" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
                                                                     </button>

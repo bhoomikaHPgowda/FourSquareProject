@@ -40,5 +40,10 @@ class URLs {
         return URL(string: "\(instanceId)/changePassword")
     }
     
+    static func fetchCurrentPlaceDetail(id: Int) -> URL? {
+        
+       return URL(string: " http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/PlaceApi/placeById?placeId=16")
+    }
+    
 
 }

@@ -50,4 +50,5 @@ enum AlertMessages: String {
     case properMailid = "enter proper email to login"
     case optImproper = "OTP Improper"
     case properOTP = "plese enter proper OTP"
+    case wrongPassword = "Wrong password"
 }
