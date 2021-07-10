@@ -87,7 +87,7 @@ class NetworkManagerForFetchPlaceDetail {
     func getReview(placeID: Int, pageNo: Int, pageSize: Int, completionHandler: @escaping(ReviewDetails) -> ()) {
         
         guard let reviewURL = URLs.getReview(placeID: placeID, pageNo: pageNo, pageSize: pageSize)
-        // URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/reviews?PlaceId=\(placeID)&pageNo=\(pageNo)&pageSize=\(pageSize)")
+        
         else {
          
             return
@@ -122,8 +122,6 @@ class NetworkManagerForFetchPlaceDetail {
             }
         }
         dataTask.resume()
-        
-        
     }
     
     
@@ -366,45 +364,3 @@ class NetworkManagerForFetchPlaceDetail {
     }
 }
     
-//    func parseReviewData(code: Any) -> Int {
-//        print("hiii")
-//        guard let code = code as? [String: Any],
-//              let statusCode = code["status"] as? Int,
-//              let reviewDetails =  code["data"] as? [Any]
-//        else {
-//            return 0
-//        }
-//        print("StatusCode = \(statusCode) ")
-//        var userNames = [String]()
-//        var userReviews = [String]()
-//        var images = [String]()
-//        var dates = [String]()
-//        for reviewDetail in reviewDetails{
-//            if let detail = reviewDetail as? [String:Any] {
-//                let names = detail["userName"] as? String ?? "nil"
-//                userNames.append(names)
-//                let review = detail["review"] as? String ?? "nil"
-//                userReviews.append(review)
-//                let image = detail["userImage"] as? String ?? "nil"
-//                images.append(image)
-//                let reviewDate = detail["date"] as? String ?? "nil"
-//                dates.append(reviewDate)
-//            }
-//
-//        }
-//        print(statusCode)
-//        print(userNames)
-//        print(userReviews)
-//        print(images)
-//        print(dates)
-//       let hotelReviewDetails = ReviewDetails(statusCode: 0, name: [""], dates: [""], reviews: [""], profileImage: [""])
-//        hotelReviewDetails.statusCode = statusCode
-//        hotelReviewDetails.name = userNames
-//        hotelReviewDetails.reviews = userReviews
-//        hotelReviewDetails.profileImage = images
-//        hotelReviewDetails.dates = dates
-//
-//        return statusCode
-//    }
-//
-

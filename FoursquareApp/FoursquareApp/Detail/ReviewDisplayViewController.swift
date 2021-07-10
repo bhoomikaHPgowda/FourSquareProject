@@ -76,35 +76,3 @@ extension ReviewDisplayViewController:  UITableViewDelegate, UITableViewDataSour
     
     
 }
-
-
-
-//self.reviewersNames = details.name
-//self.reviewDates = details.dates
-//self.reviewersReview = details.reviews
-//self.reviewersImages = details.profileImage
-//if (details.statusCode == 200){
-//    print("reviews Displayed sucessfully")
-//    self.tableView.dataSource = self
-//    self.tableView.delegate = self
-//}
-
-//func getReview(){
-//
-//    detailViewModel.getUsersReview(placeID: placeIdNum, pageNo: pageNumber, pageSize: pageSizeValue, complitionHandler: {
-//        statusCode
-//        in
-//        print("hiii")
-////            self.reviewersNames = details.name
-////            self.reviewDates = details.dates
-////            self.reviewersReview = details.reviews
-////            self.reviewersImages = details.profileImage
-//        if (statusCode == 200){
-//            print("reviews Displayed sucessfully")
-//            self.tableView.dataSource = self
-//            self.tableView.delegate = self
-//        }
-//
-//    })
-//}
-//
