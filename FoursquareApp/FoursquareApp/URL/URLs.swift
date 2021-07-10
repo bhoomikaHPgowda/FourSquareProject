@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 class URLs {
-   static var instanceId = "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8088"
-
+   static var instanceId = "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080"
+    
     static func regiesterUserURl() -> URL? {
         return URL(string: "\(instanceId)/register")
     }
@@ -70,6 +70,12 @@ class URLs {
 
     static func getHotelPhotos(placeID: Int, pageNo: Int, pageSize: Int) -> URL? {
         return URL(string: "\(instanceId)/getPictures?placeId=\(placeID)&pageNo=\(pageNo)&pageSize=\(pageSize)")
+        
+    }
+    
+    
+    static func getReview(placeID: Int, pageNo: Int, pageSize: Int) -> URL? {
+        return URL(string: "\(instanceId)/reviews?PlaceId=\(placeID)&pageNo=\(pageNo)&pageSize=\(pageSize)")
         
     }
     

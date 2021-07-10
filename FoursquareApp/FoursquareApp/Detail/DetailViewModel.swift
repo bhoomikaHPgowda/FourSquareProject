@@ -45,8 +45,16 @@ class DetailViewModel {
         })
     }
     
-    func getUsersReview(){
-        networkManger.getReview()
+    func getUsersReview(placeID: Int, pageNo: Int, pageSize: Int, complitionHandler: @escaping(ReviewDetails) -> ()){
+       
+        networkManger.getReview(placeID: placeID, pageNo: pageNo, pageSize: pageSize, completionHandler: {
+            details
+            in
+            
+            print("network manger returned")
+            complitionHandler(details)
+            
+        } )
         
     }
 
