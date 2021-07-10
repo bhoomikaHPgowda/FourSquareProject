@@ -8,7 +8,7 @@
 import Foundation
 enum CollectionViewOptions: String, CaseIterable {
     
-    case nearYour = "Near You"
+    case nearMe = "Near you"
     case topPick = "Top pick"
     case popular = "Popular"
     case launch = "Launch"
@@ -51,4 +51,10 @@ enum AlertMessages: String {
     case optImproper = "OTP Improper"
     case properOTP = "plese enter proper OTP"
     case wrongPassword = "Wrong password"
+}
+
+enum HttpRequest: String {
+    
+    case addToFavourite = "POST"
+    case deleteFromFavourite = "DELETE"
 }

@@ -45,9 +45,9 @@ class NetworkManagerForFetchPlaceDetail {
         dataTask.resume()
     }
     
-    func getHotelPhoto(placeID: Int, pageNo: Int, pageSize: Int, completionHandler: @escaping(Int,[String]) -> ()){
+    func getHotelPhoto(placeID: Int, pageNo: Int, pageSize: Int, completionHandler: @escaping(Int,[String],[String]) -> ()){
         
-        guard let photoURL = URLs.getHotalPhotos(placeID: placeID, pageNo: pageNo, pageSize: pageSize) else {
+        guard let photoURL = URLs.getHotelPhotos(placeID: placeID, pageNo: pageNo, pageSize: pageSize) else {
             
             return
         }
@@ -73,7 +73,7 @@ class NetworkManagerForFetchPlaceDetail {
                 if let data = self?.parseStatusCode(code: newData) {
                     print(data.0)
                     print(data.1)
-                     completionHandler(data.0, data.1)
+                    completionHandler(data.0, data.1, data.2)
                 }
             } catch {
                 
@@ -84,85 +84,209 @@ class NetworkManagerForFetchPlaceDetail {
         
     }
     
+    func getReview(){
+        
+    }
+    
     
     func popularParse(data: Any) -> PlaceDetail? {
         
         guard let nearByPlaces = data as? [String: Any],
-              let placeDetails = nearByPlaces["data"] as? [Any]
+              let placeDetails = nearByPlaces["data"] as? [String: Any],
+              let name = placeDetails["name"] as? String,
+              let placeId = placeDetails["id"] as? Int,
+              let placeName = placeDetails["name"] as? String,
+              let cost = placeDetails["cost"] as? Int,
+              let rating = placeDetails["overallRating"] as? Double,
+              let latitude = placeDetails["latitude"] as? Double,
+              let longitude = placeDetails["longitude"] as? Double,
+              let phone = placeDetails["phone"] as? Int,
+              let address = placeDetails["address"] as? String,
+              let overview = placeDetails["overview"] as? String,
+              let imageUrl = placeDetails["image"] as? String
         else {
             return nil
         }
-        let fetchDetail = PlaceDetail(placeId: 0, placeName: "", placeType: "", rating: 0.0, cost: 0, phone: 0, address: "", overview: "", imageUrl: "", distance: 0, latitude: 0.0, longitude: 0.0 )
-        for data in placeDetails {
+       
+        let fetchDetail = PlaceDetail(placeId: 0, placeName: "", placeType: "", rating: 0.0, cost: 0, phone: 0, address: "", overview: "", imageUrl: "", distance: 0, latitude: latitude, longitude: longitude)
+    
+        fetchDetail.placeId = placeId
+        fetchDetail.placeName = placeName
+        fetchDetail.rating = rating
+        fetchDetail.cost = cost
+        fetchDetail.phone = phone
+        fetchDetail.address = address
+        fetchDetail.overview = overview
+        fetchDetail.imageUrl = imageUrl
+        fetchDetail.distance = 0
+        fetchDetail.latitude = latitude
+        fetchDetail.longitude = longitude
             
-           // print("data ===== \(data)")
-            guard let detail = data as? [String: Any],
-                  let distance = detail["distance"] as? Double,
-                  let place = detail["place"] as? [String: Any],
-                  let placeid = place["id"] as? Int,
-                  let placeName = place["name"] as? String,
-                  let cost = place["cost"] as? Int,
-                  let rating = place["overallRating"] as? Double,
-                  let latitude = place["latitude"] as? Double,
-                  let longitude = place["longitude"] as? Double,
-                  let phone = place["phone"] as? Int,
-                  let address = place["address"] as? String,
-                  let overview = place["overview"] as? String,
-                  let imageUrl = place["image"] as? String,
-                  let placeType = place["placeType"] as? [Any]
-                  
-            else {
-                
-                return nil
-            }
-            fetchDetail.placeId = placeid
-            fetchDetail.placeName = placeName
-            fetchDetail.rating = rating
-            fetchDetail.cost = cost
-            fetchDetail.phone = phone
-            fetchDetail.address = address
-            fetchDetail.overview = overview
-            fetchDetail.imageUrl = imageUrl
-            fetchDetail.distance = distance
-            fetchDetail.latitude = latitude
-            fetchDetail.longitude = longitude
            
-            for data in placeType {
-                if let placetypeDetail = data as? [String: Any]{
-               
-                    if let placeid = placetypeDetail["id"] as? Int {
-                  
-                    }
-                    if let placeType = placetypeDetail["name"] as? String {
-                   
-                        fetchDetail.placeType = placeType
-                    }
-                    
-                    //print(placetypeDetail)
-                }
-            }
-            fetchDetail
-        }
-        
+
         return fetchDetail
     }
     
-    func parseStatusCode(code: Any) -> (Int,[String]){
+    func addRating(userId: Int, token: String, placeId: Int, rating: Int, completionHandler: @escaping(Int) -> ()) {
+        
+        print("function called")
+        let params = [
+            "userId": "\(userId)",
+            "placeId": "\(placeId)",
+            "rating": "\(rating)"
+        ]
+        
+        guard let url = URLs.fetchURLForAddRating() else {
+            print("wrong url")
+            return
+        }
+        
+      
+        var request = URLRequest(url: url)
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        
+        let session = URLSession.shared.dataTask(with: request) {
+            
+             data, response, error in
+                guard error == nil else {
+                    print("Error: error calling POST")
+                    print(error!)
+                    return
+                }
+                guard let data = data else {
+                    print("Error: Did not receive data")
+                    return
+                }
+                guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                    print("Error: HTTP request failed")
+                    return
+                }
+                do {
+                    guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                        print("Error: Cannot convert data to JSON object")
+                        return
+                    }
+                    completionHandler(self.parseRecieveMessage(data: jsonObject))
+                    guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                        print("Error: Cannot convert JSON object to Pretty JSON data")
+                        return
+                    }
+                    guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+                        print("Error: Couldn't print JSON in String")
+                        return
+                    }
+                    
+                    print(prettyPrintedJson)
+                } catch {
+                    print("Error: Trying to convert JSON data to string")
+                    return
+                }
+            }
+        session.resume()
+        
+        
+    }
+    
+    func addToFavourite(userId: Int, token: String, placeId: Int, completionHandler: @escaping(Int) -> ()) {
+        
+        
+        print("function called")
+        let params = [
+            "userId": "\(userId)",
+            "placeId": "\(placeId)",
+        ]
+        
+        guard let url = URLs.addOrDeleteFavourite(requestMethod: .addToFavourite) else {
+            print("wrong url")
+            return
+        }
+        
+      
+        var request = URLRequest(url: url)
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        
+        let session = URLSession.shared.dataTask(with: request) {
+            
+             data, response, error in
+                guard error == nil else {
+                    print("Error: error calling POST")
+                    print(error!)
+                    return
+                }
+                guard let data = data else {
+                    print("Error: Did not receive data")
+                    return
+                }
+                guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                    print("Error: HTTP request failed")
+                    return
+                }
+                do {
+                    guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                        print("Error: Cannot convert data to JSON object")
+                        return
+                    }
+                    completionHandler(self.parseRecieveMessage(data: jsonObject))
+                    guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                        print("Error: Cannot convert JSON object to Pretty JSON data")
+                        return
+                    }
+                    guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+                        print("Error: Couldn't print JSON in String")
+                        return
+                    }
+                    
+                    print(prettyPrintedJson)
+                } catch {
+                    print("Error: Trying to convert JSON data to string")
+                    return
+                }
+            }
+        session.resume()
+    }
+    
+    func parseRecieveMessage(data: Any) -> Int {
+        
+        if let receivedData = data as? [String: Any] {
+            
+            if let statuscode = receivedData["status"] as? Int {
+                
+                return statuscode
+            }
+        }
+        return 0
+    }
+    
+    func parseStatusCode(code: Any) -> (Int,[String], [String]){
         var images = [String]()
+        var dates = [String]()
         guard let code = code as? [String: Any],
               let statusCode = code["status"] as? Int,
               let photosDetails =  code["data"] as? [Any]
         else {
-            return (0, [""])
+            return (0, [""],[" "])
         }
         for photodetail in photosDetails{
             if let detail = photodetail as? [String:Any]{
                 let image = detail["image"] as? String ?? "nil"
                 images.append(image)
             }
+            if let dateils = photodetail as? [String:Any]{
+                let date = dateils["date"] as? String ?? "nil"
+                dates.append(date)
+            }
             
         }
-        return (statusCode, images)
+        
+        return (statusCode, images, dates)
     }
         
 }

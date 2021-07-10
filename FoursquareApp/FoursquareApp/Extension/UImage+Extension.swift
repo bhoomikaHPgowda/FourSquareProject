@@ -19,4 +19,14 @@ extension UIImage {
       
         return UIImage(data: data)
     }
+    
+    static func starButtonTappedImage() -> UIImage? {
+        
+        return UIImage(named: "startSelected")
+    }
+    
+    static func starButtonNotSeletced() -> UIImage? {
+        
+        return UIImage(named: "Image-1")
+    }
 }

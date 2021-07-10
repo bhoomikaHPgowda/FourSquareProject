@@ -16,8 +16,12 @@ class PhotoViewController: UIViewController {
     var pageNumber = 0
     var pageSizeValue = 10
     var photos = [String]()
+    var dates = [String]()
+    var index : Int?
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: "https://aws-foursquare.s3.us-east-2.amazonaws.com/UserImage/10_photos.png", email: " ", token: " ", userName: "bhoomika")
    
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var placeName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +40,11 @@ class PhotoViewController: UIViewController {
     }
     
     func uploadPhotos() {
-        detailViewModel.getHotalPhotosForCollectionView(placeID: placeIdNum, pageNo: pageNumber, pageSize: pageSizeValue, complitionHandler: {
-            statusCode,images
+        detailViewModel.getHotelPhotosForCollectionView(placeID: placeIdNum, pageNo: pageNumber, pageSize: pageSizeValue, complitionHandler: {
+            statusCode,images,dates
             in
             self.photos = images
+            self.dates = dates
             DispatchQueue.main.async {
                 if statusCode == 200 {
                     print(self.photos)
@@ -79,6 +84,19 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pageSizeValue
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        index = indexPath.row
+        let vc = storyboard?.instantiateViewController(withIdentifier: "displayPhoto") as? DisplayImageViewController
+        vc?.image = photos[indexPath.row]
+        print(dates[indexPath.row])
+        vc?.photoAddedDate = dates[indexPath.row]
+        print(userDetails.userName)
+        print(userDetails.imageUrl)
+        vc?.uploaderName = "Bhoomika"
+        vc?.profileImage = "https://aws-foursquare.s3.us-east-2.amazonaws.com/UserImage/10_photos.png"
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

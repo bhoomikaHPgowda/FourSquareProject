@@ -21,7 +21,7 @@ class HambergerMenuViewController: UIViewController {
     @IBOutlet weak var profile: UIButton!
     var delegate: DismissSideMenu?
     var imagePicker = UIImagePickerController()
-    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ")
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ", userName: " ")
     var sideMenuViewModel = SideMenuViewModel()
     var imageaddress = " "
     

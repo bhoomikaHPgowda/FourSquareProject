@@ -18,6 +18,7 @@ class NearYouViewController: UIViewController {
     var detailViewModel = FetchPlaceDetailViewModel()
     let locationManager = CLLocationManager()
     var details1: [PlaceDetail]?
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ", userName: " ")
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +31,7 @@ class NearYouViewController: UIViewController {
         nearYouTableView.separatorStyle = .singleLine
         nearYouTableView.separatorInset = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 3)
         nearYouTableView.separatorColor = UIColor.green
-    
+        print("user -----------\(userDetails.email)")
 //        detailViewModel.fetchDetails(optionType: .nearYour,complitionHandler: {
 //            details
 //            in
@@ -52,6 +53,34 @@ class NearYouViewController: UIViewController {
     func loc(lat: Double) {
         print("location from home view controller\(lat)")
     }
+    @IBAction func addToFavourite(_ sender: CustomAddToFavoriteButton) {
+        
+        if let addToFavoriteButton = sender as? CustomAddToFavoriteButton {
+            
+            addToFavoriteButton.toggle()
+        }
+        guard let placeDetail = details1 else {
+            return
+        }
+        if sender.isSelected {
+            detailViewModel.addOrDeleteFavourite(userId: userDetails.id, token: userDetails.token, placeId: placeDetail[sender.tag].placeId, requestMethod: .addToFavourite, completionHandler: {
+                statusCode
+                in
+                print("added succefully\(statusCode)")
+            })
+        } else {
+            
+            detailViewModel.addOrDeleteFavourite(userId: userDetails.id, token: userDetails.token, placeId: placeDetail[sender.tag].placeId, requestMethod: .deleteFromFavourite, completionHandler: {
+                statusCode
+                in
+                print("added succefully\(statusCode)")
+            })
+            
+        }
+        
+    }
+    
+    
 
 }
 extension NearYouViewController : CLLocationManagerDelegate {
@@ -104,13 +133,14 @@ extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
             let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
             self.navigationController?.pushViewController(detailViewController, animated: true)
             if let data = details1 {
-                
-                detailViewController.id = data[indexPath.row].placeId
+                detailViewController.userDetails = userDetails
+                detailViewController.detail = data[indexPath.row]
             }
         }
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NearYouTableViewCell {
             guard let data = details1
             else {
@@ -128,6 +158,7 @@ extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
             cell.address.textColor = .darkGray
             cell.detail.textColor = .darkGray
             cell.layer.borderWidth = 3
+            cell.addToFavouriteButton.tag = indexPath.row
             return cell
         } else {
             return NearYouTableViewCell()

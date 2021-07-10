@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 class LoginViewModel {
     var networkManger = NetworkManger()
-    func registerUser(email: String, mobileNumber: String, password: String, completionHandler: @escaping() -> ()) {
+    func registerUser(email: String, mobileNumber: String, password: String, completionHandler: @escaping(Int) -> ()) {
         
         networkManger.Register(email: email, mobileNumber: mobileNumber, password: password, completionHandler: {
-            ()
+            statuscode
             in
             print("network manger returned")
-            completionHandler()
+            completionHandler(statuscode)
         })
     }
     

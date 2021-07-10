@@ -27,7 +27,9 @@ class URLs {
     
     static func urlforFetchPlace(latitude: Double, longitude: Double, type: CollectionViewOptions ) -> URL? {
 
-        if type == .nearYour {
+
+        if type == .nearMe {
+
             return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/PlaceApi/nearBy?latitude=\(latitude)&longitude=\(longitude)&pageNo=0&pageSize=7")
         } else if type == .popular {
             return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/PlaceApi/nearBy?latitude=\(latitude)&longitude=\(longitude)&pageNo=0&pageSize=4")
@@ -49,11 +51,29 @@ class URLs {
        return URL(string: " http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/PlaceApi/placeById?placeId=16")
     }
     
-    static func getHotalPhotos(placeID: Int, pageNo: Int, pageSize: Int) -> URL? {
+
+    static func fetchURLForAddRating() -> URL? {
+        
+        return URL(string: "\(instanceId)/addRating")
+    }
+    
+    static func addOrDeleteFavourite(requestMethod: HttpRequest) -> URL? {
+        if requestMethod == .addToFavourite {
+            return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/addFavourite")
+        } else {
+            return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/deleteFavourite")
+        }
+        
+        
+    }
+    
+
+    static func getHotelPhotos(placeID: Int, pageNo: Int, pageSize: Int) -> URL? {
         return URL(string: "\(instanceId)/getPictures?placeId=\(placeID)&pageNo=\(pageNo)&pageSize=\(pageSize)")
         
     }
     
+
 
 
 }

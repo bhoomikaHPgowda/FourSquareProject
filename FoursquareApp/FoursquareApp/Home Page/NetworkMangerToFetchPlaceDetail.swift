@@ -95,4 +95,77 @@ class NetworkMangerToFetchPlaceDetail {
         print(details.count)
         return details
     }
+    
+    func addOrDeleteFavourite(userId: Int, token: String, placeId: Int, requestMethod: HttpRequest, completionHandler: @escaping(Int) -> ()) {
+        
+        
+        print("function called")
+        let params = [
+            "userId": "\(userId)",
+            "placeId": "\(placeId)",
+        ]
+        
+        guard let url = URLs.addOrDeleteFavourite(requestMethod: requestMethod) else {
+            return
+        }
+        
+       
+        var request = URLRequest(url: url)
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "\(requestMethod.rawValue)"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        
+        let session = URLSession.shared.dataTask(with: request) {
+            
+             data, response, error in
+                guard error == nil else {
+                    print("Error: error calling POST")
+                    print(error!)
+                    return
+                }
+                guard let data = data else {
+                    print("Error: Did not receive data")
+                    return
+                }
+                guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                    print("Error: HTTP request failed")
+                    return
+                }
+                do {
+                    guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                        print("Error: Cannot convert data to JSON object")
+                        return
+                    }
+                    completionHandler(self.parseRecieveMessage(data: jsonObject))
+                    guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                        print("Error: Cannot convert JSON object to Pretty JSON data")
+                        return
+                    }
+                    guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+                        print("Error: Couldn't print JSON in String")
+                        return
+                    }
+                    
+                    print(prettyPrintedJson)
+                } catch {
+                    print("Error: Trying to convert JSON data to string")
+                    return
+                }
+            }
+        session.resume()
+    }
+    
+    func parseRecieveMessage(data: Any) -> Int {
+        
+        if let receivedData = data as? [String: Any] {
+            
+            if let statuscode = receivedData["status"] as? Int {
+                
+                return statuscode
+            }
+        }
+        return 0
+    }
 }

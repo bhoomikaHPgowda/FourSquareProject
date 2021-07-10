@@ -10,7 +10,7 @@ import UIKit
 class NetworkManger {
     
     
-    func Register(email: String, mobileNumber: String, password: String, completionHandler: @escaping() -> ()) {
+    func Register(email: String, mobileNumber: String, password: String, completionHandler: @escaping(Int) -> ()) {
         
         print("function called")
         let params = [
@@ -38,10 +38,37 @@ class NetworkManger {
                 return
             }
             print(error)
-            print(data)
-            completionHandler()
+            guard let userData = data else{
+                print("error")
+                return
+            }
+            print(userData)
+            do {
+                
+                let newData = try JSONSerialization.jsonObject(with: userData, options: [])
+               print(newData)
+                
+                 
+                    completionHandler(self.parseData(data: newData))
+                
+            } catch {
+                
+                print(error.localizedDescription)
+            }
+            completionHandler(0)
         }
         session.resume()
+    }
+    
+    func parseData(data: Any) -> Int {
+        print("code-----")
+        if let statusData = data as? [String: Any] {
+            if let statuscode = statusData["status"] as? Int {
+                print("code=====\(statuscode)")
+                return statuscode
+            }
+        }
+        return 0
     }
     
     func authenticateUserDetail(email: String, password: String, completionHandler: @escaping(UserDetail) -> ()) {
@@ -104,7 +131,7 @@ class NetworkManger {
             else {
                 return nil
             }
-            let logedUserDetail = UserDetail(statuscode: statusCode, message: message, id: id, imageUrl: imageUrl, email: email, token: token)
+            let logedUserDetail = UserDetail(statuscode: statusCode, message: message, id: id, imageUrl: imageUrl, email: email, token: token, userName : username)
 
             return logedUserDetail
         }

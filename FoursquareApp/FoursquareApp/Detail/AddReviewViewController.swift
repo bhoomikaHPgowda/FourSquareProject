@@ -25,7 +25,7 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasDismissed(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
 
-        // Do any additional setup after loading the view.
+        
     }
     
     @IBAction func backButton(_ sender: UIButton) {
@@ -63,7 +63,7 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
     
     @objc func keyboardWasDismissed(notification: NSNotification) {
         
-        submit.frame.origin.y = self.view.frame.height - submit.frame.height
+        submit.frame.origin.y = self.view.frame.height - submit.frame.height - 20
     }
 
 }

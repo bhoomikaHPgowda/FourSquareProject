@@ -31,4 +31,16 @@ class FetchPlaceDetailViewModel {
       
         return UIImage(data: data)
     }
+    
+    func addOrDeleteFavourite(userId: Int, token: String, placeId: Int, requestMethod: HttpRequest, completionHandler: @escaping(Int) -> ()) {
+        
+        networkManger.addOrDeleteFavourite(userId: userId, token: token, placeId: placeId, requestMethod: requestMethod, completionHandler: {
+            
+            statusCode
+            in
+            print("status code = \(statusCode)")
+            completionHandler(statusCode)
+        })
+    
+    }
 }

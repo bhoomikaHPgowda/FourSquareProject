@@ -21,12 +21,33 @@ class DetailViewModel {
         
     }
     
-    func getHotalPhotosForCollectionView(placeID: Int, pageNo: Int, pageSize: Int, complitionHandler: @escaping(Int,[String]) -> ()) {
+
+    func addRating(userId: Int, token: String, placeId: Int, rating: Int, completionHandler: @escaping(Int) -> ()) {
+        
+        networkManger.addRating(userId: userId, token: token, placeId: placeId, rating: rating, completionHandler: {
+            
+            statusCode
+            in
+            print("status code = \(statusCode)")
+            completionHandler(statusCode)
+        })
+    
+    }
+    
+  
+
+    func getHotelPhotosForCollectionView(placeID: Int, pageNo: Int, pageSize: Int, complitionHandler: @escaping(Int,[String],[String]) -> ()) {
         networkManger.getHotelPhoto(placeID: placeID, pageNo: pageNo, pageSize: pageSize, completionHandler: {
-            statusCode,images
+            statusCode,images,dates
             in
             print("network manger returned")
-            complitionHandler(statusCode,images)
+            complitionHandler(statusCode,images,dates)
         })
     }
+    
+    func getUsersReview(){
+        networkManger.getReview()
+        
+    }
+
 }

@@ -29,6 +29,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     var id: Int?
     var placeID: Int?
     var detailViewModel = DetailViewModel()
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ", userName: " ")
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -36,7 +37,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
        // gradientView.isHidden = true
         //ratingView.isHidden = true
         setCircularShapeForButton()
-        // Do any additional setup after loading the view.
+
         if let placeid = id {
             detailViewModel.fetchDetails(id: placeid, complitionHandler: {
                 
@@ -52,12 +53,23 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
             })
         }
        
+        detailViewModel.fetchDetails(id: 16, complitionHandler: {
+            details
+            in
+            print("details received from api")
+            DispatchQueue.main.async {
+                self.updateValuesReceived()
+            }
+        })
+            
+        self.updateValuesReceived()
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let temp = segue.destination as? PhotoViewController {
             temp.placeIdNum = placeID ?? 12
+            temp.userDetails = userDetails
         }
     }
     
@@ -105,7 +117,10 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         let ratingViewController = self.storyboard?.instantiateViewController(withIdentifier: "RatingViewController") as! RatingViewController
         if let data = detail {
             ratingViewController.rating = data.rating
+            ratingViewController.placeId = data.placeId
         }
+        ratingViewController.userDetails = userDetails
+         
         ratingViewController.modalPresentationStyle = .overFullScreen
         present(ratingViewController, animated: true, completion: nil)
         

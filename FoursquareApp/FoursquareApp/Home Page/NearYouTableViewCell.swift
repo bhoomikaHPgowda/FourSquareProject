@@ -11,6 +11,7 @@ class NearYouTableViewCell: UITableViewCell {
 
     @IBOutlet weak var placeImage: UIImageView!
 
+    @IBOutlet weak var addToFavouriteButton: CustomAddToFavoriteButton!
     @IBOutlet weak var detail: UILabel!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var name: UILabel!
@@ -29,10 +30,7 @@ class NearYouTableViewCell: UITableViewCell {
         
     }
     @IBAction func addToFavourite(_ sender: CustomAddToFavoriteButton) {
-        if let addToFavoriteButton = sender as? CustomAddToFavoriteButton {
-            
-            addToFavoriteButton.toggle()
-        }
+      
     }
     
 }
