@@ -70,6 +70,10 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         if let temp = segue.destination as? PhotoViewController {
             temp.placeIdNum = placeID ?? 12
             temp.userDetails = userDetails
+            if let data = detail {
+                temp.photoFor = data.placeName
+            }
+            
         }
     }
     

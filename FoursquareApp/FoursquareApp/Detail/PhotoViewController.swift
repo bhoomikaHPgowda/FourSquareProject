@@ -13,6 +13,7 @@ class PhotoViewController: UIViewController {
     var imagePicker = UIImagePickerController()
     var detailViewModel = DetailViewModel()
     var placeIdNum = 0
+    var photoFor = ""
     var pageNumber = 0
     var pageSizeValue = 10
     var photos = [String]()
@@ -28,6 +29,7 @@ class PhotoViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         imagePicker.delegate = self
         uploadPhotos()
+        placeName.text = photoFor
         // Do any additional setup after loading the view.
     }
     
@@ -94,8 +96,10 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         vc?.photoAddedDate = dates[indexPath.row]
         print(userDetails.userName)
         print(userDetails.imageUrl)
-        vc?.uploaderName = "Bhoomika"
+        vc?.titleName = photoFor
+        vc?.uploaderName = userDetails.userName
         vc?.profileImage = "https://aws-foursquare.s3.us-east-2.amazonaws.com/UserImage/10_photos.png"
+        print("image== \(userDetails.imageUrl)")
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     

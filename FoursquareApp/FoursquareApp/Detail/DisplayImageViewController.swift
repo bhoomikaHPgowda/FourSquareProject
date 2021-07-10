@@ -14,7 +14,8 @@ class DisplayImageViewController: UIViewController{
     var image = " "
     var profileImage = " "
     var photoAddedDate : String?
-    var uploaderName : String?
+    var uploaderName = ""
+    var titleName = ""
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var placeName: UILabel!
@@ -29,6 +30,7 @@ class DisplayImageViewController: UIViewController{
         profilePhoto.image = UIImage.restaurentImage(url: profileImage)
         date.text = photoAddedDate
         name.text = uploaderName
+        placeName.text = titleName
         
     }
     @IBAction func backButton(_ sender: Any) {
