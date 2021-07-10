@@ -45,7 +45,7 @@ class NetworkManagerForFetchPlaceDetail {
         dataTask.resume()
     }
     
-    func getHotelPhoto(placeID: Int, pageNo: Int, pageSize: Int, completionHandler: @escaping(Int,[String]) -> ()){
+    func getHotelPhoto(placeID: Int, pageNo: Int, pageSize: Int, completionHandler: @escaping(Int,[String],[String]) -> ()){
         
         guard let photoURL = URLs.getHotelPhotos(placeID: placeID, pageNo: pageNo, pageSize: pageSize) else {
             
@@ -73,7 +73,7 @@ class NetworkManagerForFetchPlaceDetail {
                 if let data = self?.parseStatusCode(code: newData) {
                     print(data.0)
                     print(data.1)
-                     completionHandler(data.0, data.1)
+                    completionHandler(data.0, data.1, data.2)
                 }
             } catch {
                 
@@ -81,6 +81,10 @@ class NetworkManagerForFetchPlaceDetail {
             }
         }
         dataTask.resume()
+        
+    }
+    
+    func getReview(){
         
     }
     
@@ -261,22 +265,28 @@ class NetworkManagerForFetchPlaceDetail {
         return 0
     }
     
-    func parseStatusCode(code: Any) -> (Int,[String]){
+    func parseStatusCode(code: Any) -> (Int,[String], [String]){
         var images = [String]()
+        var dates = [String]()
         guard let code = code as? [String: Any],
               let statusCode = code["status"] as? Int,
               let photosDetails =  code["data"] as? [Any]
         else {
-            return (0, [""])
+            return (0, [""],[" "])
         }
         for photodetail in photosDetails{
             if let detail = photodetail as? [String:Any]{
                 let image = detail["image"] as? String ?? "nil"
                 images.append(image)
             }
+            if let dateils = photodetail as? [String:Any]{
+                let date = dateils["date"] as? String ?? "nil"
+                dates.append(date)
+            }
             
         }
-        return (statusCode, images)
+        
+        return (statusCode, images, dates)
     }
         
 }

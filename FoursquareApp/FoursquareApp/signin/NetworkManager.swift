@@ -131,7 +131,7 @@ class NetworkManger {
             else {
                 return nil
             }
-            let logedUserDetail = UserDetail(statuscode: statusCode, message: message, id: id, imageUrl: imageUrl, email: email, token: token)
+            let logedUserDetail = UserDetail(statuscode: statusCode, message: message, id: id, imageUrl: imageUrl, email: email, token: token, userName : username)
 
             return logedUserDetail
         }

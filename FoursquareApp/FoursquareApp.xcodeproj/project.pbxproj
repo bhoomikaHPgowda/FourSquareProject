@@ -20,6 +20,7 @@
 		6A6FFA33269442500072C3A3 /* Alert+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FFA32269442500072C3A3 /* Alert+Extension.swift */; };
 		6A7A506E268AF3BA0080640E /* CustomBackgroundForView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A506D268AF3BA0080640E /* CustomBackgroundForView.swift */; };
 		6A7A5076268AF4940080640E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A5075268AF4940080640E /* CustomButton.swift */; };
+		6AD1D02B2699620C0038ECF4 /* DisplayImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD1D02A2699620C0038ECF4 /* DisplayImageViewController.swift */; };
 		6AD38FB82697457B0060AC24 /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD38FB72697457B0060AC24 /* SideMenuViewModel.swift */; };
 		6AD38FBB269746200060AC24 /* NetworkManagerForSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD38FBA269746200060AC24 /* NetworkManagerForSideMenu.swift */; };
 		AF0667AB268B84CF00918017 /* CustomSddToFavouriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0667AA268B84CF00918017 /* CustomSddToFavouriteButton.swift */; };
@@ -93,6 +94,7 @@
 		6A6FFA32269442500072C3A3 /* Alert+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Extension.swift"; sourceTree = "<group>"; };
 		6A7A506D268AF3BA0080640E /* CustomBackgroundForView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackgroundForView.swift; sourceTree = "<group>"; };
 		6A7A5075268AF4940080640E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		6AD1D02A2699620C0038ECF4 /* DisplayImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayImageViewController.swift; sourceTree = "<group>"; };
 		6AD38FB72697457B0060AC24 /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
 		6AD38FBA269746200060AC24 /* NetworkManagerForSideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerForSideMenu.swift; sourceTree = "<group>"; };
 		AF0667AA268B84CF00918017 /* CustomSddToFavouriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSddToFavouriteButton.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				AF66D0832692149F007F3D98 /* RatingViewController.swift */,
 				6A540A0826934E0C0009A614 /* PhotoViewController.swift */,
 				6A540A0C26934FE80009A614 /* CollectionViewCell.swift */,
+				6AD1D02A2699620C0038ECF4 /* DisplayImageViewController.swift */,
 				AF76E912269810C90040CBE3 /* NetworkManagerForFetchPlaceDetail.swift */,
 				AF76E915269812FA0040CBE3 /* DetailViewModel.swift */,
 			);
@@ -451,6 +454,7 @@
 				AFF4B73B2690DED500A8B970 /* DetailViewController.swift in Sources */,
 				AFFE65D8268F7A2A008CC7A6 /* SearchedListTableViewCell.swift in Sources */,
 				AFB9A0E92690D9A600B6B6E5 /* ShowNearMeOptionViewController.swift in Sources */,
+				6AD1D02B2699620C0038ECF4 /* DisplayImageViewController.swift in Sources */,
 				AF77A8612694C1B6004E27E3 /* NetworkManager.swift in Sources */,
 				6A540A26269364BA0009A614 /* CATransition.swift in Sources */,
 				AF6F3A08268C6A17001A9FA0 /* HambergerMenuViewController.swift in Sources */,

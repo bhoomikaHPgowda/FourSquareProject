@@ -12,7 +12,7 @@ class PopularViewController: UIViewController {
     var count = 10
     var details: [PlaceDetail]?
     var detailViewModel = FetchPlaceDetailViewModel()
-    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ")
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ", userName: " " )
     @IBOutlet weak var popularListTableView: UITableView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var rating: UILabel!

@@ -16,7 +16,7 @@ class RatingViewController: UIViewController {
     var rating = 0.0
     var placeId = 0
     var userEnteredRating: Int?
-    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ")
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ", userName: " ")
     var detailViewModel  = DetailViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()

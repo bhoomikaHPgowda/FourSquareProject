@@ -27,8 +27,9 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
    
     var detail:PlaceDetail?
     var id: Int?
+    var placeID: Int?
     var detailViewModel = DetailViewModel()
-    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ")
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ", userName: " ")
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -36,7 +37,21 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
        // gradientView.isHidden = true
         //ratingView.isHidden = true
         setCircularShapeForButton()
-       
+
+        if let placeid = id {
+            detailViewModel.fetchDetails(id: placeid, complitionHandler: {
+                
+                detailRecieved
+                in
+                self.placeID = detailRecieved.placeId
+                DispatchQueue.main.async {
+                    
+                    print("detail === \(detailRecieved.cost)")
+                    self.detail = detailRecieved
+                    self.updateValuesReceived()
+                }
+            })
+        }
        
         detailViewModel.fetchDetails(id: 16, complitionHandler: {
             details
@@ -49,6 +64,13 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
             
         self.updateValuesReceived()
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let temp = segue.destination as? PhotoViewController {
+            temp.placeIdNum = placeID ?? 12
+            temp.userDetails = userDetails
+        }
     }
     
     func updateValuesReceived() {

@@ -27,7 +27,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
     var signInVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NearYouViewController") as! NearYouViewController
     var popularViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopularViewController")  as! PopularViewController
     var detailViewModel = FetchPlaceDetailViewModel()
-    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ")
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ", userName: " ")
     var user: UserDetail?
    
     override func viewDidLoad() {

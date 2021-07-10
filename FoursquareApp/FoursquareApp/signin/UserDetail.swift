@@ -15,8 +15,9 @@ class UserDetail {
     var imageUrl: String
     var email: String
     var token: String
+    var userName: String
     
-    init(statuscode: Int, message: String, id: Int, imageUrl: String, email: String, token: String) {
+    init(statuscode: Int, message: String, id: Int, imageUrl: String, email: String, token: String, userName: String) {
         
         self.statusCode = statuscode
         self.message = message
@@ -24,7 +25,7 @@ class UserDetail {
         self.imageUrl = imageUrl
         self.email = email
         self.token = token
-        
+        self.userName = userName
         
     }
 }

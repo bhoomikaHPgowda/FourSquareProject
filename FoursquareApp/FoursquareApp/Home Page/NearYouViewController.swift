@@ -18,7 +18,7 @@ class NearYouViewController: UIViewController {
     var detailViewModel = FetchPlaceDetailViewModel()
     let locationManager = CLLocationManager()
     var details1: [PlaceDetail]?
-    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ")
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ", userName: " ")
     override func viewDidLoad() {
         super.viewDidLoad()
         

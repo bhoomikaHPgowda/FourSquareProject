@@ -8,6 +8,8 @@
 import UIKit
 
 class ReviewDisplayViewController: UIViewController {
+    
+    var detailViewModel = DetailViewModel()
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -20,6 +22,10 @@ class ReviewDisplayViewController: UIViewController {
     
     @IBAction func back(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func getReview(){
+        detailViewModel.getUsersReview()
     }
     
     
