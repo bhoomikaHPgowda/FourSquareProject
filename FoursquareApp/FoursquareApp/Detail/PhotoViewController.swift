@@ -12,9 +12,9 @@ class PhotoViewController: UIViewController {
     var photo = [UIImage]()
     var imagePicker = UIImagePickerController()
     var detailViewModel = DetailViewModel()
-    var placeIdNum = 12
+    var placeIdNum = 0
     var pageNumber = 0
-    var pageSizeValue = 5
+    var pageSizeValue = 10
     var photos = [String]()
    
     @IBOutlet weak var collectionView: UICollectionView!

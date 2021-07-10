@@ -27,6 +27,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
    
     var detail:PlaceDetail?
     var id: Int?
+    var placeID: Int?
     var detailViewModel = DetailViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
                 
                 detailRecieved
                 in
-                
+                self.placeID = detailRecieved.placeId
                 DispatchQueue.main.async {
                     
                     print("detail === \(detailRecieved.cost)")
@@ -52,6 +53,12 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         }
        
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let temp = segue.destination as? PhotoViewController {
+            temp.placeIdNum = placeID ?? 12
+        }
     }
     
     func updateValuesReceived() {

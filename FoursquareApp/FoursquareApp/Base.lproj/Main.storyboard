@@ -3092,6 +3092,9 @@
                                                 <state key="normal" title="Photos">
                                                     <color key="titleColor" red="0.55294117649999996" green="0.55294117649999996" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="TeV-p1-yIC" kind="show" id="q1O-xb-ip1"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5B-ne-gFJ">
                                                 <rect key="frame" x="275" y="299" width="48" height="21"/>
@@ -4413,6 +4416,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ofJ-xZ-UXU"/>
+        <segue reference="vDT-1a-VsZ"/>
         <segue reference="9ES-5s-yzl"/>
         <segue reference="Mon-oO-2XH"/>
     </inferredMetricsTieBreakers>
