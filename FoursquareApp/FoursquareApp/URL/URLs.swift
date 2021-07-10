@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 class URLs {
-   static var instanceId = "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080"
+   static var instanceId = "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8088"
 
     static func regiesterUserURl() -> URL? {
         return URL(string: "\(instanceId)/register")
@@ -30,13 +30,13 @@ class URLs {
 
         if type == .nearMe {
 
-            return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/PlaceApi/nearBy?latitude=\(latitude)&longitude=\(longitude)&pageNo=0&pageSize=7")
+            return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8088/PlaceApi/nearBy?latitude=\(latitude)&longitude=\(longitude)&pageNo=0&pageSize=7")
         } else if type == .popular {
-            return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/PlaceApi/nearBy?latitude=\(latitude)&longitude=\(longitude)&pageNo=0&pageSize=4")
+            return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8088/PlaceApi/nearBy?latitude=\(latitude)&longitude=\(longitude)&pageNo=0&pageSize=4")
            
         } else {
             
-            return URL(string:"http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/PlaceApi/topPick?latitude=\(latitude)&longitude=\(longitude)&pageNo=0&pageSize=3")
+            return URL(string:"http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8088/PlaceApi/topPick?latitude=\(latitude)&longitude=\(longitude)&pageNo=0&pageSize=3")
            
         }
     }
@@ -48,7 +48,7 @@ class URLs {
 
     static func fetchCurrentPlaceDetail(id: Int) -> URL? {
         
-       return URL(string: " http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/PlaceApi/placeById?placeId=16")
+       return URL(string: " http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8088/PlaceApi/placeById?placeId=16")
     }
     
 
@@ -59,9 +59,9 @@ class URLs {
     
     static func addOrDeleteFavourite(requestMethod: HttpRequest) -> URL? {
         if requestMethod == .addToFavourite {
-            return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/addFavourite")
+            return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8088/addFavourite")
         } else {
-            return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8080/deleteFavourite")
+            return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8088/deleteFavourite")
         }
         
         
