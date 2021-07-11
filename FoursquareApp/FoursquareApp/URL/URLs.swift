@@ -63,20 +63,20 @@ class URLs {
         } else {
             return URL(string: "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8088/deleteFavourite")
         }
-        
-        
     }
     
-
     static func getHotelPhotos(placeID: Int, pageNo: Int, pageSize: Int) -> URL? {
         return URL(string: "\(instanceId)/getPictures?placeId=\(placeID)&pageNo=\(pageNo)&pageSize=\(pageSize)")
-        
     }
     
     
     static func getReview(placeID: Int, pageNo: Int, pageSize: Int) -> URL? {
         return URL(string: "\(instanceId)/reviews?PlaceId=\(placeID)&pageNo=\(pageNo)&pageSize=\(pageSize)")
-        
+    
+    }
+    
+    static func addReview() -> URL? {
+        return URL(string: "\(instanceId)/addReview")
     }
     
 

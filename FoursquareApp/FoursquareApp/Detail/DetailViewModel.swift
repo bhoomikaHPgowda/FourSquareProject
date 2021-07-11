@@ -52,8 +52,18 @@ class DetailViewModel {
             
             print("network manger returned")
             complitionHandler(details)
-            
         } )
+        
+    }
+    
+    func addUserReview(userId: Int, token: String, placeId: Int, review: String, completionHandler: @escaping(Int) -> ()){
+        networkManger.addreview(userId: userId, token: token, placeId: placeId, review: review, completionHandler: {
+            statusCode
+            in
+            
+            print("network manger returned")
+            completionHandler(statusCode)
+        })
         
     }
 
