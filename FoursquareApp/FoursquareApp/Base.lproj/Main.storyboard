@@ -1207,7 +1207,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="cMh-3U-ef5" kind="show" id="ihs-ZB-lfo"/>
+                                                        <action selector="filter:" destination="UNx-Q0-cM0" eventType="touchUpInside" id="JB7-EJ-DYB"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1422,7 +1422,7 @@
         <!--Filter View Controller-->
         <scene sceneID="HcO-8B-CzV">
             <objects>
-                <viewController id="cMh-3U-ef5" customClass="FilterViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilterViewController" id="cMh-3U-ef5" customClass="FilterViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I5o-e4-uUh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1680,6 +1680,7 @@
                     <connections>
                         <outlet property="features" destination="TGc-Aw-Eya" id="rDv-H6-sOF"/>
                         <outlet property="nearYou" destination="JCm-EL-2Ro" id="pcV-JV-Wba"/>
+                        <outlet property="radius" destination="MBl-ne-L28" id="bII-hQ-s0W"/>
                         <outlet property="rupee" destination="jAa-gu-SwN" id="xqB-tv-2SP"/>
                         <outlet property="search" destination="jZ0-Ya-NoD" id="Lyn-7N-aqi"/>
                         <outlet property="sort" destination="gtU-N8-dkj" id="4e7-l9-Vff"/>
@@ -4694,8 +4695,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ihs-ZB-lfo"/>
-        <segue reference="RqY-UO-KQa"/>
+        <segue reference="Mon-oO-2XH"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Image" width="137.5" height="91.5"/>
