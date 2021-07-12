@@ -34,13 +34,10 @@ class DetailViewModel {
     
     }
     
-  
-<<<<<<< HEAD
+
 
     func getHotelPhotosForCollectionView(placeID: Int, pageNo: Int, pageSize: Int, complitionHandler: @escaping(Int,[String],[String],[Int]) -> ()) {
-=======
-    func getHotelPhotosForCollectionView(placeID: Int, pageNo: Int, pageSize: Int, complitionHandler: @escaping(Int,[String],[String]) -> ()) {
->>>>>>> ae9a29a26c3d80edc2745b69a5943554d65e150d
+
         networkManger.getHotelPhoto(placeID: placeID, pageNo: pageNo, pageSize: pageSize, completionHandler: {
             statusCode,images,dates, userid
             in

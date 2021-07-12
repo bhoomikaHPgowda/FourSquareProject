@@ -2641,7 +2641,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemPurpleColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="137" id="V3P-r3-IFf" customClass="PopularTableViewCell" customModule="FoursquareApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="137" id="V3P-r3-IFf" customClass="SearchedCityTableViewCell" customModule="FoursquareApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="137"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V3P-r3-IFf" id="2X7-GO-usb">
@@ -2654,25 +2654,13 @@
                                                         <constraint firstAttribute="width" constant="137" id="cu8-o7-PWd"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auM-47-W8n">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auM-47-W8n">
                                                     <rect key="frame" x="152" y="106.5" width="34" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcU-pj-Bfm">
-                                                    <rect key="frame" x="152" y="85.5" width="34" height="19.5"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cd-W1-I6D">
-                                                    <rect key="frame" x="152" y="11" width="51.5" height="29"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="21"/>
-                                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETh-X9-tNC">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="8.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETh-X9-tNC">
                                                     <rect key="frame" x="152" y="63" width="22" height="18"/>
                                                     <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -2686,32 +2674,23 @@
                                                         <constraint firstAttribute="width" constant="35" id="fZ0-rU-o7L"/>
                                                     </constraints>
                                                     <state key="normal" image="notFavourite"/>
-                                                    <connections>
-                                                        <action selector="addToFavourite:" destination="V3P-r3-IFf" eventType="touchUpInside" id="egv-3J-fqH"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="auM-47-W8n" firstAttribute="leading" secondItem="ETh-X9-tNC" secondAttribute="leading" id="0IQ-pb-wTW"/>
-                                                <constraint firstItem="UcU-pj-Bfm" firstAttribute="top" secondItem="ETh-X9-tNC" secondAttribute="bottom" constant="4.5" id="1sq-zV-fUp"/>
                                                 <constraint firstAttribute="bottom" secondItem="gvJ-Ob-Cz7" secondAttribute="bottom" id="6fK-K4-4jt"/>
-                                                <constraint firstItem="UcU-pj-Bfm" firstAttribute="leading" secondItem="ETh-X9-tNC" secondAttribute="leading" id="D3o-Ig-onM"/>
                                                 <constraint firstItem="1mu-pu-Lpz" firstAttribute="top" secondItem="2X7-GO-usb" secondAttribute="topMargin" id="Ebk-De-eHM"/>
                                                 <constraint firstItem="auM-47-W8n" firstAttribute="bottom" secondItem="2X7-GO-usb" secondAttribute="bottomMargin" id="EwP-Ja-dgh"/>
-                                                <constraint firstItem="auM-47-W8n" firstAttribute="leading" secondItem="1cd-W1-I6D" secondAttribute="leading" id="K0J-2l-rCG"/>
-                                                <constraint firstItem="1cd-W1-I6D" firstAttribute="leading" secondItem="gvJ-Ob-Cz7" secondAttribute="trailing" constant="15" id="SHN-yb-0Lw"/>
-                                                <constraint firstItem="ETh-X9-tNC" firstAttribute="leading" secondItem="1cd-W1-I6D" secondAttribute="leading" id="TT1-g5-1x2"/>
-                                                <constraint firstItem="1cd-W1-I6D" firstAttribute="top" secondItem="2X7-GO-usb" secondAttribute="topMargin" id="bZn-c9-pV0"/>
                                                 <constraint firstItem="1mu-pu-Lpz" firstAttribute="trailing" secondItem="2X7-GO-usb" secondAttribute="trailingMargin" id="gIr-fI-GkY"/>
                                                 <constraint firstItem="gvJ-Ob-Cz7" firstAttribute="leading" secondItem="2X7-GO-usb" secondAttribute="leading" id="mvL-ej-7pS"/>
-                                                <constraint firstItem="UcU-pj-Bfm" firstAttribute="leading" secondItem="1cd-W1-I6D" secondAttribute="leading" id="qWa-WI-C0e"/>
                                                 <constraint firstItem="gvJ-Ob-Cz7" firstAttribute="top" secondItem="2X7-GO-usb" secondAttribute="top" id="tip-TC-dkR"/>
-                                                <constraint firstItem="auM-47-W8n" firstAttribute="top" secondItem="UcU-pj-Bfm" secondAttribute="bottom" constant="1.5" id="w8z-K0-Rsj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="dcsd" destination="1cd-W1-I6D" id="Ss5-ci-mud"/>
+                                            <outlet property="addToFavourite" destination="1mu-pu-Lpz" id="D8o-qC-AYU"/>
+                                            <outlet property="address" destination="auM-47-W8n" id="XM1-1A-jfb"/>
+                                            <outlet property="placeImage" destination="gvJ-Ob-Cz7" id="wAt-BX-KIN"/>
                                             <outlet property="rating" destination="ETh-X9-tNC" id="hGo-8u-bf2"/>
                                         </connections>
                                     </tableViewCell>
@@ -2744,6 +2723,9 @@
                             <constraint firstItem="eSl-V5-Z1N" firstAttribute="leading" secondItem="Z54-Zp-DY6" secondAttribute="leading" id="sP8-bD-aZY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="placeList" destination="eSl-V5-Z1N" id="qaB-jq-2Bp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hWR-c9-e3S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

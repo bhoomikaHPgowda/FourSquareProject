@@ -368,12 +368,11 @@ class NetworkManagerForFetchPlaceDetail {
         return 0
     }
     
-<<<<<<< HEAD
+
     func parseStatusCode(code: Any) -> (Int, [String], [String], [Int]){
-=======
+
     
-    func parseStatusCode(code: Any) -> (Int,[String], [String]){
->>>>>>> ae9a29a26c3d80edc2745b69a5943554d65e150d
+  
         var images = [String]()
         var dates = [String]()
         var userId = [Int]()

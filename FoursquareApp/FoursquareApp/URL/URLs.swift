@@ -9,11 +9,7 @@ import Foundation
 import UIKit
 class URLs {
    static var instanceId = "http://ec2-3-139-63-149.us-east-2.compute.amazonaws.com:8089"
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> ae9a29a26c3d80edc2745b69a5943554d65e150d
     static func regiesterUserURl() -> URL? {
         return URL(string: "\(instanceId)/register")
     }
