@@ -17,7 +17,7 @@ class ReviewDisplayViewController: UIViewController {
     var reviewDates = [String]()
     var reviewersReview = [String]()
     var reviewersImages = [String]()
-      
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -38,6 +38,7 @@ class ReviewDisplayViewController: UIViewController {
             self.reviewDates = data.dates
             self.reviewersReview = data.reviews
             self.reviewersImages = data.profileImage
+
             DispatchQueue.main.async{
                 if(data.statusCode == 200){
                     print("update")
@@ -63,12 +64,11 @@ extension ReviewDisplayViewController:  UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewDisplayCell", for: indexPath) as? ReviewDisplayCell {
-            reviewersImages.count
-
+            
             cell.reviewerName.text = reviewersNames[indexPath.row]
             cell.review.text = reviewersReview[indexPath.row]
             cell.reviewDate.text = reviewDates[indexPath.row]
-            cell.reviewerPhoto.image = UIImage.restaurentImage(url: reviewersImages[indexPath.count])
+            cell.reviewerPhoto.image = UIImage.restaurentImage(url: reviewersImages[indexPath.row])
                
             return cell
         }
