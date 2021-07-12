@@ -7,20 +7,26 @@
 
 import UIKit
 
-class ChangePasswordViewController: UIViewController {
+class ChangePasswordViewController: UIViewController , UITextFieldDelegate{
     
-    var OTP = 0
     var emailID = " "
     var loginViewModel = LoginViewModel()
 
     @IBOutlet weak var conformPassword: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var conformPasswordLabel: UILabel!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
- 
+        conformPassword.delegate = self
+        password.delegate = self
+        passwordLabel.frame = CGRect(x: 130, y: 190, width: 110, height: 21)
+        conformPasswordLabel.frame = CGRect(x: 120, y: 260, width: 130, height: 21)
         // Do any additional setup after loading the view.
+    
     }
     
     @IBAction func changePasswordSubmit(_ sender: Any) {
@@ -30,7 +36,7 @@ class ChangePasswordViewController: UIViewController {
         else {
             return
         }
-        if (password == conformPasword) && (OTP == 1234) {
+        if (password == conformPasword) {
             
             loginViewModel.changePassword(email: emailID, password: password, completionHandler: {
                 statusCode
@@ -57,15 +63,16 @@ class ChangePasswordViewController: UIViewController {
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if(passwordLabel.center.y == 200.5) && (textField.tag == 1){
+            passwordLabel.center.y -= 30
+        }
+        if(conformPasswordLabel.center.y == 270.5) && (textField.tag == 2){
+            conformPasswordLabel.center.y -= 30
+        }
+        
     }
-    */
+    
+
 
 }
