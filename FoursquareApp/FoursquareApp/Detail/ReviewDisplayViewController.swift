@@ -10,9 +10,9 @@ import UIKit
 class ReviewDisplayViewController: UIViewController {
     
     var detailViewModel = DetailViewModel()
-    var placeIdNum = 11
+    var placeIdNum = 10
     var pageNumber = 0
-    var pageSizeValue = 10
+    var pageSizeValue = 8
     var reviewersNames = [String]()
     var reviewDates = [String]()
     var reviewersReview = [String]()
@@ -63,11 +63,12 @@ extension ReviewDisplayViewController:  UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewDisplayCell", for: indexPath) as? ReviewDisplayCell {
+            reviewersImages.count
 
             cell.reviewerName.text = reviewersNames[indexPath.row]
             cell.review.text = reviewersReview[indexPath.row]
             cell.reviewDate.text = reviewDates[indexPath.row]
-            cell.reviewerPhoto.image = UIImage.restaurentImage(url: reviewersImages[indexPath.row])
+            cell.reviewerPhoto.image = UIImage.restaurentImage(url: reviewersImages[indexPath.count])
                
             return cell
         }

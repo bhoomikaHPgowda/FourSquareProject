@@ -15,9 +15,9 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var imageview: UIImageView!
     var imagePicker = UIImagePickerController()
     var detailViewModel = DetailViewModel()
-    var userID = 115
-    var token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiaG9vbWlrYXBhcGVnb3dkYUBnbWFpbC5jb20iLCJleHAiOjE2MjYwMTkxNzMsImlhdCI6MTYyNjAwMTE3M30.marHcCmFYPtoYdJ2MICvOQJzjz76A_yqUDVFgjo9kFuTPTlmB4hR3f5wYy52ZW9jVm5W20Fs9BalfXLI3VgISQ"
-    var placeId = 11
+    var userID = "115"
+    var token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiaG9vbWlrYXBhcGVnb3dkYUBnbWFpbC5jb20iLCJleHAiOjE2MjYwODU4NDcsImlhdCI6MTYyNjA2Nzg0N30.LWLMYGWUT9udeFjxOJl-DYklWHLytC5rkguoSW7eZ0B8Iwksm_KkKMZJ6gO3WjEwZ9QwlimtaeBNhpywcczOkQ"
+    var placeId = "11"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,18 +27,17 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasDismissed(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-
-        
+         
     }
     @IBAction func addReviewButton(_ sender: UIButton) {
         detailViewModel.addUserReview(userId: userID, token: token, placeId: placeId, review: addReview.text, completionHandler: {
             statusCode
             in
             DispatchQueue.main.async{
-                print(statusCode)
-                print("reviewSucessfullyAdded")
-                
+                if(statusCode == 200){
+                    print(statusCode)
+                    print("reviewSucessfullyAdded")
+                }
             }
            
         })
@@ -82,7 +81,8 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
         
         submit.frame.origin.y = self.view.frame.height - submit.frame.height - 20
     }
-
+    
+   
 }
 
 extension AddReviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

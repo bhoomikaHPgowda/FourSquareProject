@@ -56,7 +56,7 @@ class DetailViewModel {
         
     }
     
-    func addUserReview(userId: Int, token: String, placeId: Int, review: String, completionHandler: @escaping(Int) -> ()){
+    func addUserReview(userId: String, token: String, placeId: String, review: String, completionHandler: @escaping(Int) -> ()){
         networkManger.addreview(userId: userId, token: token, placeId: placeId, review: review, completionHandler: {
             statusCode
             in
