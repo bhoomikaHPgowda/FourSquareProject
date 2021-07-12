@@ -12,11 +12,14 @@ class SearchedCityTableViewCell: UITableViewCell {
     @IBOutlet weak var placeImage: UIImageView!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var rating: UILabel!
+    @IBOutlet weak var placeName: UILabel!
+    @IBOutlet weak var detail: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

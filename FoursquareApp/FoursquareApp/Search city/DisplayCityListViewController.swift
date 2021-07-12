@@ -11,29 +11,33 @@ class DisplayCityListViewController: UIViewController {
 
 
     @IBOutlet weak var placeList: UITableView!
- 
+    var placedetail: [PlaceDetail]?
     override func viewDidLoad() {
         super.viewDidLoad()
+        placeList.delegate = self
+        placeList.dataSource = self
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func mapView(_ sender: Any) {
+        var displayMapViewViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DisplayMapViewViewController") as! DisplayMapViewViewController
+        if let detail = placedetail {
+            displayMapViewViewController.data = detail
+        }
+        navigationController?.pushViewController(displayMapViewViewController, animated: true)
     }
-    */
+    
 
 }
 
 extension DisplayCityListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        guard let data = placedetail else {
+            return 0
+        }
+        print("dadad count ==\(data.count)")
+        return data.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
@@ -49,10 +53,12 @@ extension DisplayCityListViewController: UITableViewDelegate, UITableViewDataSou
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NearYouTableViewCell {
-            
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SearchedCityTableViewCell {
+            guard let data = placedetail else {
+                return SearchedCityTableViewCell()
+            }
          
-            cell.name.text = "sushanth"
+            cell.placeName.text = data[indexPath.row].placeName
 //            cell.rating.text = "\(dataForIndex.rating.rounded(places: 1))"
 //            cell.rating.backgroundColor = UIColor.ratingColor(rating: dataForIndex.rating)
 //            cell.detail.text = "\(dataForIndex.placeType.components(separatedBy:" ")[0]) " + " \u{2022} " + String(repeating: "\u{20B9}", count: dataForIndex.cost) + " \(round(dataForIndex.distance))Km"
@@ -72,7 +78,7 @@ extension DisplayCityListViewController: UITableViewDelegate, UITableViewDataSou
 //            }
            return cell
         } else {
-            return NearYouTableViewCell()
+            return SearchedCityTableViewCell()
             
         }
         

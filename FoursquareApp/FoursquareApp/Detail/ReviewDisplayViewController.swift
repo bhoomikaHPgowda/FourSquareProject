@@ -30,7 +30,13 @@ class ReviewDisplayViewController: UIViewController {
         placeName.text = reviewedPlace
         getReview()
     }
-    
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if let temp = segue.destination as? AddReviewViewController{
+                temp.userDetails = userDetails
+                temp.placeDetail = placeDetail
+            }
+        }
+       
     @IBAction func back(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }

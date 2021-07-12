@@ -15,6 +15,7 @@ class SearchCityViewController: UIViewController {
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var search: CustomSearchBar!
     @IBOutlet weak var nearMe: CustomSearchBar!
+    var viewModel = SearchViewModel()
     var name: String?
     var emptySearchScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchEmptyViewController") as! SearchEmptyViewController
     var searchScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController")  as! SearchViewController
@@ -90,7 +91,22 @@ extension SearchCityViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         print("end")
         searchBar.resignFirstResponder()
-        add(viewController: displayScreen, mode: .searchScreen)
+        guard let place = searchBar.text else {
+            print("search bar error")
+            return
+        }
+        print("place == \(place)")
+        viewModel.fetchSearchedCityDetail(placeName: place, completionHanlderL: {
+            photoDetails
+            in
+            DispatchQueue.main.async {
+                self.displayScreen.placedetail = photoDetails
+                self.add(viewController: self.displayScreen, mode: .searchScreen)
+                self.displayScreen.placeList.reloadData()
+            } 
+            
+        })
+        
     }
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.resignFirstResponder()
@@ -103,6 +119,7 @@ extension SearchCityViewController: UISearchBarDelegate {
         if searchText == "\n" {
             print("svsdvdsvsvs")
             searchBar.resignFirstResponder()
+            
         }
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
