@@ -45,7 +45,7 @@ class NetworkManagerForFetchPlaceDetail {
         dataTask.resume()
     }
     
-    func getHotelPhoto(placeID: Int, pageNo: Int, pageSize: Int, completionHandler: @escaping(Int,[String],[String]) -> ()){
+    func getHotelPhoto(placeID: Int, pageNo: Int, pageSize: Int, completionHandler: @escaping(PhotoDetails) -> ()){
         
         guard let photoURL = URLs.getHotelPhotos(placeID: placeID, pageNo: pageNo, pageSize: pageSize) else {
             
@@ -70,10 +70,9 @@ class NetworkManagerForFetchPlaceDetail {
                 
                 let newData = try JSONSerialization.jsonObject(with: photoData, options: [])
                 print(newData)
-                if let data = self?.parseStatusCode(code: newData) {
-                    print(data.0)
-                    print(data.1)
-                    completionHandler(data.0, data.1, data.2)
+                if let data = self?.parsePhotoDetails(code: newData) {
+                    
+                    completionHandler(data)
                 }
             } catch {
                 
@@ -368,15 +367,17 @@ class NetworkManagerForFetchPlaceDetail {
         return 0
     }
     
-    
-    func parseStatusCode(code: Any) -> (Int,[String], [String]){
+
+
+    func parsePhotoDetails(code: Any) -> PhotoDetails? {
         var images = [String]()
         var dates = [String]()
+        var userId = [Int]()
         guard let code = code as? [String: Any],
               let statusCode = code["status"] as? Int,
               let photosDetails =  code["data"] as? [Any]
         else {
-            return (0, [""],[" "])
+            return nil
         }
         for photodetail in photosDetails{
             if let detail = photodetail as? [String:Any]{
@@ -388,9 +389,88 @@ class NetworkManagerForFetchPlaceDetail {
                 dates.append(date)
             }
             
+            if let dateils = photodetail as? [String:Any]{
+                let id = dateils["user_id"] as? Int ?? 0
+                userId.append(id)
+            }
+            
         }
+        let photoDetails = PhotoDetails(statusCode: 0, image: [""], date: [""], userId: [0])
+        photoDetails.statusCode = statusCode
+        photoDetails.image = images
+        photoDetails.date = dates
+        photoDetails.userId = userId
+        return photoDetails
+    }
+    
+    
+    
+    
+    func fetchUseeDetail(userId: Int, completionHandler: @escaping(UserDetail) -> ()) {
+      print("called")
+        guard let weatherURl = URLs.getUserDetail(userId: userId) else {
+            print("wromg")
+            return
+        }
+        var token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NUBnbWFpbC5jb20iLCJleHAiOjE2MjYwNDIxMjEsImlhdCI6MTYyNjAyNDEyMX0.CM-4MS7ix6MZ9kjumwbqVJXtgT3kg0-UJUhnWzP4sunZn7vrxN5k27iILdZ2bTqGJO1mc6qDrOSLzWlga4KJGA"
+        var request = URLRequest(url: weatherURl)
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+       
+      
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "GET"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        let session = URLSession.shared
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          guard let data = data else {
+            print(String(describing: error))
+         
+            return
+          }
+            
+            do {
+                guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                    print("Error: Cannot convert data to JSON object")
+                    return
+                }
+                if let data = self.parseUserDetail(data: jsonObject) {
+                    completionHandler(data)
+                }
+                 
+                    
+                 
+            } catch {
+                
+            }
         
-        return (statusCode, images, dates)
+            print(String(data: data, encoding: .utf8)!)
+                
+        }
+
+        task.resume()
+    }
+    
+    func parseUserDetail(data: Any) -> UserDetail? {
+        guard let userData = data as? [String: Any],
+              let statusCode = userData["status"] as? Int,
+              let message = userData["message"] as? String,
+              let userDetail = userData["data"] as? [String: Any],
+              let id = userDetail["id"] as? Int,
+              let email = userDetail["email"] as? String,
+              let imageUrl = userDetail["image"] as? String,
+              let username = userDetail["username"] as? String
+          
+        
+        
+        else {
+            print("error")
+            return nil
+        }
+        print(statusCode)
+        let logedUserDetail = UserDetail(statuscode: statusCode, message: message, id: id, imageUrl: imageUrl, email: email, token: "", userName: username)
+        print("name == \(username)")
+        return logedUserDetail
     }
     
     func parseReviewData(code:Any) -> ReviewDetails? {

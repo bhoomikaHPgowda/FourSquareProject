@@ -9,18 +9,23 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var orButton: UIButton!
     var loginViewModel = LoginViewModel()
 
+    @IBOutlet weak var passwordLabelTopConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.navigationBar.isHidden = true
         orButton.layer.cornerRadius = 0.5 * orButton.bounds.size.width
+        email.delegate = self
+        password.delegate = self
    
     }
+    @IBOutlet weak var emailTopConstraint: NSLayoutConstraint!
     
     @IBAction func login(_ sender: CustomButton) {
         
@@ -42,7 +47,7 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 
                 if detail.statusCode == 200 {
-                    
+                    print("200000000000")
                     let homePageViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomePageViewController") as! HomePageViewController
                     homePageViewController.userDetails = detail
                     self.navigationController?.pushViewController(homePageViewController, animated: true)
@@ -64,4 +69,17 @@ class LoginViewController: UIViewController {
         }
         
     }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.tag == 1 && emailTopConstraint.constant != 45 {
+            emailTopConstraint.constant = emailTopConstraint.constant - 25
+        } else if passwordLabelTopConstraint.constant != 20 {
+            passwordLabelTopConstraint.constant = passwordLabelTopConstraint.constant - 18
+        }
+        
+    }
+    
+    
 }

@@ -40,6 +40,9 @@ class NearYouViewController: UIViewController {
 //            self.add()
 //        })
     }
+    override func viewWillAppear(_ animated: Bool) {
+        nearYouTableView.reloadData()
+    }
     
     func add(count: Int) {
        print("data is calledjhsfjhsdfjgsdfhjdsgfhdsjhfdsf\(count)-------------------")
@@ -63,17 +66,30 @@ class NearYouViewController: UIViewController {
             return
         }
         if sender.isSelected {
-            detailViewModel.addOrDeleteFavourite(userId: userDetails.id, token: userDetails.token, placeId: placeDetail[sender.tag].placeId, requestMethod: .addToFavourite, completionHandler: {
+            detailViewModel.addOrDeleteFavourite(userId: userDetails.id, token: userDetails.token, placeId: placeDetail[sender.tag - 1].placeId, requestMethod: .addToFavourite, completionHandler: {
                 statusCode
                 in
                 print("added succefully\(statusCode)")
+                if statusCode == 200 {
+                    DispatchQueue.main.async {
+                        self.detailViewModel.favouritePlaceList!.append(placeDetail[sender.tag - 1])
+                    }
+                    
+                }
+                
+                
             })
         } else {
             
-            detailViewModel.addOrDeleteFavourite(userId: userDetails.id, token: userDetails.token, placeId: placeDetail[sender.tag].placeId, requestMethod: .deleteFromFavourite, completionHandler: {
+            detailViewModel.addOrDeleteFavourite(userId: userDetails.id, token: userDetails.token, placeId: placeDetail[sender.tag - 1].placeId, requestMethod: .deleteFromFavourite, completionHandler: {
                 statusCode
                 in
                 print("added succefully\(statusCode)")
+                if statusCode == 200 {
+                    DispatchQueue.main.async {
+                        self.detailViewModel.favouritePlaceList!.remove(at: sender.tag - 1 )
+                    }
+                }
             })
             
         }
@@ -144,11 +160,13 @@ extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NearYouTableViewCell {
             guard let data = details1
             else {
+                print("initaill iti is filed")
                 return NearYouTableViewCell()
             }
             let dataForIndex = data[indexPath.row]
             cell.name.text = dataForIndex.placeName
-            cell.rating.text = "\(round(dataForIndex.rating))"
+            cell.rating.text = "\(dataForIndex.rating.rounded(places: 1))"
+            cell.rating.backgroundColor = UIColor.ratingColor(rating: dataForIndex.rating)
             cell.detail.text = "\(dataForIndex.placeType.components(separatedBy:" ")[0]) " + " \u{2022} " + String(repeating: "\u{20B9}", count: dataForIndex.cost) + " \(round(dataForIndex.distance))Km"
 
 
@@ -158,7 +176,12 @@ extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
             cell.address.textColor = .darkGray
             cell.detail.textColor = .darkGray
             cell.layer.borderWidth = 3
-            cell.addToFavouriteButton.tag = indexPath.row
+            cell.addToFavouriteButton.tag = indexPath.row + 1
+            if detailViewModel.isFavourite(placeId: dataForIndex.placeId) {
+                cell.addToFavouriteButton.isSelected = true
+            } else {
+                cell.addToFavouriteButton.isSelected = false
+            }
             return cell
         } else {
             return NearYouTableViewCell()
@@ -169,4 +192,11 @@ extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     
+}
+extension Double {
+    /// Rounds the double to decimal places value
+    func rounded(places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
 }

@@ -24,6 +24,7 @@ class LoginViewModel {
         networkManger.authenticateUserDetail(email: email, password: password, completionHandler: {
             userData
             in
+            print("user code==\(userData.statusCode)")
             completionHandler(userData)
         })
     }

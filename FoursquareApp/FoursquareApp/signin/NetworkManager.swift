@@ -125,10 +125,12 @@ class NetworkManger {
                   let datas = userDetail["userData"] as? [String: Any],
                   let id = datas["id"] as? Int,
                   let email = datas["email"] as? String,
+                  let token = userDetail["token"] as? String,
                   let imageUrl = datas["image"] as? String,
-                  let username = datas["username"] as? String,
-                  let token = userDetail["token"] as? String
+                  let username = datas["username"] as? String
+                 
             else {
+                print("eror while parsing")
                 return nil
             }
             let logedUserDetail = UserDetail(statuscode: statusCode, message: message, id: id, imageUrl: imageUrl, email: email, token: token, userName : username)

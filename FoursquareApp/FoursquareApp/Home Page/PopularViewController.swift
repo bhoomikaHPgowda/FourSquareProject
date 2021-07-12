@@ -49,6 +49,17 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
       
             return 195
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let data = details {
+            
+            let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            self.navigationController?.pushViewController(detailViewController, animated: true)
+            if let data = details {
+                detailViewController.userDetails = userDetails
+                detailViewController.detail = data[indexPath.row]
+            }
+        }
+    }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -68,6 +79,11 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
             cell.detail.textColor = .darkGray
             cell.address.textColor = .darkGray
                cell.layer.borderWidth = 3
+            if detailViewModel.isFavourite(placeId: dataForIndex.placeId) {
+                cell.addToFavouriteButton.isSelected = true
+            } else {
+                cell.addToFavouriteButton.isSelected = false
+            }
             return cell
         } else {
             

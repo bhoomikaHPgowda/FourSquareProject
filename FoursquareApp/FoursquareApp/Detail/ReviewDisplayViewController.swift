@@ -13,16 +13,21 @@ class ReviewDisplayViewController: UIViewController {
     var placeIdNum = 10
     var pageNumber = 0
     var pageSizeValue = 8
+    var reviewedPlace = ""
     var reviewersNames = [String]()
     var reviewDates = [String]()
     var reviewersReview = [String]()
     var reviewersImages = [String]()
+    var placeDetail: PlaceDetail?
+    var userDetails: UserDetail?
     
+    @IBOutlet weak var placeName: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 100
+        placeName.text = reviewedPlace
         getReview()
     }
     

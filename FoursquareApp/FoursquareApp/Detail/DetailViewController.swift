@@ -68,10 +68,55 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let temp = segue.destination as? PhotoViewController {
-            temp.placeIdNum = placeID ?? 12
-            temp.userDetails = userDetails
+            if let temp1 = placeID {
+                temp.placeIdNum = temp1
+                print("passed dat from okne to antohe \(temp)")
+            }
+            
+           
+            
+            
         }
     }
+    
+    @IBAction func photos(_ sender: UIButton) {
+        guard let place = detail else {
+            print("no  recieved detail")
+            return
+        }
+        let photoViewController = self.storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
+      
+            print("this is id pases frim th pjtot\(place.placeId)")
+            photoViewController.placeIdNum = place.placeId
+    
+        if let data = detail {
+            photoViewController.photoFor = data.placeName
+            
+        }
+        photoViewController.userDetails = userDetails
+        navigationController?.pushViewController(photoViewController, animated: true)
+        
+    }
+    
+    @IBAction func review(_ sender: UIButton) {
+        guard let place = detail else {
+            print("no  recieved detail")
+            return
+        }
+        let reviewViewController = self.storyboard?.instantiateViewController(withIdentifier: "reviewDisplayViewController") as! ReviewDisplayViewController
+      
+            print("this is id pases frim th pjtot\(place.placeId)")
+        reviewViewController.placeIdNum = place.placeId
+    
+        if let data = detail {
+            reviewViewController.reviewedPlace = data.placeName
+            
+        }
+        reviewViewController.userDetails = userDetails
+        navigationController?.pushViewController(reviewViewController, animated: true)
+        
+    }
+    
     
     func updateValuesReceived() {
         if let data = detail {

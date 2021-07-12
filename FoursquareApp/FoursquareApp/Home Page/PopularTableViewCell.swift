@@ -15,6 +15,7 @@ class PopularTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var dcsd: UILabel!
+    @IBOutlet weak var addToFavouriteButton: CustomAddToFavoriteButton!
     override func awakeFromNib() {
         super.awakeFromNib()
     
