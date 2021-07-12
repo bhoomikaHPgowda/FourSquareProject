@@ -7,18 +7,27 @@
 
 import UIKit
 
-class ForgotPasswordViewController: UIViewController {
+class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     
     var loginViewModel = LoginViewModel()
     var email = " "
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var OTP: UITextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-
+        OTP.delegate = self
+        emailLabel.frame = CGRect(x: 145, y: 318, width: 85, height: 25)
         // Do any additional setup after loading the view.
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if(emailLabel.center.y == 330.5){
+            emailLabel.center.y -= 30
+        }
+        
     }
     
     
@@ -26,7 +35,7 @@ class ForgotPasswordViewController: UIViewController {
         if (OTP.text == "1234"){
             if let temp = segue.destination as? ChangePasswordViewController {
                 if let otpValue = Int(OTP.text ?? " "){
-                    temp.OTP = otpValue
+                    
                     temp.emailID = email
                 }
                
@@ -38,17 +47,4 @@ class ForgotPasswordViewController: UIViewController {
        
     }
     
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

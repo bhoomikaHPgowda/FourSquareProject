@@ -21,11 +21,16 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
     var placeDetail: PlaceDetail?
     var userDetails: UserDetail?
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
         addReview.delegate = self
-        
+
+//        userID = String(userDetails?.id ?? 0)
+//         token = userDetails?.token ?? "nil"
+//         placeId = String(placeDetail?.placeId ?? 0)
+
         UITextView.addReviewTextViewSetUp(textView: addReview)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         

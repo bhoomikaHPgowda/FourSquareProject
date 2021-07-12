@@ -370,6 +370,7 @@ class NetworkManagerForFetchPlaceDetail {
 
 
     func parsePhotoDetails(code: Any) -> PhotoDetails? {
+
         var images = [String]()
         var dates = [String]()
         var userId = [Int]()
