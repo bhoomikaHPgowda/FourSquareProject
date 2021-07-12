@@ -17,6 +17,7 @@ class DisplayImageViewController: UIViewController{
     var uploaderName = ""
     var userId = 0
     var titleName = ""
+    var token = ""
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var placeName: UILabel!
@@ -27,12 +28,13 @@ class DisplayImageViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
+        print("token recieve ====\(token)")
         imageView.image = UIImage.restaurentImage(url: image)
         
         date.text = photoAddedDate
         
         placeName.text = titleName
-        detailViewModel.fetchUserDetail(Id: userId, completionHandler: {
+        detailViewModel.fetchUserDetail(Id: userId, token: token, completionHandler: {
             userDetail
             in
             DispatchQueue.main.async {

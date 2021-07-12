@@ -53,6 +53,8 @@
 		AF719677268CBC0000C18522 /* CustomButtonForSidemenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF719676268CBC0000C18522 /* CustomButtonForSidemenu.swift */; };
 		AF71967A268CCE7500C18522 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF719679268CCE7500C18522 /* FeedbackViewController.swift */; };
 		AF71967D268CE22800C18522 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF71967C268CE22800C18522 /* AboutUsViewController.swift */; };
+		AF74C732269C933F00CACCE1 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74C731269C933F00CACCE1 /* UILabel+Extension.swift */; };
+		AF74C735269CB72600CACCE1 /* FilterDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74C734269CB72600CACCE1 /* FilterDetail.swift */; };
 		AF766FF62690749E00319E75 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF766FF52690749E00319E75 /* SearchCityViewController.swift */; };
 		AF766FFA269075D700319E75 /* SearchEmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF766FF9269075D700319E75 /* SearchEmptyViewController.swift */; };
 		AF76E913269810C90040CBE3 /* NetworkManagerForFetchPlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF76E912269810C90040CBE3 /* NetworkManagerForFetchPlaceDetail.swift */; };
@@ -136,6 +138,8 @@
 		AF719676268CBC0000C18522 /* CustomButtonForSidemenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonForSidemenu.swift; sourceTree = "<group>"; };
 		AF719679268CCE7500C18522 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		AF71967C268CE22800C18522 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		AF74C731269C933F00CACCE1 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		AF74C734269CB72600CACCE1 /* FilterDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDetail.swift; sourceTree = "<group>"; };
 		AF766FF52690749E00319E75 /* SearchCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
 		AF766FF9269075D700319E75 /* SearchEmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyViewController.swift; sourceTree = "<group>"; };
 		AF76E912269810C90040CBE3 /* NetworkManagerForFetchPlaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerForFetchPlaceDetail.swift; sourceTree = "<group>"; };
@@ -283,6 +287,7 @@
 				AFFE65CD268F1E21008CC7A6 /* UITextView+Extension.swift */,
 				AF77A8632694C2E0004E27E3 /* URL+Extension.swift */,
 				AFC3A2E826977BFE002033E3 /* UImage+Extension.swift */,
+				AF74C731269C933F00CACCE1 /* UILabel+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -317,6 +322,7 @@
 			children = (
 				AF84251D268DE34800164857 /* FilterViewController.swift */,
 				AF836C2B268E32080073DDFE /* FeaturesTableViewCell.swift */,
+				AF74C734269CB72600CACCE1 /* FilterDetail.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -441,6 +447,7 @@
 				AF719677268CBC0000C18522 /* CustomButtonForSidemenu.swift in Sources */,
 				AF35DE56268B2D6500742C78 /* CustomButtonForCollectionViewOptions.swift in Sources */,
 				AFAD62A2269C4D1E00D804F0 /* SearchViewModel.swift in Sources */,
+				AF74C732269C933F00CACCE1 /* UILabel+Extension.swift in Sources */,
 				AF766FF62690749E00319E75 /* SearchCityViewController.swift in Sources */,
 				AF35DE4A268B2C3600742C78 /* NearYouTableViewCell.swift in Sources */,
 				AF35DE0B268AECA900742C78 /* ViewController.swift in Sources */,
@@ -489,6 +496,7 @@
 				AF35DE09268AECA900742C78 /* SceneDelegate.swift in Sources */,
 				AF766FFA269075D700319E75 /* SearchEmptyViewController.swift in Sources */,
 				AF76E916269812FA0040CBE3 /* DetailViewModel.swift in Sources */,
+				AF74C735269CB72600CACCE1 /* FilterDetail.swift in Sources */,
 				AF76E913269810C90040CBE3 /* NetworkManagerForFetchPlaceDetail.swift in Sources */,
 				AF0667B5268BA2EB00918017 /* SideMenuViewController.swift in Sources */,
 				AF84251E268DE34800164857 /* FilterViewController.swift in Sources */,

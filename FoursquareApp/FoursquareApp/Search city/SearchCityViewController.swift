@@ -23,6 +23,8 @@ class SearchCityViewController: UIViewController {
     
     var nearMeOptionScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ShowNearMeOptionViewController")  as! ShowNearMeOptionViewController
     
+    var filterScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilterViewController")  as! FilterViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nearMe.setImage(UIImage(named: "map"), for: .search, state: .normal)
@@ -33,6 +35,17 @@ class SearchCityViewController: UIViewController {
         print(name)
         // Do any additional setup after loading the view.
     }
+    
+    
+    @IBAction func filter(_ sender: UIButton) {
+        if let city = search.text {
+            filterScreen.cityName = city
+            
+        }
+        
+        navigationController?.pushViewController(filterScreen, animated: true)
+    }
+    
     
 
     func add(viewController: UIViewController, mode: SearchScreen) {

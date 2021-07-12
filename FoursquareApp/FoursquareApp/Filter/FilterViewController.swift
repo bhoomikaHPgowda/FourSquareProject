@@ -9,6 +9,7 @@ import UIKit
 
 class FilterViewController: UIViewController {
 
+    @IBOutlet weak var radius: UITextField!
     @IBOutlet weak var search: CustomSearchBar!
     @IBOutlet weak var nearYou: CustomSearchBar!
     @IBOutlet weak var features: UITableView!
@@ -16,6 +17,8 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var sort: UISegmentedControl!
     @IBOutlet weak var sortBy: CustomControlSegment!
     let featuresList: [String] = FeaturesList.allCases.map { $0.rawValue }
+    var cityName = ""
+    let filterDetail = FilterDetail(popular: false, distance: false, rating: false, radius: 0, accessToCard: false, delivery: false, dogFriendly: false, inWalkingDistance: false, outdoorSeating: false, parking: false, wifi: false)
     override func viewDidLoad() {
         super.viewDidLoad()
 //        let segAttributes: NSDictionary = [
@@ -41,25 +44,57 @@ class FilterViewController: UIViewController {
         
         nearYou.setImage(UIImage(named: "map"), for: .search, state: .normal)
         search.setImage(UIImage(named: "searcgIcon"), for: .search, state: .normal)
+        search.text = cityName
     }
     
     @IBAction func backButton(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
     @IBAction func segmentControlAction(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            filterDetail.popular = true
+            filterDetail.distance = false
+            filterDetail.rating = false
+        } else if sender.selectedSegmentIndex == 1 {
+            filterDetail.popular = false
+            filterDetail.distance = true
+            filterDetail.rating = false
+        }else {
+            filterDetail.popular = false
+            filterDetail.distance = false
+            filterDetail.rating = true
+        }
       
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func optionSelected(option: String, value: Bool) {
+        
+        switch option {
+        case FeaturesList.acceptsCreditCards.rawValue :
+            filterDetail.accessToCard = value
+            break
+        case FeaturesList.delivery.rawValue:
+            filterDetail.delivery = value
+            break
+        case FeaturesList.dogFreindly.rawValue:
+            filterDetail.dogFriendly = value
+            break
+        case FeaturesList.inWalkingDistance.rawValue:
+            filterDetail.inWalkingDistance = value
+            break
+        case FeaturesList.outdoorSearting.rawValue:
+            filterDetail.outdoorSeating = value
+            break
+        case FeaturesList.parking.rawValue:
+            filterDetail.parking = value
+            break
+        case FeaturesList.wifi.rawValue:
+            filterDetail.wifi = value
+        default:
+            print("wrong option")
+        }
     }
-    */
 
 }
 extension FilterViewController: UITableViewDelegate, UITableViewDataSource {
@@ -99,8 +134,21 @@ extension FilterViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath) as! FeaturesTableViewCell
         print(cell.featureName.text)
         cell.featureName.textColor = UIColor.colorForNormalFeatureLabel()
+        if let filterOption = cell.featureName.text {
+            if cell.selectButton.isSelected {
+                optionSelected(option: filterOption, value: true)
+            } else {
+                optionSelected(option: filterOption, value: false)
+            }
+            
+        }
+        
     }
 }
+
+
+
+
 //extension UISegmentedControl {
 //func setSegmentStyle() {
 // 
