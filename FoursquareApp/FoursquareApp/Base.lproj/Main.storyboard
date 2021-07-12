@@ -1923,9 +1923,12 @@
                                                 <constraint firstAttribute="height" constant="60" id="eyC-XJ-62e"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="19"/>
-                                            <state key="normal" title="Submit">
+                                            <state key="normal" title="List View">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <action selector="listView:" destination="otz-Cj-l6H" eventType="touchUpInside" id="Lp4-oI-ai0"/>
+                                            </connections>
                                         </button>
                                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Qcu-md-r7K">
                                             <rect key="frame" x="0.0" y="107" width="375" height="500"/>
