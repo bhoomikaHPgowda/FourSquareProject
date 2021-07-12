@@ -143,7 +143,7 @@ extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
+       print("table i scelsdldkdjdj")
         if let data = details1 {
             
             let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController

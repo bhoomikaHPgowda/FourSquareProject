@@ -96,7 +96,9 @@ class URLs {
         return URL(string: "\(instanceId)/FeatureFilters?landmark=\(placeName)&latitude=0&longitude=0&rating=False&distance=False&popular=False&radius=0&cost=0&creditCard=False&delivery=False&dog_friendly=False&family_friendly=True&outdoor=False&wifi=False&walking=False&parking=False&pageNo=0&pageSize=5")
     }
     
-
+    static func filterCityDetail(detail: FilterDetail, placeName: String) -> URL? {
+        return URL(string: "\(instanceId)/FeatureFilters?landmark=\(placeName)&latitude=0&longitude=0&rating=\(detail.rating)&distance=\(detail.distance)&popular=\(detail.popular)&radius=\(detail.radius)&cost=\(detail.cost)&creditCard=\(detail.accessToCard)&delivery=\(detail.delivery)&dog_friendly=\(detail.dogFriendly)&family_friendly=\(detail.dogFriendly)&outdoor=\(detail.outdoorSeating)&wifi=\(detail.wifi)&walking=\(detail.inWalkingDistance)&parking=\(detail.parking)&pageNo=0&pageSize=5")
+    }
 
 
 }

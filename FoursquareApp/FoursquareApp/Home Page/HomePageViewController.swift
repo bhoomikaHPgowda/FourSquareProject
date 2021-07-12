@@ -26,6 +26,8 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
     var selectindexpath: IndexPath = [0, 0]
     var signInVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NearYouViewController") as! NearYouViewController
     var popularViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopularViewController")  as! PopularViewController
+    
+    var filterViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilterViewController")  as! FilterViewController
     var detailViewModel = FetchPlaceDetailViewModel()
     var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ", userName: " ")
     var user: UserDetail?
@@ -96,6 +98,18 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         view.window!.layer.add(CATransition.transitionLeftToRight(), forKey: kCATransition)
     }
     
+    @IBAction func filterTapped(_ sender: UIButton) {
+        navigationController?.pushViewController(filterViewController, animated: true)
+        filterViewController.cityName = "Udupi"
+        filterViewController.completionHandler = { [self]
+            data
+            in
+            print("data reciebed ==\(data.count)")
+            signInVc.details1 = data
+            signInVc.nearYouTableView.reloadData()
+        }
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -197,6 +211,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print("deseleted")
         let cell = collectionView.cellForItem(at: indexPath) as! HomePageCollectionViewCell
             cell.buttonName.textColor = UIColor.colorForNormalLabel()
 

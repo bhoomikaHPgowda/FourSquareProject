@@ -18,7 +18,10 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var sortBy: CustomControlSegment!
     let featuresList: [String] = FeaturesList.allCases.map { $0.rawValue }
     var cityName = ""
-    let filterDetail = FilterDetail(popular: false, distance: false, rating: false, radius: 0, accessToCard: false, delivery: false, dogFriendly: false, inWalkingDistance: false, outdoorSeating: false, parking: false, wifi: false)
+    let filterDetail = FilterDetail(popular: false, distance: false, rating: false, radius: 0, cost: 0, accessToCard: false, delivery: false, dogFriendly: false, inWalkingDistance: false, outdoorSeating: false, parking: false, wifi: false)
+    let viewModel = FilterViewModel()
+    typealias completion = (([PlaceDetail]) -> ())
+    var completionHandler: completion?
     override func viewDidLoad() {
         super.viewDidLoad()
 //        let segAttributes: NSDictionary = [
@@ -68,6 +71,9 @@ class FilterViewController: UIViewController {
         
     }
     
+    @IBAction func cost(_ sender: CustomControlSegment) {
+        filterDetail.cost = sender.selectedSegmentIndex
+    }
     func optionSelected(option: String, value: Bool) {
         
         switch option {
@@ -95,6 +101,27 @@ class FilterViewController: UIViewController {
             print("wrong option")
         }
     }
+    
+    @IBAction func doneTapped(_ sender: UIButton) {
+        
+        viewModel.filterCityDetail(filterOption: filterDetail, landMark: cityName, completionHander: {
+            filteredData
+            in
+            print(filteredData.count)
+            DispatchQueue.main.async {
+                guard let closure = self.completionHandler else {
+                    return
+                    
+                }
+                closure(filteredData)
+            }
+        })
+        
+    }
+    
+    
+    
+    
 
 }
 extension FilterViewController: UITableViewDelegate, UITableViewDataSource {
@@ -146,6 +173,29 @@ extension FilterViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension FilterViewController: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let data = textField.text, let radius = Int(data) {
+            print("ended")
+            filterDetail.radius = radius
+        } else {
+            filterDetail.radius = 0
+
+        }
+        
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        print("ended")
+        if let data = textField.text, let radius = Int(data) {
+            filterDetail.radius = radius
+        } else {
+            filterDetail.radius = 0
+
+        }
+        return true
+    }
+}
 
 
 

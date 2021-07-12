@@ -55,6 +55,8 @@
 		AF71967D268CE22800C18522 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF71967C268CE22800C18522 /* AboutUsViewController.swift */; };
 		AF74C732269C933F00CACCE1 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74C731269C933F00CACCE1 /* UILabel+Extension.swift */; };
 		AF74C735269CB72600CACCE1 /* FilterDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74C734269CB72600CACCE1 /* FilterDetail.swift */; };
+		AF74C73A269CC7D000CACCE1 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74C739269CC7D000CACCE1 /* FilterViewModel.swift */; };
+		AF74C73D269CC86900CACCE1 /* NetworkManagerForFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74C73C269CC86900CACCE1 /* NetworkManagerForFilter.swift */; };
 		AF766FF62690749E00319E75 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF766FF52690749E00319E75 /* SearchCityViewController.swift */; };
 		AF766FFA269075D700319E75 /* SearchEmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF766FF9269075D700319E75 /* SearchEmptyViewController.swift */; };
 		AF76E913269810C90040CBE3 /* NetworkManagerForFetchPlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF76E912269810C90040CBE3 /* NetworkManagerForFetchPlaceDetail.swift */; };
@@ -140,6 +142,8 @@
 		AF71967C268CE22800C18522 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		AF74C731269C933F00CACCE1 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		AF74C734269CB72600CACCE1 /* FilterDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDetail.swift; sourceTree = "<group>"; };
+		AF74C739269CC7D000CACCE1 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
+		AF74C73C269CC86900CACCE1 /* NetworkManagerForFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerForFilter.swift; sourceTree = "<group>"; };
 		AF766FF52690749E00319E75 /* SearchCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
 		AF766FF9269075D700319E75 /* SearchEmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyViewController.swift; sourceTree = "<group>"; };
 		AF76E912269810C90040CBE3 /* NetworkManagerForFetchPlaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerForFetchPlaceDetail.swift; sourceTree = "<group>"; };
@@ -323,6 +327,8 @@
 				AF84251D268DE34800164857 /* FilterViewController.swift */,
 				AF836C2B268E32080073DDFE /* FeaturesTableViewCell.swift */,
 				AF74C734269CB72600CACCE1 /* FilterDetail.swift */,
+				AF74C739269CC7D000CACCE1 /* FilterViewModel.swift */,
+				AF74C73C269CC86900CACCE1 /* NetworkManagerForFilter.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -455,6 +461,7 @@
 				AF71967A268CCE7500C18522 /* FeedbackViewController.swift in Sources */,
 				6A540A16269355540009A614 /* ReviewDisplayCell.swift in Sources */,
 				6AD38FBB269746200060AC24 /* NetworkManagerForSideMenu.swift in Sources */,
+				AF74C73A269CC7D000CACCE1 /* FilterViewModel.swift in Sources */,
 				AF35DE47268B2BD200742C78 /* HomePageCollectionViewCell.swift in Sources */,
 				6A7A506E268AF3BA0080640E /* CustomBackgroundForView.swift in Sources */,
 				AF842517268DA38A00164857 /* CustomControlSegment.swift in Sources */,
@@ -483,6 +490,7 @@
 				AF77A8642694C2E0004E27E3 /* URL+Extension.swift in Sources */,
 				AF3FAD202695E7C100FDD878 /* NetworkMangerToFetchPlaceDetail.swift in Sources */,
 				AFFE65CE268F1E21008CC7A6 /* UITextView+Extension.swift in Sources */,
+				AF74C73D269CC86900CACCE1 /* NetworkManagerForFilter.swift in Sources */,
 				AFF4B73B2690DED500A8B970 /* DetailViewController.swift in Sources */,
 				AFFE65D8268F7A2A008CC7A6 /* SearchedListTableViewCell.swift in Sources */,
 				AFB9A0E92690D9A600B6B6E5 /* ShowNearMeOptionViewController.swift in Sources */,

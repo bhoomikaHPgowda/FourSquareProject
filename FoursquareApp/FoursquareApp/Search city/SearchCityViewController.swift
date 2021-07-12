@@ -40,12 +40,27 @@ class SearchCityViewController: UIViewController {
     @IBAction func filter(_ sender: UIButton) {
         if let city = search.text {
             filterScreen.cityName = city
+            filterScreen.completionHandler = { [self]
+                data
+                in
+                
+                    print("received data from filter \(data.count)")
+                    displayScreen.placedetail = data
+                    displayScreen.placeList.reloadData()
+                
+                
+                
+            }
             
         }
         
         navigationController?.pushViewController(filterScreen, animated: true)
     }
     
+    @IBAction func back(_ sender: UIButton) {
+        
+        navigationController?.popViewController(animated: true)
+    }
     
 
     func add(viewController: UIViewController, mode: SearchScreen) {
