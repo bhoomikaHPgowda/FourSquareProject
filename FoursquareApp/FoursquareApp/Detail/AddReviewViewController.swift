@@ -18,11 +18,14 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
     var userID = "115"
     var token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiaG9vbWlrYXBhcGVnb3dkYUBnbWFpbC5jb20iLCJleHAiOjE2MjYwODU4NDcsImlhdCI6MTYyNjA2Nzg0N30.LWLMYGWUT9udeFjxOJl-DYklWHLytC5rkguoSW7eZ0B8Iwksm_KkKMZJ6gO3WjEwZ9QwlimtaeBNhpywcczOkQ"
     var placeId = "11"
+    var placeDetail: PlaceDetail?
+    var userDetails: UserDetail?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
         addReview.delegate = self
+        
         UITextView.addReviewTextViewSetUp(textView: addReview)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         

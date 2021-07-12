@@ -115,7 +115,6 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCells", for: indexPath) as? CollectionViewCell{
             print(photos[indexPath.row])
            
-            //cell.Images.image = UIImage(named: photos[indexPath.row])
             cell.images.image = UIImage.restaurentImage(url: photos[indexPath.row])
             cell.images.contentMode = UIView.ContentMode.scaleToFill
             return cell
