@@ -84,8 +84,44 @@ class NetworkManagerForFetchPlaceDetail {
         
     }
     
-    func getReview(){
+    func getReview(placeID: Int, pageNo: Int, pageSize: Int, completionHandler: @escaping(ReviewDetails) -> ()) {
         
+        guard let reviewURL = URLs.getReview(placeID: placeID, pageNo: pageNo, pageSize: pageSize)
+        
+        else {
+         
+            return
+        }
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: reviewURL)  {
+            
+            [weak self]
+            (data, response, error) in
+            if error != nil {
+                
+                print(error.debugDescription)
+            }
+            
+            guard let reviewData = data else {
+                
+                return
+            }
+            do {
+                
+                let newData = try JSONSerialization.jsonObject(with: reviewData, options: [])
+                print(newData)
+               
+                if let data = self?.parseReviewData(code: newData) {
+                    completionHandler(data)
+                    
+                }
+            } catch {
+                
+                print(error.localizedDescription)
+            }
+        }
+        dataTask.resume()
     }
     
     
@@ -253,6 +289,73 @@ class NetworkManagerForFetchPlaceDetail {
         session.resume()
     }
     
+    func addreview(userId: String, token: String, placeId: String, review: String, completionHandler: @escaping(Int) -> ()) {
+        print(userId)
+        print(token)
+        print(placeId)
+        print(review)
+        print("function called")
+       let params = [
+           "userId":userId,
+            "placeId":placeId,
+            "review":review
+       ]
+       
+        guard let url = URLs.addReview() else {
+           print("wrong url")
+           return
+       }
+       
+     
+       var request = URLRequest(url: url)
+       request.addValue(token, forHTTPHeaderField: "Authorization")
+       request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+       request.httpMethod = "POST"
+       request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+       request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+       
+       let session = URLSession.shared.dataTask(with: request) {
+           
+            data, response, error in
+               guard error == nil else {
+                   print("Error: error calling POST")
+                   print(error!)
+                   return
+               }
+               guard let data = data else {
+                   print("Error: Did not receive data")
+                   return
+               }
+               guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                   print("Error: HTTP request failed")
+                   return
+               }
+               do {
+                   guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                       print("Error: Cannot convert data to JSON object")
+                       return
+                   }
+                completionHandler(self.parseRecieveMessage(data: jsonObject))
+                  
+                   guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                       print("Error: Cannot convert JSON object to Pretty JSON data")
+                       return
+                   }
+                   guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+                       print("Error: Couldn't print JSON in String")
+                       return
+                   }
+                   
+                   print(prettyPrintedJson)
+               } catch {
+                   print("Error: Trying to convert JSON data to string")
+                   return
+               }
+           }
+       session.resume()
+
+    }
+    
     func parseRecieveMessage(data: Any) -> Int {
         
         if let receivedData = data as? [String: Any] {
@@ -265,7 +368,12 @@ class NetworkManagerForFetchPlaceDetail {
         return 0
     }
     
+<<<<<<< HEAD
     func parseStatusCode(code: Any) -> (Int, [String], [String], [Int]){
+=======
+    
+    func parseStatusCode(code: Any) -> (Int,[String], [String]){
+>>>>>>> ae9a29a26c3d80edc2745b69a5943554d65e150d
         var images = [String]()
         var dates = [String]()
         var userId = [Int]()
@@ -364,5 +472,43 @@ class NetworkManagerForFetchPlaceDetail {
         print("name == \(username)")
         return logedUserDetail
     }
-        
+    
+    func parseReviewData(code:Any) -> ReviewDetails? {
+        guard let code = code as? [String: Any],
+              let statusCode = code["status"] as? Int,
+              let reviewDetails =  code["data"] as? [Any]
+        else{
+            return nil
+        }
+        print("StatusCode = \(statusCode) ")
+        var userNames = [String]()
+        var userReviews = [String]()
+        var images = [String]()
+        var dates = [String]()
+        for reviewDetail in reviewDetails{
+           if let detail = reviewDetail as? [String:Any] {
+               let names = detail["userName"] as? String ?? "nil"
+               userNames.append(names)
+               let review = detail["review"] as? String ?? "nil"
+               userReviews.append(review)
+               let image = detail["userImage"] as? String ?? "nil"
+               images.append(image)
+               let reviewDate = detail["date"] as? String ?? "nil"
+               dates.append(reviewDate)
+           }
+       }
+        print(userNames)
+        print(userReviews)
+        print(images)
+        print(dates)
+        let hotelReviewDetails = ReviewDetails(statusCode: 0, name: [""], dates: [""], reviews: [""], profileImage: [""])
+        hotelReviewDetails.statusCode = statusCode
+        hotelReviewDetails.name = userNames
+        hotelReviewDetails.reviews = userReviews
+        hotelReviewDetails.profileImage = images
+        hotelReviewDetails.dates = dates
+
+        return hotelReviewDetails
+    }
 }
+    

@@ -35,8 +35,12 @@ class DetailViewModel {
     }
     
   
+<<<<<<< HEAD
 
     func getHotelPhotosForCollectionView(placeID: Int, pageNo: Int, pageSize: Int, complitionHandler: @escaping(Int,[String],[String],[Int]) -> ()) {
+=======
+    func getHotelPhotosForCollectionView(placeID: Int, pageNo: Int, pageSize: Int, complitionHandler: @escaping(Int,[String],[String]) -> ()) {
+>>>>>>> ae9a29a26c3d80edc2745b69a5943554d65e150d
         networkManger.getHotelPhoto(placeID: placeID, pageNo: pageNo, pageSize: pageSize, completionHandler: {
             statusCode,images,dates, userid
             in
@@ -45,8 +49,26 @@ class DetailViewModel {
         })
     }
     
-    func getUsersReview(){
-        networkManger.getReview()
+    func getUsersReview(placeID: Int, pageNo: Int, pageSize: Int, complitionHandler: @escaping(ReviewDetails) -> ()){
+       
+        networkManger.getReview(placeID: placeID, pageNo: pageNo, pageSize: pageSize, completionHandler: {
+            details
+            in
+            
+            print("network manger returned")
+            complitionHandler(details)
+        } )
+        
+    }
+    
+    func addUserReview(userId: String, token: String, placeId: String, review: String, completionHandler: @escaping(Int) -> ()){
+        networkManger.addreview(userId: userId, token: token, placeId: placeId, review: review, completionHandler: {
+            statusCode
+            in
+            
+            print("network manger returned")
+            completionHandler(statusCode)
+        })
         
     }
     

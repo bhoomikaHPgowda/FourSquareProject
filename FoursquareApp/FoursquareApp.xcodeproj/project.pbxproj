@@ -21,6 +21,8 @@
 		6A7A506E268AF3BA0080640E /* CustomBackgroundForView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A506D268AF3BA0080640E /* CustomBackgroundForView.swift */; };
 		6A7A5076268AF4940080640E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A5075268AF4940080640E /* CustomButton.swift */; };
 		6AD1D02B2699620C0038ECF4 /* DisplayImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD1D02A2699620C0038ECF4 /* DisplayImageViewController.swift */; };
+		6AD1D02E2699BBB10038ECF4 /* ReviewDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD1D02D2699BBB10038ECF4 /* ReviewDetails.swift */; };
+		6AD1D031269A19520038ECF4 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD1D030269A19520038ECF4 /* CustomLabel.swift */; };
 		6AD38FB82697457B0060AC24 /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD38FB72697457B0060AC24 /* SideMenuViewModel.swift */; };
 		6AD38FBB269746200060AC24 /* NetworkManagerForSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD38FBA269746200060AC24 /* NetworkManagerForSideMenu.swift */; };
 		AF0667AB268B84CF00918017 /* CustomSddToFavouriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0667AA268B84CF00918017 /* CustomSddToFavouriteButton.swift */; };
@@ -95,6 +97,8 @@
 		6A7A506D268AF3BA0080640E /* CustomBackgroundForView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackgroundForView.swift; sourceTree = "<group>"; };
 		6A7A5075268AF4940080640E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		6AD1D02A2699620C0038ECF4 /* DisplayImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayImageViewController.swift; sourceTree = "<group>"; };
+		6AD1D02D2699BBB10038ECF4 /* ReviewDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetails.swift; sourceTree = "<group>"; };
+		6AD1D030269A19520038ECF4 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		6AD38FB72697457B0060AC24 /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
 		6AD38FBA269746200060AC24 /* NetworkManagerForSideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerForSideMenu.swift; sourceTree = "<group>"; };
 		AF0667AA268B84CF00918017 /* CustomSddToFavouriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSddToFavouriteButton.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 				6A540A1C269359990009A614 /* CustomSubmitButton.swift */,
 				6A7A5075268AF4940080640E /* CustomButton.swift */,
 				6A7A506D268AF3BA0080640E /* CustomBackgroundForView.swift */,
+				6AD1D030269A19520038ECF4 /* CustomLabel.swift */,
 				AF35DE55268B2D6500742C78 /* CustomButtonForCollectionViewOptions.swift */,
 				AF0667AA268B84CF00918017 /* CustomSddToFavouriteButton.swift */,
 				AF0667AD268B89E100918017 /* CustomAddToFavouriteButton.swift */,
@@ -322,6 +327,7 @@
 				AFFE65CA268F17CF008CC7A6 /* AddReviewViewController.swift */,
 				AFF4B73A2690DED500A8B970 /* DetailViewController.swift */,
 				6A540A0F2693506B0009A614 /* ReviewDisplayViewController.swift */,
+				6AD1D02D2699BBB10038ECF4 /* ReviewDetails.swift */,
 				6A540A15269355540009A614 /* ReviewDisplayCell.swift */,
 				AF66D0832692149F007F3D98 /* RatingViewController.swift */,
 				6A540A0826934E0C0009A614 /* PhotoViewController.swift */,
@@ -431,6 +437,7 @@
 				AF842517268DA38A00164857 /* CustomControlSegment.swift in Sources */,
 				AFFE65CB268F17CF008CC7A6 /* AddReviewViewController.swift in Sources */,
 				AFB9A0E62690D86000B6B6E5 /* NearMeViewController.swift in Sources */,
+				6AD1D02E2699BBB10038ECF4 /* ReviewDetails.swift in Sources */,
 				AF35DE4D268B2C6300742C78 /* NearYouViewController.swift in Sources */,
 				AF35DE5A268B2DBF00742C78 /* UIColor+Extension.swift in Sources */,
 				6A540A102693506B0009A614 /* ReviewDisplayViewController.swift in Sources */,
@@ -442,6 +449,7 @@
 				AF71967D268CE22800C18522 /* AboutUsViewController.swift in Sources */,
 				AFFE65C7268EE416008CC7A6 /* CustomButtonforFilters.swift in Sources */,
 				AF35DE07268AECA900742C78 /* AppDelegate.swift in Sources */,
+				6AD1D031269A19520038ECF4 /* CustomLabel.swift in Sources */,
 				6A5409FD269348760009A614 /* LoginViewController.swift in Sources */,
 				AF66D0842692149F007F3D98 /* RatingViewController.swift in Sources */,
 				6A540A1D269359990009A614 /* CustomSubmitButton.swift in Sources */,
