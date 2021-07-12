@@ -12,7 +12,7 @@ class PhotoViewController: UIViewController {
     var photo = [UIImage]()
     var imagePicker = UIImagePickerController()
     var detailViewModel = DetailViewModel()
-    var placeIdNum = 0
+    var placeIdNum = 10
     var photoFor = ""
     var pageNumber = 0
     var pageSizeValue = 10
@@ -49,13 +49,13 @@ class PhotoViewController: UIViewController {
     
     func uploadPhotos() {
         detailViewModel.getHotelPhotosForCollectionView(placeID: placeIdNum, pageNo: pageNumber, pageSize: pageSizeValue, complitionHandler: {
-            statusCode,images,dates, userIds
+            data
             in
-            self.photos = images
-            self.dates = dates
-            self.userId = userIds
+            self.photos = data.image
+            self.dates = data.date
+            self.userId = data.userId
             DispatchQueue.main.async {
-                if statusCode == 200 {
+                if data.statusCode == 200 {
                     print(self.photos)
                     print("Update Photos sucessfully")
                     self.collectionView.dataSource = self

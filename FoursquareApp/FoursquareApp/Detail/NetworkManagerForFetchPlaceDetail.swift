@@ -45,7 +45,7 @@ class NetworkManagerForFetchPlaceDetail {
         dataTask.resume()
     }
     
-    func getHotelPhoto(placeID: Int, pageNo: Int, pageSize: Int, completionHandler: @escaping(Int, [String], [String], [Int]) -> ()){
+    func getHotelPhoto(placeID: Int, pageNo: Int, pageSize: Int, completionHandler: @escaping(PhotoDetails) -> ()){
         
         guard let photoURL = URLs.getHotelPhotos(placeID: placeID, pageNo: pageNo, pageSize: pageSize) else {
             
@@ -70,10 +70,9 @@ class NetworkManagerForFetchPlaceDetail {
                 
                 let newData = try JSONSerialization.jsonObject(with: photoData, options: [])
                 print(newData)
-                if let data = self?.parseStatusCode(code: newData) {
-                    print(data.0)
-                    print(data.1)
-                    completionHandler(data.0, data.1, data.2, data.3)
+                if let data = self?.parsePhotoDetails(code: newData) {
+                    
+                    completionHandler(data)
                 }
             } catch {
                 
@@ -369,10 +368,15 @@ class NetworkManagerForFetchPlaceDetail {
     }
     
 
+<<<<<<< HEAD
     func parseStatusCode(code: Any) -> (Int, [String], [String], [Int]){
 
     
   
+=======
+
+    func parsePhotoDetails(code: Any) -> PhotoDetails? {
+>>>>>>> adcaa1932cabc0fd58c797df51ce37bebfde239d
         var images = [String]()
         var dates = [String]()
         var userId = [Int]()
@@ -380,7 +384,7 @@ class NetworkManagerForFetchPlaceDetail {
               let statusCode = code["status"] as? Int,
               let photosDetails =  code["data"] as? [Any]
         else {
-            return (0, [""],[" "],[])
+            return nil
         }
         for photodetail in photosDetails{
             if let detail = photodetail as? [String:Any]{
@@ -398,8 +402,12 @@ class NetworkManagerForFetchPlaceDetail {
             }
             
         }
-        
-        return (statusCode, images, dates, userId)
+        let photoDetails = PhotoDetails(statusCode: 0, image: [""], date: [""], userId: [0])
+        photoDetails.statusCode = statusCode
+        photoDetails.image = images
+        photoDetails.date = dates
+        photoDetails.userId = userId
+        return photoDetails
     }
     
     

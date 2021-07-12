@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xuh-sc-CHC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7kd-aB-TLq">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -1694,11 +1694,11 @@
             <objects>
                 <viewController id="8sF-JC-ekc" customClass="AddReviewViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JUz-ei-OCU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-Sc-W3m">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Lmf-sh-cSS">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
@@ -2911,7 +2911,7 @@
                                                 </constraints>
                                                 <state key="normal" image="review"/>
                                                 <connections>
-                                                    <segue destination="cvy-xP-bIP" kind="show" id="ofJ-xZ-UXU"/>
+                                                    <action selector="review:" destination="EFt-aW-sXY" eventType="touchUpInside" id="Qh5-yR-yq9"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sfp-gf-0l6">
@@ -3113,7 +3113,7 @@
                                                     <color key="titleColor" red="0.55294117649999996" green="0.55294117649999996" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="cvy-xP-bIP" kind="show" id="ffd-kg-nPx"/>
+                                                    <action selector="review:" destination="EFt-aW-sXY" eventType="touchUpInside" id="qYt-iw-9jW"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -3890,13 +3890,13 @@
         <!--Review Display View Controller-->
         <scene sceneID="ZfF-Ae-mvi">
             <objects>
-                <viewController id="cvy-xP-bIP" customClass="ReviewDisplayViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="reviewDisplayViewController" id="cvy-xP-bIP" customClass="ReviewDisplayViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lNo-Az-9EG" customClass="CustomBackgroundForView" customModule="FoursquareApp" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUY-f6-GXi">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzN-aF-hwA">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -4051,6 +4051,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="PDj-vn-GJJ"/>
                     <connections>
+                        <outlet property="placeName" destination="3jI-kc-Z9O" id="a1j-Wz-yDp"/>
                         <outlet property="tableView" destination="yr8-0A-W4h" id="w8V-3a-EjL"/>
                     </connections>
                 </viewController>
@@ -4568,7 +4569,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ffd-kg-nPx"/>
         <segue reference="ihs-ZB-lfo"/>
         <segue reference="RqY-UO-KQa"/>
     </inferredMetricsTieBreakers>

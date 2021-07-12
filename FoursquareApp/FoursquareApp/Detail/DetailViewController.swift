@@ -98,6 +98,25 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         
     }
     
+    @IBAction func review(_ sender: UIButton) {
+        guard let place = detail else {
+            print("no  recieved detail")
+            return
+        }
+        let reviewViewController = self.storyboard?.instantiateViewController(withIdentifier: "reviewDisplayViewController") as! ReviewDisplayViewController
+      
+            print("this is id pases frim th pjtot\(place.placeId)")
+        reviewViewController.placeIdNum = place.placeId
+    
+        if let data = detail {
+            reviewViewController.reviewedPlace = data.placeName
+            
+        }
+        reviewViewController.userDetails = userDetails
+        navigationController?.pushViewController(reviewViewController, animated: true)
+        
+    }
+    
     
     func updateValuesReceived() {
         if let data = detail {
