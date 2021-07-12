@@ -36,18 +36,30 @@ class DetailViewModel {
     
   
 
-    func getHotelPhotosForCollectionView(placeID: Int, pageNo: Int, pageSize: Int, complitionHandler: @escaping(Int,[String],[String]) -> ()) {
+    func getHotelPhotosForCollectionView(placeID: Int, pageNo: Int, pageSize: Int, complitionHandler: @escaping(Int,[String],[String],[Int]) -> ()) {
         networkManger.getHotelPhoto(placeID: placeID, pageNo: pageNo, pageSize: pageSize, completionHandler: {
-            statusCode,images,dates
+            statusCode,images,dates, userid
             in
             print("network manger returned")
-            complitionHandler(statusCode,images,dates)
+            complitionHandler(statusCode,images,dates,userid)
         })
     }
     
     func getUsersReview(){
         networkManger.getReview()
         
+    }
+    
+    func fetchUserDetail(Id: Int, completionHandler: @escaping(UserDetail) -> ()){
+        networkManger.fetchUseeDetail(userId: Id, completionHandler: {
+            
+            userDetail
+            in
+            print(userDetail)
+            completionHandler(userDetail)
+        })
+    
+    
     }
 
 }

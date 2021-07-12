@@ -27,12 +27,13 @@ class HambergerMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         view.addGestureRecognizer(tap)
         profile.layer.cornerRadius = 0.5 * profile.bounds.size.width
 
         imagePicker.delegate = self
+       
         
     }
     
@@ -134,4 +135,5 @@ extension HambergerMenuViewController: UIImagePickerControllerDelegate,UINavigat
     }
     
 }
+
 

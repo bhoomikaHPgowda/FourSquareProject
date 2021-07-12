@@ -19,20 +19,16 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+       
+        
 
         // Do any additional setup after loading the view.
     }
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -75,3 +71,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.cityName.textColor = UIColor.colorForNormalFeatureLabel()
     }
 }
+
+extension UIApplication {
+    var statusBarView: UIView? {
+        if responds(to: Selector(("statusBar"))) {
+            return value(forKey: "statusBar") as? UIView
+        }
+        return nil
+    }
+}
+
+

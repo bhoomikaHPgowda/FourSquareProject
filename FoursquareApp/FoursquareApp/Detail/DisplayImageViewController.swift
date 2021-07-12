@@ -15,6 +15,7 @@ class DisplayImageViewController: UIViewController{
     var profileImage = " "
     var photoAddedDate : String?
     var uploaderName = ""
+    var userId = 0
     var titleName = ""
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var shareButton: UIButton!
@@ -27,11 +28,20 @@ class DisplayImageViewController: UIViewController{
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         imageView.image = UIImage.restaurentImage(url: image)
-        profilePhoto.image = UIImage.restaurentImage(url: profileImage)
-        date.text = photoAddedDate
-        name.text = uploaderName
-        placeName.text = titleName
         
+        date.text = photoAddedDate
+        
+        placeName.text = titleName
+        detailViewModel.fetchUserDetail(Id: userId, completionHandler: {
+            userDetail
+            in
+            DispatchQueue.main.async {
+                self.name.text = userDetail.userName
+                self.profilePhoto.image = UIImage.restaurentImage(url: userDetail.imageUrl)
+
+            }
+                        
+        })
     }
     @IBAction func backButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)

@@ -40,11 +40,12 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         self.navigationController?.navigationBar.isHidden = true
         self.locationManager.requestWhenInUseAuthorization()
         locationManager.requestWhenInUseAuthorization()
+        
         print("\(userDetails.email) is received")
     }
     
     func fetchDataForNearViewController(latitude: Double, longitude: Double) {
-        
+        print("called")
         detailViewModel.fetchDetails(latitude: latitude, longitude: longitude, optionType: .nearMe, complitionHandler: {
             
             details
@@ -55,6 +56,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
                 self.remove(asChildViewController: self.popularViewController)
                 self.signInVc.details1 = details
                 self.signInVc.userDetails = self.userDetails
+                self.signInVc.detailViewModel = self.detailViewModel
                 self.signInVc.add(count: details.count)
                 self.add(asChildViewController: self.signInVc, index: 0, finished: {
                     self.signInVc.add(count: details.count)
@@ -105,7 +107,10 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? HomePageCollectionViewCell {
             
            cell.buttonName.text = "\(values[indexPath.row])"
-          
+            if indexPath.row == 0 {
+                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+                cell.buttonName.textColor = .white
+            }
             return cell
         }
         
@@ -120,20 +125,24 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("cell did selected \(indexPath)")
+        
         guard let location = locationManager.location?.coordinate else {
             return
         }
+        
         let cell = collectionView.cellForItem(at: indexPath) as! HomePageCollectionViewCell
             cell.buttonName.textColor = UIColor.colorForHighlightedLabel()
         guard let option = cell.buttonName.text else {
-          
+          print("failed guard sleledvsdfg")
             return
         }
+        print("option seleted===\(option)")
         if indexPath == selectindexpath {
             
             add(asChildViewController: signInVc, index: 0, finished: {})
         } else if option == CollectionViewOptions.popular.rawValue{
             print("popular is selectef")
+            print("option seleted===\(option)")
             remove(asChildViewController: signInVc)
             detailViewModel.fetchDetails(latitude: location.latitude, longitude: location.longitude, optionType: .popular, complitionHandler: {
             
@@ -143,7 +152,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
                 DispatchQueue.main.async {
                     
                     self.remove(asChildViewController: self.popularViewController)
-                    self.popularViewController.index = 102
+                    self.popularViewController.detailViewModel = self.detailViewModel
                     self.popularViewController.details = details
                     self.popularViewController.userDetails = self.userDetails
                     self.popularViewController.added()
@@ -159,6 +168,8 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
             
     
         } else if option == CollectionViewOptions.topPick.rawValue{
+            print("topick selectecd")
+            print("option seleted===\(option)")
             detailViewModel.fetchDetails(latitude: location.latitude, longitude: location.longitude, optionType: .topPick, complitionHandler: {
                 
                 details
@@ -170,6 +181,7 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
                     print("c1")
                     self.popularViewController.index = 106
                     self.popularViewController.details = details
+                    self.popularViewController.detailViewModel = self.detailViewModel
                     self.popularViewController.userDetails = self.userDetails
                     self.popularViewController.added()
                     self.add(asChildViewController: self.popularViewController, index: 1, finished: {self.popularViewController.added()
@@ -190,6 +202,8 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
 
         collectionView.reloadItems(at: [indexPath])
     }
+    
+    
 
   
     @IBAction func optionSeleted(_ sender: CustomButtonForCollectionViewOptions) {
@@ -237,11 +251,25 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
 extension HomePageViewController: DismissSideMenu {
     func sidemenuSelectedOption(option: SideMenuOption) {
         print("pressed \(option.rawValue)")
-       
+        
         if option == .favourite {
-            
-            let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "\(option.rawValue)") as! FavouritesViewController
-            self.navigationController?.pushViewController(secondViewController, animated: true)
+    
+            detailViewModel.getFavouriteList(userId: userDetails.id, token: userDetails.token, completionHandler: {
+                (favouriteList, statuscode)
+                in
+              
+                    DispatchQueue.main.async {
+                        let favouriteViewController = self.storyboard?.instantiateViewController(withIdentifier: "\(option.rawValue)") as! FavouritesViewController
+                      //  favouriteViewController.favouriteList = favouriteList
+                        favouriteViewController.detailViewModel = self.detailViewModel
+                        favouriteViewController.user = self.userDetails
+                        self.navigationController?.pushViewController(favouriteViewController, animated: true)
+                    }
+                
+                
+               
+            })
+         
         } else if option == .feedback {
             let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "\(option.rawValue)") as! FeedbackViewController
             self.navigationController?.pushViewController(secondViewController, animated: true)
@@ -284,7 +312,14 @@ extension HomePageViewController : CLLocationManagerDelegate {
 
         if let location = locations.first, location != nil {
           //  print("location:: \(locations)")
-            fetchDataForNearViewController(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            
+            detailViewModel.getFavouriteList(userId: userDetails.id, token: userDetails.token, completionHandler: {
+                (favouriteList, statuscode)
+                in
+                
+                    self.fetchDataForNearViewController(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                
+            })
         }
         
         if let location = locations.first {

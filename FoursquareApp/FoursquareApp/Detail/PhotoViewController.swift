@@ -16,8 +16,10 @@ class PhotoViewController: UIViewController {
     var photoFor = ""
     var pageNumber = 0
     var pageSizeValue = 10
+    var placeDetail: PlaceDetail?
     var photos = [String]()
     var dates = [String]()
+    var userId = [Int]()
     var index : Int?
     var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: "https://aws-foursquare.s3.us-east-2.amazonaws.com/UserImage/10_photos.png", email: " ", token: " ", userName: "bhoomika")
    
@@ -30,10 +32,14 @@ class PhotoViewController: UIViewController {
         imagePicker.delegate = self
         uploadPhotos()
         placeName.text = photoFor
+        print("\(placeIdNum) iss  gghjgjhg")
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func back(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func addPhotos(_ sender: UIButton) {
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
@@ -43,10 +49,11 @@ class PhotoViewController: UIViewController {
     
     func uploadPhotos() {
         detailViewModel.getHotelPhotosForCollectionView(placeID: placeIdNum, pageNo: pageNumber, pageSize: pageSizeValue, complitionHandler: {
-            statusCode,images,dates
+            statusCode,images,dates, userIds
             in
             self.photos = images
             self.dates = dates
+            self.userId = userIds
             DispatchQueue.main.async {
                 if statusCode == 200 {
                     print(self.photos)
@@ -85,7 +92,7 @@ extension PhotoViewController: UIImagePickerControllerDelegate,UINavigationContr
 extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pageSizeValue
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -98,6 +105,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         print(userDetails.imageUrl)
         vc?.titleName = photoFor
         vc?.uploaderName = userDetails.userName
+        vc?.userId = userId[indexPath.row]
         vc?.profileImage = "https://aws-foursquare.s3.us-east-2.amazonaws.com/UserImage/10_photos.png"
         print("image== \(userDetails.imageUrl)")
         self.navigationController?.pushViewController(vc!, animated: true)
