@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class SearchViewModel {
     var networkManager = NetworkManagerForSearch()
@@ -18,4 +19,16 @@ class SearchViewModel {
             completionHanlderL(photoDetails)
         })
     }
+    
+    func fetchImageForGivenPlace(url: String) -> UIImage? {
+        
+        guard let url = URL(string: url),
+              let data = try? Data(contentsOf: url)
+        else {
+            return nil
+        }
+      
+        return UIImage(data: data)
+    }
+    
 }

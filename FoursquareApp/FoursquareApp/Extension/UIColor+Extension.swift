@@ -39,7 +39,7 @@ extension UIColor {
         return UIColor(red: 135 / 255, green: 121 / 255, blue: 127 / 255, alpha: 1)
     }
     
-    static func colorFoeCellSpace() -> UIColor {
+    static func colorForCellSpace() -> UIColor {
         
         return UIColor(red: 229 / 255, green: 229 / 255, blue: 229 / 255, alpha: 1)
     }
