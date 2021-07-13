@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xuh-sc-CHC">
-
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -484,6 +482,7 @@
                         <outlet property="feedback" destination="shg-aU-bHS" id="Pib-dC-v6b"/>
                         <outlet property="logout" destination="0GB-mI-lSi" id="OdO-5r-jMW"/>
                         <outlet property="profile" destination="aUa-h6-zWQ" id="AEk-iD-hRA"/>
+                        <outlet property="username" destination="n3b-KD-SdI" id="A6j-n4-6yV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wo-Lr-Hro" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
