@@ -20,6 +20,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.isHidden = true
         OTP.delegate = self
         emailLabel.frame = CGRect(x: 145, y: 318, width: 85, height: 25)
+        print(emailLabel.center.y)
         // Do any additional setup after loading the view.
     }
     

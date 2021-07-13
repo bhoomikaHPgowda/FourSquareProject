@@ -79,7 +79,7 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.address.text = favourites.address
                 cell.detail.text = "\(favourites.placeType.components(separatedBy:" ")[0]) " + " \u{2022} " + String(repeating: "\u{20B9}", count: favourites.cost)
                 cell.restaurentImage.image = UIImage.restaurentImage(url: favourites.imageUrl)
-                cell.layer.borderColor = UIColor.colorFoeCellSpace().cgColor
+                cell.layer.borderColor = UIColor.colorForCellSpace().cgColor
                    cell.layer.borderWidth = 3
                 cell.deleteFavouriteButton.tag = indexPath.row
                 return cell

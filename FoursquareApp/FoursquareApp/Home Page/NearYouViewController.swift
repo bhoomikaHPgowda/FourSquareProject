@@ -172,7 +172,7 @@ extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
 
             cell.address.text = dataForIndex.address
             cell.placeImage.image = detailViewModel.fetchImageForGivenPlace(url: dataForIndex.imageUrl)
-            cell.layer.borderColor = UIColor.colorFoeCellSpace().cgColor
+            cell.layer.borderColor = UIColor.colorForCellSpace().cgColor
             cell.address.textColor = .darkGray
             cell.detail.textColor = .darkGray
             cell.layer.borderWidth = 3

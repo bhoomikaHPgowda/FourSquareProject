@@ -12,6 +12,7 @@ class DisplayCityListViewController: UIViewController {
 
     @IBOutlet weak var placeList: UITableView!
     var placedetail: [PlaceDetail]?
+    var searchViewModel = SearchViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         placeList.delegate = self
@@ -59,17 +60,16 @@ extension DisplayCityListViewController: UITableViewDelegate, UITableViewDataSou
             }
          
             cell.placeName.text = data[indexPath.row].placeName
-//            cell.rating.text = "\(dataForIndex.rating.rounded(places: 1))"
-//            cell.rating.backgroundColor = UIColor.ratingColor(rating: dataForIndex.rating)
-//            cell.detail.text = "\(dataForIndex.placeType.components(separatedBy:" ")[0]) " + " \u{2022} " + String(repeating: "\u{20B9}", count: dataForIndex.cost) + " \(round(dataForIndex.distance))Km"
-//
-//
-//            cell.address.text = dataForIndex.address
-//            cell.placeImage.image = detailViewModel.fetchImageForGivenPlace(url: dataForIndex.imageUrl)
-//            cell.layer.borderColor = UIColor.colorFoeCellSpace().cgColor
-//            cell.address.textColor = .darkGray
-//            cell.detail.textColor = .darkGray
-//            cell.layer.borderWidth = 3
+            cell.rating.text = String(data[indexPath.row].rating.rounded(places: 1))
+            cell.address.text = data[indexPath.row].address
+            cell.layer.borderColor = UIColor.colorForCellSpace().cgColor
+            cell.address.textColor = .darkGray
+            cell.detail.textColor = .darkGray
+            cell.layer.borderWidth = 3
+            cell.rating.backgroundColor = UIColor.ratingColor(rating: data[indexPath.row].rating)
+            cell.detail.text = "\(data[indexPath.row].placeType.components(separatedBy:" ")[0]) " + " \u{2022} " + String(repeating: "\u{20B9}", count: data[indexPath.row].cost) + " \(round(data[indexPath.row].distance))Km"
+            cell.placeImage.image = searchViewModel.fetchImageForGivenPlace(url: data[indexPath.row].imageUrl)
+
 //            cell.addToFavouriteButton.tag = indexPath.row + 1
 //            if detailViewModel.isFavourite(placeId: dataForIndex.placeId) {
 //                cell.addToFavouriteButton.isSelected = true

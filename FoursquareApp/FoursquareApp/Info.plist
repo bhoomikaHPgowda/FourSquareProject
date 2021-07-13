@@ -9,6 +9,10 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>App request location access</string>
+	<key>NSLocationAlwaysAlwaysUsageDescription</key>
+	<string>App request location access</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
