@@ -77,7 +77,7 @@ extension DisplayCityListViewController: UITableViewDelegate, UITableViewDataSou
             cell.detail.textColor = .darkGray
             cell.layer.borderWidth = 3
             cell.rating.backgroundColor = UIColor.ratingColor(rating: data[indexPath.row].rating)
-            cell.detail.text = "\(data[indexPath.row].placeType.components(separatedBy:" ")[0]) " + " \u{2022} " + String(repeating: "\u{20B9}", count: data[indexPath.row].cost) + " \(round(data[indexPath.row].distance))Km"
+            cell.detail.text = "\(data[indexPath.row].placeType.components(separatedBy:" ")[0]) " + " \u{2022} " + String(repeating: "\u{20B9}", count: data[indexPath.row].cost) + " \(round(Double(data[indexPath.row].cost)))Km"
             cell.placeImage.image = searchViewModel.fetchImageForGivenPlace(url: data[indexPath.row].imageUrl)
             print(data[indexPath.row].distance)
 

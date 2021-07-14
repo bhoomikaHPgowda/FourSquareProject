@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xuh-sc-CHC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xuh-sc-CHC">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -158,11 +158,11 @@
             <objects>
                 <viewController storyboardIdentifier="HomePageViewController" id="u7S-Ty-4a9" customClass="HomePageViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tjb-fI-v4f" userLabel="MainView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGC-fq-Qfl">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="56"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Fvb-ww-YbN">
                                         <rect key="frame" x="122.5" y="15" width="130" height="27"/>
@@ -220,7 +220,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RZI-8a-Wp4">
-                                <rect key="frame" x="0.0" y="56" width="375" height="52"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="52"/>
                                 <color key="backgroundColor" red="0.2156862745" green="0.058823529409999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="AaQ-Oc-Qgw"/>
@@ -259,20 +259,20 @@
                                 </cells>
                             </collectionView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8H-df-R9f">
-                                <rect key="frame" x="0.0" y="111" width="375" height="536"/>
+                                <rect key="frame" x="0.0" y="155" width="375" height="512"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <segue destination="M19-Up-LGx" kind="embed" identifier="NearYouViewController" id="tvr-1b-ySJ"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DxZ-Iw-OFd">
-                                <rect key="frame" x="0.0" y="111" width="375" height="536"/>
+                                <rect key="frame" x="0.0" y="155" width="375" height="512"/>
                                 <connections>
                                     <segue destination="8wg-RE-UCu" kind="embed" id="dkS-5c-cWu"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yEF-fM-Mbu">
-                                <rect key="frame" x="0.0" y="0.0" width="253" height="647"/>
+                                <rect key="frame" x="0.0" y="44" width="253" height="623"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="253" id="N5u-wD-fve"/>
                                 </constraints>
@@ -494,11 +494,11 @@
             <objects>
                 <viewController storyboardIdentifier="NearYouViewController" id="M19-Up-LGx" customClass="NearYouViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m63-T0-lIH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="512"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b7M-Gg-Gd6">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="512"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="PgA-w0-Bzz">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="593"/>
@@ -677,11 +677,11 @@
             <objects>
                 <viewController storyboardIdentifier="PopularViewController" id="8wg-RE-UCu" customClass="PopularViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dr6-On-0PB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="512"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="130" estimatedRowHeight="130" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T7e-Zw-hV9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="512"/>
                                 <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="137" id="Udh-tb-ibk" customClass="PopularTableViewCell" customModule="FoursquareApp" customModuleProvider="target">
@@ -1099,10 +1099,6 @@
                                     <segment title="" image="logo" width="65"/>
                                 </segments>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B40-SF-Jcw" customClass="CustomControlSegment" customModule="FoursquareApp" customModuleProvider="target">
-                                <rect key="frame" x="80" y="84" width="240" height="72"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wli-XJ-1Ja">
                                 <rect key="frame" x="100" y="449" width="200" height="110"/>
                                 <subviews>
@@ -1138,17 +1134,13 @@
                         <viewLayoutGuide key="safeArea" id="esL-wu-z8f"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="B40-SF-Jcw" firstAttribute="leading" secondItem="esL-wu-z8f" secondAttribute="leading" constant="80" id="30E-MY-sTM"/>
                             <constraint firstItem="ODM-4V-k5O" firstAttribute="leading" secondItem="esL-wu-z8f" secondAttribute="leading" constant="87" id="7gO-E9-bRF"/>
                             <constraint firstItem="esL-wu-z8f" firstAttribute="bottom" secondItem="wli-XJ-1Ja" secondAttribute="bottom" constant="108" id="9Pn-Tb-Lay"/>
-                            <constraint firstItem="esL-wu-z8f" firstAttribute="trailing" secondItem="B40-SF-Jcw" secondAttribute="trailing" constant="55" id="ESn-Mb-sCr"/>
                             <constraint firstItem="esL-wu-z8f" firstAttribute="bottom" secondItem="ODM-4V-k5O" secondAttribute="bottom" constant="319" id="JzS-qB-OVG"/>
                             <constraint firstItem="wli-XJ-1Ja" firstAttribute="top" secondItem="ODM-4V-k5O" secondAttribute="bottom" constant="101" id="Qpi-oS-nT4"/>
                             <constraint firstItem="wli-XJ-1Ja" firstAttribute="leading" secondItem="esL-wu-z8f" secondAttribute="leading" constant="100" id="QqJ-KI-aWa"/>
-                            <constraint firstItem="B40-SF-Jcw" firstAttribute="top" secondItem="esL-wu-z8f" secondAttribute="top" constant="84" id="RHP-iJ-vgs"/>
                             <constraint firstItem="ODM-4V-k5O" firstAttribute="top" secondItem="esL-wu-z8f" secondAttribute="top" constant="317" id="j2M-mp-EC2"/>
                             <constraint firstItem="esL-wu-z8f" firstAttribute="trailing" secondItem="ODM-4V-k5O" secondAttribute="trailing" constant="88" id="jBB-sp-zov"/>
-                            <constraint firstItem="ODM-4V-k5O" firstAttribute="top" secondItem="B40-SF-Jcw" secondAttribute="bottom" constant="161" id="lC4-uq-k6c"/>
                             <constraint firstItem="esL-wu-z8f" firstAttribute="trailing" secondItem="wli-XJ-1Ja" secondAttribute="trailing" constant="75" id="r6t-oB-4Iz"/>
                         </constraints>
                     </view>
@@ -1162,11 +1154,11 @@
             <objects>
                 <viewController id="UNx-Q0-cM0" customClass="SearchCityViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FQD-bm-kdN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WzY-Ku-QT1">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="wk8-i7-l1A">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="669"/>
@@ -1309,7 +1301,7 @@
             <objects>
                 <viewController id="HLr-ef-SD7" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="esA-mM-VRQ">
-                        <rect key="frame" x="0.0" y="0.0" width="253" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="253" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="b68-Sv-fwR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -4719,7 +4711,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-
+        <segue reference="w2c-Bc-xBc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Image" width="137.5" height="91.5"/>
