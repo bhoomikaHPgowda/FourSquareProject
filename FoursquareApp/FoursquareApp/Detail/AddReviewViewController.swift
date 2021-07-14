@@ -16,7 +16,7 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
     var imagePicker = UIImagePickerController()
     var detailViewModel = DetailViewModel()
     var userID = "115"
-    var token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiaG9vbWlrYXBhcGVnb3dkYUBnbWFpbC5jb20iLCJleHAiOjE2MjYwODU4NDcsImlhdCI6MTYyNjA2Nzg0N30.LWLMYGWUT9udeFjxOJl-DYklWHLytC5rkguoSW7eZ0B8Iwksm_KkKMZJ6gO3WjEwZ9QwlimtaeBNhpywcczOkQ"
+    var token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NUBnbWFpbC5jb20iLCJleHAiOjE2MjYyNjc5ODUsImlhdCI6MTYyNjI0OTk4NX0.IytVxbOd3R7yPJy4tF0YEYzn-W2VD3IqRqCCRclIgxH9QGBf_BuR6bm7RiSjXETqltq08McfrqkVG46XJ5vFHg"
     var placeId = "11"
     var placeDetail: PlaceDetail?
     var userDetails: UserDetail?
@@ -26,7 +26,8 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         imagePicker.delegate = self
         addReview.delegate = self
-
+        print(userDetails?.token)
+        print(placeDetail?.placeName)
 //        userID = String(userDetails?.id ?? 0)
 //         token = userDetails?.token ?? "nil"
 //         placeId = String(placeDetail?.placeId ?? 0)
@@ -38,7 +39,13 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
          
     }
     @IBAction func addReviewButton(_ sender: UIButton) {
-        detailViewModel.addUserReview(userId: userID, token: token, placeId: placeId, review: addReview.text, completionHandler: {
+        guard let user = userDetails,
+              let place = placeDetail else {
+            print("error")
+            return
+        }
+       
+        detailViewModel.addUserReview(userId: "\(user.id)", token: user.token , placeId: "\(place.placeId)", review: addReview.text, completionHandler: {
             statusCode
             in
             DispatchQueue.main.async{

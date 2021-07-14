@@ -88,12 +88,14 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
       
             print("this is id pases frim th pjtot\(place.placeId)")
             photoViewController.placeIdNum = place.placeId
+        
     
         if let data = detail {
             photoViewController.photoFor = data.placeName
             
         }
         photoViewController.userDetails = userDetails
+        print(userDetails.userName)
         navigationController?.pushViewController(photoViewController, animated: true)
         
     }
@@ -107,6 +109,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
       
             print("this is id pases frim th pjtot\(place.placeId)")
         reviewViewController.placeIdNum = place.placeId
+        reviewViewController.placeDetail = place
     
         if let data = detail {
             reviewViewController.reviewedPlace = data.placeName

@@ -331,7 +331,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="260" height="667"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9uA-PJ-hWf">
-                                        <rect key="frame" x="0.0" y="-8" width="260" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="659"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="u7b-fr-f7O" customClass="CustomBackgroundForView" customModule="FoursquareApp" customModuleProvider="target">
@@ -487,7 +487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wo-Lr-Hro" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3958" y="-1068"/>
+            <point key="canvasLocation" x="3957.5999999999999" y="-1068.215892053973"/>
         </scene>
         <!--Near You View Controller-->
         <scene sceneID="4pn-Ic-fFe">
@@ -1704,11 +1704,11 @@
             <objects>
                 <viewController storyboardIdentifier="AddReviewViewController" id="8sF-JC-ekc" customClass="AddReviewViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JUz-ei-OCU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-Sc-W3m">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Lmf-sh-cSS">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
@@ -1850,7 +1850,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PNq-sX-fff" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7734" y="-407"/>
+            <point key="canvasLocation" x="7733.6000000000004" y="-407.0464767616192"/>
         </scene>
         <!--Display Map View View Controller-->
         <scene sceneID="iDr-Tg-rgz">
@@ -4060,7 +4060,7 @@
                                                         </constraints>
                                                         <state key="normal" image="addReview"/>
                                                         <connections>
-                                                            <segue destination="8sF-JC-ekc" kind="show" id="OtI-zr-Mwb"/>
+                                                            <action selector="addReview:" destination="cvy-xP-bIP" eventType="touchUpInside" id="5hS-LV-no4"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zG6-AH-pe7">
@@ -4707,8 +4707,12 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RNn-ZB-zIh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.20784313730000001" green="0.074509803920000006" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MgK-0j-MEp">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="1bd-fe-M5A" kind="relationship" relationship="rootViewController" id="wLV-sC-nhs"/>
                     </connections>

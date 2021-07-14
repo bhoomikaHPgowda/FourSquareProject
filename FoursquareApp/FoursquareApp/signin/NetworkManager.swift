@@ -107,6 +107,8 @@ class NetworkManger {
                 if let data = self?.parseUserDetail(data: newData){
                  
                     completionHandler(data)
+                } else {
+                    completionHandler(UserDetail(statuscode: 401, message: "", id: 0, imageUrl: "", email: "", token: "", userName: ""))
                 }
             } catch {
                 

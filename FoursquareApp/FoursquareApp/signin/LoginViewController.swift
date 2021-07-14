@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
                     let homePageViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomePageViewController") as! HomePageViewController
                     homePageViewController.userDetails = detail
                     self.navigationController?.pushViewController(homePageViewController, animated: true)
-                } else if detail.statusCode == 404  {
+                } else if detail.statusCode == 401  {
                     
                     self.displayAlertMessage(title: AlertMessages.mailNotExist.rawValue,  Discription: AlertMessages.mailNotExist.rawValue)
                 } else {

@@ -28,15 +28,21 @@ class ReviewDisplayViewController: UIViewController {
         super.viewDidLoad()
         tableView.rowHeight = 100
         placeName.text = reviewedPlace
+        print(userDetails?.id)
         getReview()
     }
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if let temp = segue.destination as? AddReviewViewController{
-                temp.userDetails = userDetails
-                temp.placeDetail = placeDetail
+               
             }
         }
        
+    @IBAction func addReview(_ sender: UIButton) {
+        var addReviewViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddReviewViewController") as! AddReviewViewController
+        addReviewViewController.userDetails = userDetails
+        addReviewViewController.placeDetail = placeDetail
+        navigationController?.pushViewController(addReviewViewController, animated: true)
+    }
     @IBAction func back(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }

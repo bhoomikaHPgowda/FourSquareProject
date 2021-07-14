@@ -33,7 +33,10 @@ class SearchCityViewController: UIViewController {
         nearMe.delegate = self
         add(viewController: emptySearchScreen, mode: .emptyScreen)
         print(name)
-        // Do any additional setup after loading the view.
+        guard let statusBarView = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else {
+            return
+        }
+    statusBarView.backgroundColor = UIColor.red
     }
     
     
@@ -158,3 +161,4 @@ extension SearchCityViewController: UISearchBarDelegate {
     
     
 }
+
