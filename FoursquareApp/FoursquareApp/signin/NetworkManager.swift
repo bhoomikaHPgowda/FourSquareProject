@@ -138,6 +138,8 @@ class NetworkManger {
             return logedUserDetail
         }
     
+    
+    
     func updatePassword(email: String, password: String, completionHandler: @escaping(Int) -> ()){
         
         print("function called")

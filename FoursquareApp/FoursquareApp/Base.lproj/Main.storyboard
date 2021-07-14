@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xuh-sc-CHC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xuh-sc-CHC">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -190,7 +190,7 @@
                                         </constraints>
                                         <state key="normal" image="filter_icon"/>
                                         <connections>
-                                            <segue destination="cMh-3U-ef5" kind="show" id="9ES-5s-yzl"/>
+                                            <action selector="filterTapped:" destination="u7S-Ty-4a9" eventType="touchUpInside" id="Ial-hr-61n"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89F-pR-gfQ">
@@ -482,6 +482,7 @@
                         <outlet property="feedback" destination="shg-aU-bHS" id="Pib-dC-v6b"/>
                         <outlet property="logout" destination="0GB-mI-lSi" id="OdO-5r-jMW"/>
                         <outlet property="profile" destination="aUa-h6-zWQ" id="AEk-iD-hRA"/>
+                        <outlet property="username" destination="n3b-KD-SdI" id="A6j-n4-6yV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wo-Lr-Hro" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1198,7 +1199,7 @@
                                                     </constraints>
                                                     <state key="normal" image="back"/>
                                                     <connections>
-                                                        <segue destination="u7S-Ty-4a9" kind="show" id="Mon-oO-2XH"/>
+                                                        <action selector="back:" destination="UNx-Q0-cM0" eventType="touchUpInside" id="XyU-2p-pnK"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YsI-ah-usy">
@@ -1211,7 +1212,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="cMh-3U-ef5" kind="show" id="ihs-ZB-lfo"/>
+                                                        <action selector="filter:" destination="UNx-Q0-cM0" eventType="touchUpInside" id="JB7-EJ-DYB"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1426,9 +1427,9 @@
         <!--Filter View Controller-->
         <scene sceneID="HcO-8B-CzV">
             <objects>
-                <viewController id="cMh-3U-ef5" customClass="FilterViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilterViewController" id="cMh-3U-ef5" customClass="FilterViewController" customModule="FoursquareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I5o-e4-uUh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1hp-yb-war">
@@ -1467,6 +1468,9 @@
                                                     <state key="normal" title="Done">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="doneTapped:" destination="cMh-3U-ef5" eventType="touchUpInside" id="DCj-gN-FaA"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doF-hC-9TI">
                                                     <rect key="frame" x="15" y="16" width="25" height="25"/>
@@ -1549,6 +1553,7 @@
                                                     </segments>
                                                     <color key="selectedSegmentTintColor" red="0.20959964389999999" green="0.073474682870000002" blue="0.27865418790000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
+                                                        <action selector="cost:" destination="cMh-3U-ef5" eventType="valueChanged" id="C1q-YB-53B"/>
                                                         <action selector="segmentControlAction:" destination="cMh-3U-ef5" eventType="valueChanged" id="MHf-du-bVl"/>
                                                     </connections>
                                                 </segmentedControl>
@@ -1684,6 +1689,7 @@
                     <connections>
                         <outlet property="features" destination="TGc-Aw-Eya" id="rDv-H6-sOF"/>
                         <outlet property="nearYou" destination="JCm-EL-2Ro" id="pcV-JV-Wba"/>
+                        <outlet property="radius" destination="MBl-ne-L28" id="bII-hQ-s0W"/>
                         <outlet property="rupee" destination="jAa-gu-SwN" id="xqB-tv-2SP"/>
                         <outlet property="search" destination="jZ0-Ya-NoD" id="Lyn-7N-aqi"/>
                         <outlet property="sort" destination="gtU-N8-dkj" id="4e7-l9-Vff"/>
@@ -1927,9 +1933,12 @@
                                                 <constraint firstAttribute="height" constant="60" id="eyC-XJ-62e"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="19"/>
-                                            <state key="normal" title="Submit">
+                                            <state key="normal" title="List View">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <action selector="listView:" destination="otz-Cj-l6H" eventType="touchUpInside" id="Lp4-oI-ai0"/>
+                                            </connections>
                                         </button>
                                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Qcu-md-r7K">
                                             <rect key="frame" x="0.0" y="107" width="375" height="500"/>
@@ -4710,9 +4719,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vmK-zd-6kK"/>
-        <segue reference="ihs-ZB-lfo"/>
-        <segue reference="Mon-oO-2XH"/>
+
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Image" width="137.5" height="91.5"/>

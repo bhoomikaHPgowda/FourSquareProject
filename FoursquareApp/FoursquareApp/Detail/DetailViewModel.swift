@@ -71,8 +71,8 @@ class DetailViewModel {
         
     }
     
-    func fetchUserDetail(Id: Int, completionHandler: @escaping(UserDetail) -> ()){
-        networkManger.fetchUseeDetail(userId: Id, completionHandler: {
+    func fetchUserDetail(Id: Int, token: String, completionHandler: @escaping(UserDetail) -> ()){
+        networkManger.fetchUseeDetail(userId: Id, token: token, completionHandler: {
             
             userDetail
             in

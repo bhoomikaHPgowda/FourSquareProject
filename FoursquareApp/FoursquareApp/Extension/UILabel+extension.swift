@@ -1,13 +1,12 @@
 //
-//  UILabel+Extension.swift
+//  UILabel+extension.swift
 //  FoursquareApp
 //
-//  Created by Bhoomika H P on 13/07/21.
+//  Created by Sushanth S on 13/07/21.
 //
 
 import Foundation
 import UIKit
-
 extension UILabel{
     
     static func addEmailLabel(label: UILabel){
@@ -25,6 +24,4 @@ extension UILabel{
     static func addConformPasswordLabel(label: UILabel){
         label.frame = CGRect(x: 125, y: 395, width: 130, height: 20)
     }
-    
-    
 }

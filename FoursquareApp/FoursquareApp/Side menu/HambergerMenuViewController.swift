@@ -14,6 +14,7 @@ protocol DismissSideMenu {
 
 class HambergerMenuViewController: UIViewController {
 
+    @IBOutlet weak var username: UILabel!
     @IBOutlet weak var favourite: UIButton!
     @IBOutlet weak var feedback: UIButton!
     @IBOutlet weak var aboutUs: UIButton!
@@ -33,6 +34,7 @@ class HambergerMenuViewController: UIViewController {
         profile.layer.cornerRadius = 0.5 * profile.bounds.size.width
 
         imagePicker.delegate = self
+        username.text = userDetails.userName
        
         
     }

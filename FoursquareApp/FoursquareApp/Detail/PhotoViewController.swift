@@ -106,6 +106,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         vc?.titleName = photoFor
         vc?.uploaderName = userDetails.userName
         vc?.userId = userId[indexPath.row]
+        vc?.token = userDetails.token
         vc?.profileImage = "https://aws-foursquare.s3.us-east-2.amazonaws.com/UserImage/10_photos.png"
         print("image== \(userDetails.imageUrl)")
         self.navigationController?.pushViewController(vc!, animated: true)

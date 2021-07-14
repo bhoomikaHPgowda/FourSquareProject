@@ -407,13 +407,13 @@ class NetworkManagerForFetchPlaceDetail {
     
     
     
-    func fetchUseeDetail(userId: Int, completionHandler: @escaping(UserDetail) -> ()) {
+    func fetchUseeDetail(userId: Int, token: String, completionHandler: @escaping(UserDetail) -> ()) {
       print("called")
         guard let weatherURl = URLs.getUserDetail(userId: userId) else {
             print("wromg")
             return
         }
-        var token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NUBnbWFpbC5jb20iLCJleHAiOjE2MjYwNDIxMjEsImlhdCI6MTYyNjAyNDEyMX0.CM-4MS7ix6MZ9kjumwbqVJXtgT3kg0-UJUhnWzP4sunZn7vrxN5k27iILdZ2bTqGJO1mc6qDrOSLzWlga4KJGA"
+       
         var request = URLRequest(url: weatherURl)
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
