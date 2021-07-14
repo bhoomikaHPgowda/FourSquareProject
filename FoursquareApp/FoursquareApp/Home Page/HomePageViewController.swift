@@ -76,6 +76,11 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
             destination.delegate = self
             destination.userDetails = userDetails
         }
+        if let destinationVC = segue.destination as? SearchCityViewController {
+            
+            destinationVC.userDetails = userDetails
+            
+        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

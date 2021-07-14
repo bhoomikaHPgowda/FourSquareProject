@@ -4710,8 +4710,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9ES-5s-yzl"/>
-        <segue reference="RqY-UO-KQa"/>
+        <segue reference="vmK-zd-6kK"/>
+        <segue reference="ihs-ZB-lfo"/>
+        <segue reference="Mon-oO-2XH"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Image" width="137.5" height="91.5"/>
