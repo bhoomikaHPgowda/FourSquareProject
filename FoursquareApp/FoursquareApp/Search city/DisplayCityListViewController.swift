@@ -22,17 +22,17 @@ class DisplayCityListViewController: UIViewController {
     var userDetails: UserDetail?
     var searchViewModel = SearchViewModel()
     var delegate: SendFavouriteRestaurentDetail?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         placeList.delegate = self
         placeList.dataSource = self
-
         // Do any additional setup after loading the view.
     }
     
     @IBAction func mapView(_ sender: Any) {
-        print("mapview called")
         
+        print("mapview called")
         print("dlefgate cakkkked")
         var displayMapViewViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DisplayMapViewViewController") as! DisplayMapViewViewController
         if let detail = placedetail {
@@ -60,6 +60,7 @@ class DisplayCityListViewController: UIViewController {
 }
 
 extension DisplayCityListViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let data = placedetail else {
             return 0
@@ -71,7 +72,7 @@ extension DisplayCityListViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
       
-            return 195
+        return 195
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -105,7 +106,6 @@ extension DisplayCityListViewController: UITableViewDelegate, UITableViewDataSou
             cell.rating.backgroundColor = UIColor.ratingColor(rating: data[indexPath.row].rating)
             cell.detail.text = "\(data[indexPath.row].placeType.components(separatedBy:" ")[0]) " + " \u{2022} " + String(repeating: "\u{20B9}", count: data[indexPath.row].cost) + " \(round(Double(data[indexPath.row].cost)))Km"
             cell.placeImage.image = searchViewModel.fetchImageForGivenPlace(url: data[indexPath.row].imageUrl)
-
             cell.addToFavourite.tag = indexPath.row + 1
 
 
@@ -117,15 +117,8 @@ extension DisplayCityListViewController: UITableViewDelegate, UITableViewDataSou
             }
 
             print(data[indexPath.row].distance)
-
-//            cell.addToFavourite.tag = indexPath.row + 1
-//            if detailViewModel.isFavourite(placeId: data[indexPath.row].placeId) {
-//                cell.addToFavourite.isSelected = true
-//            } else {
-//                cell.addToFavourite.isSelected = false
-//            }
-
            return cell
+            
         } else {
             return SearchedCityTableViewCell()
             

@@ -21,12 +21,13 @@ class PhotoViewController: UIViewController {
     var dates = [String]()
     var userId = [Int]()
     var index : Int?
-    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: "https://aws-foursquare.s3.us-east-2.amazonaws.com/UserImage/10_photos.png", email: " ", token: " ", userName: "bhoomika")
+    var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ", userName: " ")
    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var placeName: UILabel!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         imagePicker.delegate = self
@@ -37,10 +38,12 @@ class PhotoViewController: UIViewController {
     }
     
     @IBAction func back(_ sender: UIButton) {
+        
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction func addPhotos(_ sender: UIButton) {
+        
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
@@ -48,6 +51,7 @@ class PhotoViewController: UIViewController {
     }
     
     func uploadPhotos() {
+        
         detailViewModel.getHotelPhotosForCollectionView(placeID: placeIdNum, pageNo: pageNumber, pageSize: pageSizeValue, complitionHandler: {
             data
             in
@@ -96,6 +100,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         index = indexPath.row
         let vc = storyboard?.instantiateViewController(withIdentifier: "displayPhoto") as? DisplayImageViewController
         vc?.image = photos[indexPath.row]
@@ -107,12 +112,12 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         vc?.uploaderName = userDetails.userName
         vc?.userId = userId[indexPath.row]
         vc?.token = userDetails.token
-        vc?.profileImage = "https://aws-foursquare.s3.us-east-2.amazonaws.com/UserImage/10_photos.png"
         print("image== \(userDetails.imageUrl)")
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCells", for: indexPath) as? CollectionViewCell{
             print(photos[indexPath.row])
            

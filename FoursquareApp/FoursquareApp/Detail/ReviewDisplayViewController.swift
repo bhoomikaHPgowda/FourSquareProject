@@ -25,12 +25,14 @@ class ReviewDisplayViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         tableView.rowHeight = 100
         placeName.text = reviewedPlace
         print(userDetails?.id)
         getReview()
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let temp = segue.destination as? AddReviewViewController{
                

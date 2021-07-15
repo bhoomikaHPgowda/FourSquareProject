@@ -21,7 +21,6 @@ class DetailViewModel {
         
     }
     
-
     func addRating(userId: Int, token: String, placeId: Int, rating: Int, completionHandler: @escaping(Int) -> ()) {
         
         networkManger.addRating(userId: userId, token: token, placeId: placeId, rating: rating, completionHandler: {
@@ -33,9 +32,6 @@ class DetailViewModel {
         })
     
     }
-    
-
-
 
     func getHotelPhotosForCollectionView(placeID: Int, pageNo: Int, pageSize: Int, complitionHandler: @escaping(PhotoDetails) -> ()) {
 
@@ -72,7 +68,7 @@ class DetailViewModel {
     }
     
     func fetchUserDetail(Id: Int, token: String, completionHandler: @escaping(UserDetail) -> ()){
-        networkManger.fetchUseeDetail(userId: Id, token: token, completionHandler: {
+        networkManger.fetchUserDetail(userId: Id, token: token, completionHandler: {
             
             userDetail
             in

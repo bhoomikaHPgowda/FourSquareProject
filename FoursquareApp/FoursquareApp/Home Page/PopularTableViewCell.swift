@@ -24,11 +24,12 @@ class PopularTableViewCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
         
+        super.setSelected(selected, animated: animated)
     }
+    
     @IBAction func addToFavourite(_ sender: CustomAddToFavoriteButton) {
+        
         if let addToFavoriteButton = sender as? CustomAddToFavoriteButton {
             
             addToFavoriteButton.toggle()

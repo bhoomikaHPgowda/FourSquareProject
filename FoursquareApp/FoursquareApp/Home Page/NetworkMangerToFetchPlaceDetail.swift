@@ -109,7 +109,6 @@ class NetworkMangerToFetchPlaceDetail {
             return
         }
         
-       
         var request = URLRequest(url: url)
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -16,6 +16,7 @@ class ReviewDisplayCell: UITableViewCell{
     @IBOutlet weak var reviewDate: UILabel!
     
     override func awakeFromNib() {
+        
         super.awakeFromNib()
         reviewerPhoto.layer.cornerRadius = 0.5 * reviewerPhoto.bounds.size.width
     }

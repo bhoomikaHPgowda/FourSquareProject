@@ -13,14 +13,14 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var select: UIButton!
     @IBOutlet weak var addReview: UITextView!
     @IBOutlet weak var imageview: UIImageView!
+    
     var imagePicker = UIImagePickerController()
     var detailViewModel = DetailViewModel()
     var userID = "115"
-    var token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NUBnbWFpbC5jb20iLCJleHAiOjE2MjYyNjc5ODUsImlhdCI6MTYyNjI0OTk4NX0.IytVxbOd3R7yPJy4tF0YEYzn-W2VD3IqRqCCRclIgxH9QGBf_BuR6bm7RiSjXETqltq08McfrqkVG46XJ5vFHg"
+    var token = " "
     var placeId = "11"
     var placeDetail: PlaceDetail?
     var userDetails: UserDetail?
-    
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +28,6 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
         addReview.delegate = self
         print(userDetails?.token)
         print(placeDetail?.placeName)
-//        userID = String(userDetails?.id ?? 0)
-//         token = userDetails?.token ?? "nil"
-//         placeId = String(placeDetail?.placeId ?? 0)
 
         UITextView.addReviewTextViewSetUp(textView: addReview)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -38,6 +35,7 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasDismissed(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
          
     }
+    
     @IBAction func addReviewButton(_ sender: UIButton) {
         guard let user = userDetails,
               let place = placeDetail else {

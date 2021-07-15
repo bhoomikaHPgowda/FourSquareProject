@@ -10,28 +10,22 @@ import UIKit
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-//    @IBOutlet weak var nearMe: CustomSearchBar!
-//    @IBOutlet weak var search: CustomSearchBar!
-//    @IBOutlet weak var nearPlace: UITextField!
-//    @IBOutlet weak var searchPlace: UITextField!
     var name: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-       
-        
-
-        // Do any additional setup after loading the view.
+       // Do any additional setup after loading the view.
     }
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
-
-
 }
+
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return FeaturesList.allCases.count

@@ -21,6 +21,7 @@ class SearchCityViewController: UIViewController {
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var search: CustomSearchBar!
     @IBOutlet weak var nearMe: CustomSearchBar!
+    
     var delegate: UpdatefavouritesList?
     var viewModel = SearchViewModel()
     var userDetails: UserDetail?
@@ -28,9 +29,7 @@ class SearchCityViewController: UIViewController {
     var emptySearchScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchEmptyViewController") as! SearchEmptyViewController
     var searchScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController")  as! SearchViewController
     var displayScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DisplayCityListViewController")  as! DisplayCityListViewController
-    
     var nearMeOptionScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ShowNearMeOptionViewController")  as! ShowNearMeOptionViewController
-    
     var filterScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilterViewController")  as! FilterViewController
     
     override func viewDidLoad() {
@@ -41,25 +40,18 @@ class SearchCityViewController: UIViewController {
         nearMe.delegate = self
         add(viewController: emptySearchScreen, mode: .emptyScreen)
         print(name)
-
-       
- 
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-       
-            if (segue.identifier == "Search") {
-                print("segue called")
-                if let destination  = segue.destination as? DisplayCityListViewController{
-                   
-                   destination.delegate = self
-                  
-               }
-            }
-
-        
-       
-
+        if (segue.identifier == "Search") {
+            print("segue called")
+            if let destination  = segue.destination as? DisplayCityListViewController{
+               
+               destination.delegate = self
+              
+           }
+        }
         print("userDetails?.email = \(String(describing: userDetails?.email))")
         // Do any additional setup after loading the view.
 
@@ -75,11 +67,7 @@ class SearchCityViewController: UIViewController {
                     print("received data from filter \(data.count)")
                     displayScreen.placedetail = data
                     displayScreen.placeList.reloadData()
-                
-                
-                
             }
-            
         }
         
         navigationController?.pushViewController(filterScreen, animated: true)
@@ -90,12 +78,10 @@ class SearchCityViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-
     func add(viewController: UIViewController, mode: SearchScreen) {
     
         if mode == .emptyScreen {
-           // searchView.alpha = 0
-          //  emptyView.alpha = 1
+          
             displaySeachList.alpha = 0
             nearMeOptionView.alpha = 0
             addChild(viewController)
@@ -105,9 +91,6 @@ class SearchCityViewController: UIViewController {
             viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         } else {
             print("adddded")
-            //searchView.alpha = 1
-           // searchView.alpha = 0
-            
             addChild(viewController)
             emptyView.addSubview(viewController.view)
             viewController.didMove(toParent: self)
@@ -125,9 +108,9 @@ class SearchCityViewController: UIViewController {
 }
 
 extension SearchCityViewController: UISearchBarDelegate {
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         print("pressed")
-      //  remove(asChildViewController: emptySearchScreen)
         searchScreen.name = "sushanth"
         if searchBar.tag == 1 {
             add(viewController: searchScreen, mode: .searchScreen)
@@ -185,6 +168,7 @@ extension SearchCityViewController: UISearchBarDelegate {
     
 }
 extension SearchCityViewController: SendFavouriteRestaurentDetail {
+    
     func sendDeleteFavourite(placeDetail: PlaceDetail) {
         delegate?.deleteFavourite(placeDetail: placeDetail)
     }
@@ -196,12 +180,9 @@ extension SearchCityViewController: SendFavouriteRestaurentDetail {
         return false
     }
     
-    
-    
     func sendAddToFavouirteData(placeDetail: PlaceDetail) {
         print("id12345667 =====\(placeDetail.address)")
         delegate?.addToFavouirtes(placeDetail: placeDetail)
     }
-    
     
 }

@@ -18,8 +18,6 @@ class NetworkManagerForSearch {
             }
            print("url === \(url)")
           
-        
-            
         let session = URLSession.shared.dataTask(with: url) {
                 
                  data, response, error in

@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class SearchViewModel {
+    
     var networkManager = NetworkManagerForSearch()
     func fetchSearchedCityDetail(placeName: String, completionHanlderL: @escaping(([PlaceDetail]) -> ())) {
         

@@ -17,8 +17,9 @@ class DisplayMapViewViewController: UIViewController {
     @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var detail: UILabel!
     @IBOutlet weak var detailView: UIView!
-    var data = [PlaceDetail]()
     @IBOutlet weak var address: UILabel!
+    var data = [PlaceDetail]()
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -49,7 +50,6 @@ class DisplayMapViewViewController: UIViewController {
     @IBAction func listView(_ sender: UIButton) {
     }
     
-
 }
 extension DisplayMapViewViewController: MKMapViewDelegate {
     

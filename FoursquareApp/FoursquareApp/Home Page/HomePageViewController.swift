@@ -125,6 +125,7 @@ class HomePageViewController: UIViewController {
     }
     
     @IBAction func filterTapped(_ sender: UIButton) {
+        
         navigationController?.pushViewController(filterViewController, animated: true)
         filterViewController.cityName = "Udupi"
         filterViewController.completionHandler = { [self]
@@ -140,10 +141,6 @@ class HomePageViewController: UIViewController {
 
     }
     
-    
-    
-
-  
     @IBAction func optionSeleted(_ sender: CustomButtonForCollectionViewOptions) {
         
     }
@@ -152,9 +149,7 @@ class HomePageViewController: UIViewController {
     func add(asChildViewController viewController: UIViewController, index: Int, finished: () -> Void) {
         
         if index == 0 {
-            
-           // containerViewforPopular.alpha = 0
-           // nearYouContainerView.alpha = 1
+          
             addChild(viewController)
             containerViewforPopular.addSubview(viewController.view)
             viewController.didMove(toParent: self)
@@ -163,9 +158,7 @@ class HomePageViewController: UIViewController {
             
             
         } else {
-            
-           // nearYouContainerView.alpha = 0
-          //  containerViewforPopular.alpha = 1
+          
             addChild(viewController)
             containerViewforPopular.addSubview(viewController.view)
             viewController.didMove(toParent: self)
@@ -196,8 +189,7 @@ class HomePageViewController: UIViewController {
                 }
                 
             }
-            
-            
+        
         })
     }
     
@@ -328,10 +320,7 @@ extension HomePageViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.cellForItem(at: indexPath) as! HomePageCollectionViewCell
             cell.buttonName.textColor = UIColor.colorForNormalLabel()
 
-        //collectionView.reloadItems(at: [indexPath])
     }
-    
-    
 }
 
 extension HomePageViewController: DismissSideMenu {
@@ -351,9 +340,6 @@ extension HomePageViewController: DismissSideMenu {
                         favouriteViewController.user = self.userDetails
                         self.navigationController?.pushViewController(favouriteViewController, animated: true)
                     }
-                
-                
-               
             })
          
         } else if option == .feedback {
@@ -373,9 +359,6 @@ extension HomePageViewController: DismissSideMenu {
         print("protocol called")
         MainView.frame.origin.x = 0
     }
-    
-    
-
 }
 
 extension HomePageViewController : CLLocationManagerDelegate {

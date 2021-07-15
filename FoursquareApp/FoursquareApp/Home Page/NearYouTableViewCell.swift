@@ -17,6 +17,7 @@ class NearYouTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var dcsd: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     

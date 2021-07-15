@@ -1147,7 +1147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BRw-hA-tgP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7984.8000000000002" y="362.96851574212894"/>
+            <point key="canvasLocation" x="466" y="708"/>
         </scene>
         <!--Search City View Controller-->
         <scene sceneID="Khd-4h-2qw">
@@ -4321,27 +4321,6 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="XNH-qE-CdB">
-                                                <rect key="frame" x="36" y="572" width="303" height="50"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ET-Bb-HZJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="140" id="AXv-O1-8po"/>
-                                                        </constraints>
-                                                        <state key="normal" image="facebook_btn"/>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcF-aA-JVM">
-                                                        <rect key="frame" x="158" y="0.0" width="145" height="50"/>
-                                                        <state key="normal" image="g=_btn"/>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="6D9-85-SgK"/>
-                                                    <constraint firstAttribute="height" constant="50" id="KCK-kG-L24"/>
-                                                    <constraint firstAttribute="width" constant="303" id="var-5M-Nf0"/>
-                                                </constraints>
-                                            </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfm-UI-Fbm">
                                                 <rect key="frame" x="165" y="136" width="45" height="25"/>
                                                 <constraints>
@@ -4352,16 +4331,33 @@
                                                 <color key="textColor" red="0.70980392160000005" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="puf-Sl-iDb">
+                                                <rect key="frame" x="33" y="572" width="150" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="54P-OI-BY5"/>
+                                                    <constraint firstAttribute="height" constant="50" id="h60-Ic-QTL"/>
+                                                </constraints>
+                                                <state key="normal" image="facebook_btn"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LR6-8H-AU1">
+                                                <rect key="frame" x="192" y="572" width="150" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="2IX-4N-UDH"/>
+                                                    <constraint firstAttribute="width" constant="150" id="N6Z-8G-qeB"/>
+                                                </constraints>
+                                                <state key="normal" image="g=_btn"/>
+                                            </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="LR6-8H-AU1" secondAttribute="trailing" constant="33" id="0wO-RM-EkI"/>
                                             <constraint firstItem="lPf-1q-JIp" firstAttribute="top" secondItem="jvH-e6-nXb" secondAttribute="bottom" constant="38" id="52O-nc-n8i"/>
                                             <constraint firstAttribute="trailing" secondItem="2zM-aL-1Xu" secondAttribute="trailing" constant="36" id="5an-OJ-JuQ"/>
                                             <constraint firstAttribute="trailing" secondItem="jvH-e6-nXb" secondAttribute="trailing" constant="36" id="7rj-1L-wMj"/>
                                             <constraint firstAttribute="trailing" secondItem="ofi-Cr-VXq" secondAttribute="trailing" constant="36" id="9MM-5Q-oRq"/>
                                             <constraint firstItem="zWx-op-csh" firstAttribute="top" secondItem="IKF-Qa-OqK" secondAttribute="top" constant="50" id="9Oi-PJ-dPy"/>
                                             <constraint firstItem="2zM-aL-1Xu" firstAttribute="leading" secondItem="IKF-Qa-OqK" secondAttribute="leading" constant="36" id="9dN-ch-ET3"/>
-                                            <constraint firstAttribute="trailing" secondItem="XNH-qE-CdB" secondAttribute="trailing" constant="36" id="A8G-BL-w6m"/>
                                             <constraint firstItem="NoS-FH-Fpj" firstAttribute="top" secondItem="n9P-Z5-pp0" secondAttribute="bottom" constant="25" id="AgF-Ua-XEx"/>
+                                            <constraint firstItem="puf-Sl-iDb" firstAttribute="leading" secondItem="IKF-Qa-OqK" secondAttribute="leading" constant="33" id="BiT-Ex-l3X"/>
                                             <constraint firstItem="n9P-Z5-pp0" firstAttribute="top" secondItem="2zM-aL-1Xu" secondAttribute="bottom" constant="25" id="E6X-bI-Xpr"/>
                                             <constraint firstItem="fKd-fw-Hbb" firstAttribute="top" secondItem="XlZ-BQ-572" secondAttribute="bottom" constant="10" id="EBW-xF-8SG"/>
                                             <constraint firstItem="Dfm-UI-Fbm" firstAttribute="top" secondItem="zWx-op-csh" secondAttribute="bottom" constant="70" id="FoA-kD-g1t"/>
@@ -4373,13 +4369,13 @@
                                             <constraint firstItem="NoS-FH-Fpj" firstAttribute="centerX" secondItem="IKF-Qa-OqK" secondAttribute="centerX" id="Xsi-sF-29y"/>
                                             <constraint firstAttribute="trailing" secondItem="K3d-lt-Zca" secondAttribute="trailing" constant="15" id="YL7-77-2dK"/>
                                             <constraint firstAttribute="trailing" secondItem="XlZ-BQ-572" secondAttribute="trailing" constant="36" id="bfO-Sk-kok"/>
-                                            <constraint firstItem="XNH-qE-CdB" firstAttribute="leading" secondItem="IKF-Qa-OqK" secondAttribute="leading" constant="36" id="cNY-fm-fTk"/>
+                                            <constraint firstItem="LR6-8H-AU1" firstAttribute="top" secondItem="NoS-FH-Fpj" secondAttribute="bottom" constant="25" id="byq-cx-8hN"/>
                                             <constraint firstItem="zWx-op-csh" firstAttribute="centerX" secondItem="IKF-Qa-OqK" secondAttribute="centerX" id="e2L-iG-95a"/>
-                                            <constraint firstItem="XNH-qE-CdB" firstAttribute="top" secondItem="NoS-FH-Fpj" secondAttribute="bottom" constant="25" id="f4b-dA-dIe"/>
                                             <constraint firstItem="ofi-Cr-VXq" firstAttribute="top" secondItem="zWx-op-csh" secondAttribute="bottom" constant="71" id="gAi-DG-O5U"/>
                                             <constraint firstItem="et8-Mm-Ufg" firstAttribute="top" secondItem="fKd-fw-Hbb" secondAttribute="bottom" constant="25" id="gnV-mT-X6A"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="667" id="iUx-RN-AJ0"/>
                                             <constraint firstItem="ofi-Cr-VXq" firstAttribute="centerX" secondItem="IKF-Qa-OqK" secondAttribute="centerX" id="kHQ-zP-8ax"/>
+                                            <constraint firstItem="puf-Sl-iDb" firstAttribute="top" secondItem="NoS-FH-Fpj" secondAttribute="bottom" constant="25" id="kVS-hk-ETr"/>
                                             <constraint firstAttribute="height" constant="757" id="kXH-R6-H6X"/>
                                             <constraint firstItem="fKd-fw-Hbb" firstAttribute="leading" secondItem="IKF-Qa-OqK" secondAttribute="leading" constant="36" id="mTS-wz-30m"/>
                                             <constraint firstItem="ofi-Cr-VXq" firstAttribute="leading" secondItem="IKF-Qa-OqK" secondAttribute="leading" constant="36" id="p6i-aJ-yzd"/>

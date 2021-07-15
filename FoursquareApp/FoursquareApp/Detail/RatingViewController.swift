@@ -13,12 +13,15 @@ class RatingViewController: UIViewController {
     @IBOutlet weak var ratingView: UIView!
     @IBOutlet weak var overAllRating: UILabel!
     @IBOutlet weak var cancel: UIButton!
+    
     var rating = 0.0
     var placeId = 0
     var userEnteredRating: Int?
     var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ", userName: " ")
     var detailViewModel  = DetailViewModel()
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         cancel.layer.cornerRadius = 11
         cancel.clipsToBounds = true
@@ -29,6 +32,7 @@ class RatingViewController: UIViewController {
         ratingView.layer.borderColor = UIColor.lightGray.cgColor
         // Do any additional setup after loading the view.
     }
+    
     @IBAction func cancelTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -50,6 +54,7 @@ class RatingViewController: UIViewController {
             
         }
     }
+    
     @IBAction func starClicked(_ sender: UIButton) {
         
         print(sender.tag)

@@ -157,8 +157,6 @@ class NetworkManagerForFetchPlaceDetail {
         fetchDetail.latitude = latitude
         fetchDetail.longitude = longitude
             
-           
-
         return fetchDetail
     }
     
@@ -176,7 +174,6 @@ class NetworkManagerForFetchPlaceDetail {
             return
         }
         
-      
         var request = URLRequest(url: url)
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -240,7 +237,6 @@ class NetworkManagerForFetchPlaceDetail {
             return
         }
         
-      
         var request = URLRequest(url: url)
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -289,6 +285,7 @@ class NetworkManagerForFetchPlaceDetail {
     }
     
     func addreview(userId: String, token: String, placeId: String, review: String, completionHandler: @escaping(Int) -> ()) {
+        
         print(userId)
         print(token)
         print(placeId)
@@ -305,7 +302,6 @@ class NetworkManagerForFetchPlaceDetail {
            return
        }
        
-     
        var request = URLRequest(url: url)
        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -367,8 +363,6 @@ class NetworkManagerForFetchPlaceDetail {
         return 0
     }
     
-
-
     func parsePhotoDetails(code: Any) -> PhotoDetails? {
 
         var images = [String]()
@@ -407,7 +401,7 @@ class NetworkManagerForFetchPlaceDetail {
     
     
     
-    func fetchUseeDetail(userId: Int, token: String, completionHandler: @escaping(UserDetail) -> ()) {
+    func fetchUserDetail(userId: Int, token: String, completionHandler: @escaping(UserDetail) -> ()) {
       print("called")
         guard let weatherURl = URLs.getUserDetail(userId: userId) else {
             print("wromg")
@@ -438,9 +432,6 @@ class NetworkManagerForFetchPlaceDetail {
                 if let data = self.parseUserDetail(data: jsonObject) {
                     completionHandler(data)
                 }
-                 
-                    
-                 
             } catch {
                 
             }
@@ -462,12 +453,11 @@ class NetworkManagerForFetchPlaceDetail {
               let imageUrl = userDetail["image"] as? String,
               let username = userDetail["username"] as? String
           
-        
-        
         else {
             print("error")
             return nil
         }
+        
         print(statusCode)
         let logedUserDetail = UserDetail(statuscode: statusCode, message: message, id: id, imageUrl: imageUrl, email: email, token: "", userName: username)
         print("name == \(username)")
@@ -475,6 +465,7 @@ class NetworkManagerForFetchPlaceDetail {
     }
     
     func parseReviewData(code:Any) -> ReviewDetails? {
+        
         guard let code = code as? [String: Any],
               let statusCode = code["status"] as? Int,
               let reviewDetails =  code["data"] as? [Any]

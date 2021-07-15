@@ -10,14 +10,15 @@ import UIKit
 
 class DisplayImageViewController: UIViewController{
     
-    var detailViewModel = DetailViewModel()
     var image = " "
     var profileImage = " "
-    var photoAddedDate : String?
     var uploaderName = ""
-    var userId = 0
     var titleName = ""
     var token = ""
+    var userId = 0
+    var photoAddedDate : String?
+    var detailViewModel = DetailViewModel()
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var placeName: UILabel!
@@ -26,13 +27,12 @@ class DisplayImageViewController: UIViewController{
     @IBOutlet weak var date: UILabel!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         print("token recieve ====\(token)")
         imageView.image = UIImage.restaurentImage(url: image)
-        
         date.text = photoAddedDate
-        
         placeName.text = titleName
         detailViewModel.fetchUserDetail(Id: userId, token: token, completionHandler: {
             userDetail
@@ -45,6 +45,7 @@ class DisplayImageViewController: UIViewController{
                         
         })
     }
+    
     @IBAction func backButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }

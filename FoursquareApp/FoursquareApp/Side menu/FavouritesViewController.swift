@@ -49,13 +49,7 @@ class FavouritesViewController: UIViewController {
             }
                 
             })
-            
-        
-        
     }
-    
-    
-    
 }
 
 extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {

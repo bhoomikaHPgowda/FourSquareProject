@@ -15,10 +15,12 @@ class NearYouViewController: UIViewController {
     @IBOutlet weak var nearYouTableView: UITableView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    
     var detailViewModel = FetchPlaceDetailViewModel()
     let locationManager = CLLocationManager()
     var details1: [PlaceDetail]?
     var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ", userName: " ")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,23 +34,14 @@ class NearYouViewController: UIViewController {
         nearYouTableView.separatorInset = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 3)
         nearYouTableView.separatorColor = UIColor.green
         print("user -----------\(userDetails.email)")
-//        detailViewModel.fetchDetails(optionType: .nearYour,complitionHandler: {
-//            details
-//            in
-//            self.details1 = details
-//            print("\(details.count)")
-//            self.add()
-//        })
-       
-            
-            if #available(iOS 13.0, *) {
-                        let statusBar = UIView(frame: UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
-                statusBar.backgroundColor = UIColor.statusBarColor()
-                        UIApplication.shared.keyWindow?.addSubview(statusBar)
-                    } else {
-                         UIApplication.shared.statusBarView?.backgroundColor = UIColor.statusBarColor()
-                    }
         
+        if #available(iOS 13.0, *) {
+                    let statusBar = UIView(frame: UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
+            statusBar.backgroundColor = UIColor.statusBarColor()
+                    UIApplication.shared.keyWindow?.addSubview(statusBar)
+                } else {
+                     UIApplication.shared.statusBarView?.backgroundColor = UIColor.statusBarColor()
+                }
     }
     override func viewWillAppear(_ animated: Bool) {
         nearYouTableView.reloadData()
@@ -63,11 +56,10 @@ class NearYouViewController: UIViewController {
         
     }
     
-   
-    
     func loc(lat: Double) {
         print("location from home view controller\(lat)")
     }
+    
     @IBAction func addToFavourite(_ sender: CustomAddToFavoriteButton) {
         
         if let addToFavoriteButton = sender as? CustomAddToFavoriteButton {
@@ -88,8 +80,6 @@ class NearYouViewController: UIViewController {
                     }
                     
                 }
-                
-                
             })
         } else {
             
@@ -105,12 +95,9 @@ class NearYouViewController: UIViewController {
             })
             
         }
-        
     }
-    
-    
-
 }
+
 extension NearYouViewController : CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -121,8 +108,6 @@ extension NearYouViewController : CLLocationManagerDelegate {
         if status == .authorizedWhenInUse {
             locationManager.requestLocation()
         }
-       
-        
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -201,9 +186,6 @@ extension NearYouViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
-    
-    
-    
 }
 extension Double {
     /// Rounds the double to decimal places value

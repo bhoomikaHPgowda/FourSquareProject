@@ -16,26 +16,17 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var rupee: CustomControlSegment!
     @IBOutlet weak var sort: UISegmentedControl!
     @IBOutlet weak var sortBy: CustomControlSegment!
+    
     let featuresList: [String] = FeaturesList.allCases.map { $0.rawValue }
     var cityName = ""
     let filterDetail = FilterDetail(popular: false, distance: false, rating: false, radius: 0, cost: 0, accessToCard: false, delivery: false, dogFriendly: false, inWalkingDistance: false, outdoorSeating: false, parking: false, wifi: false)
     let viewModel = FilterViewModel()
     typealias completion = (([PlaceDetail]) -> ())
     var completionHandler: completion?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let segAttributes: NSDictionary = [
-//            NSAttributedString.Key.foregroundColor: UIColor.red,
-//            NSAttributedString.Key.font: UIFont(name: "Avenir-MediumOblique", size: 20)!
-//        ]
-//        var subViewOfSegment: UIView = sort.subviews[0] as UIView
-//        subViewOfSegment.tintColor = UIColor.blue
-//        sort.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.red], for: UIControl.State.selected)
-//        //sortBy.setTitleTextAttributes(segAttributes as! [NSAttributedString.Key : Any], for: .normal)
-//        // Do any additional setup after loading the view.
-//        let subViewOfSegment1: UIView = sort.subviews[1] as UIView
-//                subViewOfSegment1.backgroundColor = UIColor.red
-       // self.sort.setSegmentStyle()
+
         features.delegate = self
         features.dataSource = self
         sort.layer.borderWidth = 1
@@ -53,6 +44,7 @@ class FilterViewController: UIViewController {
     @IBAction func backButton(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func segmentControlAction(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             filterDetail.popular = true
@@ -67,13 +59,12 @@ class FilterViewController: UIViewController {
             filterDetail.distance = false
             filterDetail.rating = true
         }
-      
-        
     }
     
     @IBAction func cost(_ sender: CustomControlSegment) {
         filterDetail.cost = sender.selectedSegmentIndex
     }
+    
     func optionSelected(option: String, value: Bool) {
         
         switch option {
@@ -192,35 +183,3 @@ extension FilterViewController: UITextFieldDelegate {
         return true
     }
 }
-
-
-
-//extension UISegmentedControl {
-//func setSegmentStyle() {
-// 
-//
-//    let normalTextAttributes: [NSAttributedString.Key : AnyObject] = [
-//        NSAttributedString.Key.foregroundColor: UIColor.blue .withAlphaComponent(1.0),
-//        NSAttributedString.Key.font: UIFont.normaTextForControlSegment()
-//    ]
-//
-//     let segAttributes: [NSAttributedString.Key : AnyObject] = [
-//        NSAttributedString.Key.foregroundColor: UIColor.gray,
-//        NSAttributedString.Key.font:  UIFont.normaTextForControlSegment()
-//        ]
-//
-//    setTitleTextAttributes(segAttributes, for: UIControl.State.selected)
-//    }
-//
-//    // create a 1x1 image with this color
-//    private func imageWithColor(color: UIColor) -> UIImage {
-//        let rect = CGRect(x: 0.0, y: 0.0, width:  1.0, height: 1.0)
-//        UIGraphicsBeginImageContext(rect.size)
-//        let context = UIGraphicsGetCurrentContext()
-//        context!.setFillColor(color.cgColor);
-//        context!.fill(rect);
-//        let image = UIGraphicsGetImageFromCurrentImageContext();
-//        UIGraphicsEndImageContext();
-//        return image!
-//    }
-//}
