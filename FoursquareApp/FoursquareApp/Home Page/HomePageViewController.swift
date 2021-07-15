@@ -10,7 +10,7 @@
 import UIKit
 import MapKit
 
-class HomePageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class HomePageViewController: UIViewController {
     
     @IBOutlet weak var sideMenu: UIView!
     @IBOutlet var MainView: UIView!
@@ -24,13 +24,12 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
     let locationManager = CLLocationManager()
     var selectedCellIndexPath = [IndexPath] ()
     var selectindexpath: IndexPath = [0, 0]
-    var signInVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NearYouViewController") as! NearYouViewController
-    var popularViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopularViewController")  as! PopularViewController
-    
-    var filterViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilterViewController")  as! FilterViewController
     var detailViewModel = FetchPlaceDetailViewModel()
     var userDetails = UserDetail(statuscode: 0, message: " ", id: 0, imageUrl: " ", email: " ", token: " ", userName: " ")
     var user: UserDetail?
+    var signInVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NearYouViewController") as! NearYouViewController
+    var popularViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopularViewController")  as! PopularViewController
+    var filterViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +43,23 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         locationManager.requestWhenInUseAuthorization()
         
         print("\(userDetails.email) is received")
+        statusBarSetup()
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    func statusBarSetup() {
+        
+        if #available(iOS 13.0, *) {
+                    let statusBar = UIView(frame: UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
+            statusBar.backgroundColor = UIColor.statusBarColor()
+            statusBar.tintColor = .white
+                    UIApplication.shared.keyWindow?.addSubview(statusBar)
+                } else {
+                     UIApplication.shared.statusBarView?.backgroundColor = UIColor.statusBarColor()
+                    UIApplication.shared.statusBarView?.tintColor = UIColor.white
+                }
     }
     
     func fetchDataForNearViewController(latitude: Double, longitude: Double) {
@@ -77,12 +93,17 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             destination.delegate = self
             destination.userDetails = userDetails
+        } else {
+            if (segue.identifier == "search") {
+                print("segue called")
+                if let destination  = segue.destination as? SearchCityViewController{
+                   
+                   destination.delegate = self
+                  
+               }
+            }
         }
-        if let destinationVC = segue.destination as? SearchCityViewController {
-            
-            destinationVC.userDetails = userDetails
-            
-        }
+
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -115,6 +136,88 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+
+    }
+    
+    
+    
+
+  
+    @IBAction func optionSeleted(_ sender: CustomButtonForCollectionViewOptions) {
+        
+    }
+    
+    
+    func add(asChildViewController viewController: UIViewController, index: Int, finished: () -> Void) {
+        
+        if index == 0 {
+            
+           // containerViewforPopular.alpha = 0
+           // nearYouContainerView.alpha = 1
+            addChild(viewController)
+            containerViewforPopular.addSubview(viewController.view)
+            viewController.didMove(toParent: self)
+            viewController.view.frame = containerViewforPopular.bounds
+            viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            
+        } else {
+            
+           // nearYouContainerView.alpha = 0
+          //  containerViewforPopular.alpha = 1
+            addChild(viewController)
+            containerViewforPopular.addSubview(viewController.view)
+            viewController.didMove(toParent: self)
+            viewController.view.frame = containerViewforPopular.bounds
+            viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            finished()
+            
+            
+        }
+    }
+    
+     func remove(asChildViewController viewController: UIViewController) {
+        
+        viewController.willMove(toParent: nil)
+        viewController.view.removeFromSuperview()
+        viewController.removeFromParent()
+    }
+    
+    func addToFavouriteList(placeDetail: PlaceDetail) {
+        
+        detailViewModel.addOrDeleteFavourite(userId: userDetails.id, token: userDetails.token, placeId: placeDetail.placeId, requestMethod: .addToFavourite, completionHandler: {
+            statusCode
+            in
+            print("added succefully\(statusCode)")
+            if statusCode == 200 {
+                DispatchQueue.main.async {
+                    self.detailViewModel.favouritePlaceList!.append(placeDetail)
+                }
+                
+            }
+            
+            
+        })
+    }
+    
+    func deleteFavouriteFromList(placeDetail: PlaceDetail) {
+        
+        detailViewModel.addOrDeleteFavourite(userId: userDetails.id, token: userDetails.token, placeId: placeDetail.placeId, requestMethod: .deleteFromFavourite, completionHandler: {
+            statusCode
+            in
+            print("added succefully\(statusCode)")
+            if statusCode == 200 {
+                DispatchQueue.main.async {
+                    self.detailViewModel.removeFavourite(placeid: placeDetail.placeId)
+                }
+            }
+        })
+    }
+    
+}
+
+extension HomePageViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -129,6 +232,9 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
             if indexPath.row == 0 {
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
                 cell.buttonName.textColor = .white
+               
+            } else {
+                cell.buttonName.textColor = .gray
             }
             return cell
         }
@@ -148,9 +254,11 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         guard let location = locationManager.location?.coordinate else {
             return
         }
-        
+      
         let cell = collectionView.cellForItem(at: indexPath) as! HomePageCollectionViewCell
-            cell.buttonName.textColor = UIColor.colorForHighlightedLabel()
+          //  cell.buttonName.textColor = UIColor.colorForHighlightedLabel()
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        cell.buttonName.textColor = .white
         guard let option = cell.buttonName.text else {
           print("failed guard sleledvsdfg")
             return
@@ -220,51 +328,9 @@ class HomePageViewController: UIViewController, UICollectionViewDelegate, UIColl
         let cell = collectionView.cellForItem(at: indexPath) as! HomePageCollectionViewCell
             cell.buttonName.textColor = UIColor.colorForNormalLabel()
 
-        collectionView.reloadItems(at: [indexPath])
+        //collectionView.reloadItems(at: [indexPath])
     }
     
-    
-
-  
-    @IBAction func optionSeleted(_ sender: CustomButtonForCollectionViewOptions) {
-        
-    }
-    
-    
-    func add(asChildViewController viewController: UIViewController, index: Int, finished: () -> Void) {
-        
-        if index == 0 {
-            
-           // containerViewforPopular.alpha = 0
-           // nearYouContainerView.alpha = 1
-            addChild(viewController)
-            containerViewforPopular.addSubview(viewController.view)
-            viewController.didMove(toParent: self)
-            viewController.view.frame = containerViewforPopular.bounds
-            viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            
-            
-        } else {
-            
-           // nearYouContainerView.alpha = 0
-          //  containerViewforPopular.alpha = 1
-            addChild(viewController)
-            containerViewforPopular.addSubview(viewController.view)
-            viewController.didMove(toParent: self)
-            viewController.view.frame = containerViewforPopular.bounds
-            viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            finished()
-            
-            
-        }
-    }
-    
-     func remove(asChildViewController viewController: UIViewController) {
-        
-        viewController.willMove(toParent: nil)
-        viewController.view.removeFromSuperview()
-        viewController.removeFromParent()
-    }
     
 }
 
@@ -351,4 +417,23 @@ extension HomePageViewController : CLLocationManagerDelegate {
         }
 
     }
+}
+
+
+
+extension HomePageViewController: UpdatefavouritesList {
+    func deleteFavourite(placeDetail: PlaceDetail) {
+        deleteFavouriteFromList(placeDetail: placeDetail)
+    }
+    
+    func isFavourite(placeDetail: PlaceDetail) -> Bool {
+        return detailViewModel.isFavourite(placeId: placeDetail.placeId)
+    }
+    
+    func addToFavouirtes(placeDetail: PlaceDetail) {
+        print("12343343555  -----\(placeDetail.address)")
+        addToFavouriteList(placeDetail: placeDetail)
+    }
+    
+    
 }

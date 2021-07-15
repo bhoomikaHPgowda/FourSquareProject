@@ -43,7 +43,7 @@ class FavouritesViewController: UIViewController {
                 print("deleted succefully\(statusCode)")
             DispatchQueue.main.async {
                 if statusCode == 200 {
-                    self.detailViewModel.favouritePlaceList?.remove(at: sender.tag )
+                    self.detailViewModel.removeFavourite(placeid: self.detailViewModel.favouritesListAt(index: sender.tag)!.placeId)
                     self.favouritesList.reloadData()
                 }
             }
@@ -74,7 +74,7 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FavouritesTableViewCell {
             if let favourites = detailViewModel.favouritesListAt(index: indexPath.row) {
                 cell.name.text = favourites.placeName
-                cell.rating.text = "\(favourites.rating)"
+                cell.rating.text = "\(favourites.rating.rounded(places: 1))"
                 cell.rating.backgroundColor = UIColor.ratingColor(rating: favourites.rating)
                 cell.address.text = favourites.address
                 cell.detail.text = "\(favourites.placeType.components(separatedBy:" ")[0]) " + " \u{2022} " + String(repeating: "\u{20B9}", count: favourites.cost)

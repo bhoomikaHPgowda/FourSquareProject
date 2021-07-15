@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 class NetworkManger {
     
-    
     func Register(email: String, mobileNumber: String, password: String, completionHandler: @escaping(Int) -> ()) {
         
         print("function called")
@@ -20,6 +19,7 @@ class NetworkManger {
         ]
         
         guard let url = URLs.regiesterUserURl() else {
+            
             print("wrong url")
             return
         }
@@ -63,8 +63,11 @@ class NetworkManger {
     func parseData(data: Any) -> Int {
         print("code-----")
         if let statusData = data as? [String: Any] {
+            
             if let statuscode = statusData["status"] as? Int {
+                
                 print("code=====\(statuscode)")
+                
                 return statuscode
             }
         }
@@ -88,13 +91,11 @@ class NetworkManger {
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         let session = URLSession.shared.dataTask(with: request) {
+            
             [weak self]
             data, response, error in
+            
             print("url is called")
-            print(data)
-
-            print(error)
-         
             guard let userData = data else{
                 
                 return
@@ -107,37 +108,39 @@ class NetworkManger {
                 if let data = self?.parseUserDetail(data: newData){
                  
                     completionHandler(data)
+                } else {
+                    completionHandler(UserDetail(statuscode: 401, message: "", id: 0, imageUrl: "", email: "", token: "", userName: ""))
                 }
             } catch {
                 
                 print(error.localizedDescription)
             }
         }
-        session.resume()
         
+        session.resume()
     }
     
-        func parseUserDetail(data: Any) -> UserDetail? {
-            guard let userData = data as? [String: Any],
-                  let statusCode = userData["status"] as? Int,
-                  let message = userData["message"] as? String,
-                  let userDetail = userData["data"] as? [String: Any],
-                  let datas = userDetail["userData"] as? [String: Any],
-                  let id = datas["id"] as? Int,
-                  let email = datas["email"] as? String,
-                  let token = userDetail["token"] as? String,
-                  let imageUrl = datas["image"] as? String,
-                  let username = datas["username"] as? String
+    func parseUserDetail(data: Any) -> UserDetail? {
+        
+        guard let userData = data as? [String: Any],
+              let statusCode = userData["status"] as? Int,
+              let message = userData["message"] as? String,
+              let userDetail = userData["data"] as? [String: Any],
+              let datas = userDetail["userData"] as? [String: Any],
+              let id = datas["id"] as? Int,
+              let email = datas["email"] as? String,
+              let token = userDetail["token"] as? String,
+              let imageUrl = datas["image"] as? String,
+              let username = datas["username"] as? String
                  
-            else {
+        else {
                 print("eror while parsing")
                 return nil
             }
             let logedUserDetail = UserDetail(statuscode: statusCode, message: message, id: id, imageUrl: imageUrl, email: email, token: token, userName : username)
 
             return logedUserDetail
-        }
-    
+    }
     
     
     func updatePassword(email: String, password: String, completionHandler: @escaping(Int) -> ()){
@@ -174,6 +177,7 @@ class NetworkManger {
                 let newData = try JSONSerialization.jsonObject(with: userData, options: [])
                print(newData)
                 if let statusCode = self?.parseStatusCode(code: newData){
+                    
                     completionHandler(statusCode)
                 }
             } catch {
@@ -181,19 +185,20 @@ class NetworkManger {
                 print(error.localizedDescription)
             }
         }
-        session.resume()
         
+        session.resume()
     }
     
-    func parseStatusCode(code: Any) -> Int{
+    func parseStatusCode(code: Any) -> Int {
+        
         guard let code = code as? [String: Any],
               let statusCode = code["status"] as? Int
               
         else {
+            
             return 0
         }
+        
         return statusCode
     }
-        
-    
 }

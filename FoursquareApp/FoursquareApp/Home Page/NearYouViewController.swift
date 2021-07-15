@@ -39,6 +39,16 @@ class NearYouViewController: UIViewController {
 //            print("\(details.count)")
 //            self.add()
 //        })
+       
+            
+            if #available(iOS 13.0, *) {
+                        let statusBar = UIView(frame: UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
+                statusBar.backgroundColor = UIColor.statusBarColor()
+                        UIApplication.shared.keyWindow?.addSubview(statusBar)
+                    } else {
+                         UIApplication.shared.statusBarView?.backgroundColor = UIColor.statusBarColor()
+                    }
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         nearYouTableView.reloadData()
@@ -52,6 +62,8 @@ class NearYouViewController: UIViewController {
         }
         
     }
+    
+   
     
     func loc(lat: Double) {
         print("location from home view controller\(lat)")
@@ -87,7 +99,7 @@ class NearYouViewController: UIViewController {
                 print("added succefully\(statusCode)")
                 if statusCode == 200 {
                     DispatchQueue.main.async {
-                        self.detailViewModel.favouritePlaceList!.remove(at: sender.tag - 1 )
+                        self.detailViewModel.removeFavourite(placeid: placeDetail[sender.tag - 1].placeId)
                     }
                 }
             })
@@ -200,3 +212,6 @@ extension Double {
         return (self * divisor).rounded() / divisor
     }
 }
+
+
+

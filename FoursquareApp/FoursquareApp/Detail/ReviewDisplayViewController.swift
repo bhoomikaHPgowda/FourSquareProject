@@ -28,30 +28,44 @@ class ReviewDisplayViewController: UIViewController {
         super.viewDidLoad()
         tableView.rowHeight = 100
         placeName.text = reviewedPlace
+        print(userDetails?.id)
         getReview()
     }
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if let temp = segue.destination as? AddReviewViewController{
-                temp.userDetails = userDetails
-                temp.placeDetail = placeDetail
-            }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let temp = segue.destination as? AddReviewViewController{
+               
         }
+    }
        
+    @IBAction func addReview(_ sender: UIButton) {
+        
+        var addReviewViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddReviewViewController") as! AddReviewViewController
+        addReviewViewController.userDetails = userDetails
+        addReviewViewController.placeDetail = placeDetail
+        navigationController?.pushViewController(addReviewViewController, animated: true)
+    }
+    
     @IBAction func back(_ sender: UIButton) {
+        
         navigationController?.popViewController(animated: true)
     }
     
     func getReview(){
+        
         detailViewModel.getUsersReview(placeID: placeIdNum, pageNo: pageNumber, pageSize: pageSizeValue, complitionHandler: {
+            
             data
             in
+            
             self.reviewersNames = data.name
             self.reviewDates = data.dates
             self.reviewersReview = data.reviews
             self.reviewersImages = data.profileImage
 
             DispatchQueue.main.async{
+                
                 if(data.statusCode == 200){
+                    
                     print("update")
                     self.tableView.dataSource = self
                     self.tableView.delegate = self
@@ -60,21 +74,22 @@ class ReviewDisplayViewController: UIViewController {
             }
         })
     }
-    
-    
 }
 
 extension ReviewDisplayViewController:  UITableViewDelegate, UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return reviewersNames.count
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
         return indexPath
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewDisplayCell", for: indexPath) as? ReviewDisplayCell {
             
             cell.reviewerName.text = reviewersNames[indexPath.row]
@@ -86,6 +101,4 @@ extension ReviewDisplayViewController:  UITableViewDelegate, UITableViewDataSour
         }
         return ReviewDisplayCell()
     }
-    
-    
 }

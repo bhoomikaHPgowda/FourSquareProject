@@ -70,7 +70,7 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
             }
             let dataForIndex = data[indexPath.row]
             cell.name.text = dataForIndex.placeName
-            cell.rating.text = "\(round(dataForIndex.rating))"
+            cell.rating.text = "\(dataForIndex.rating.rounded(places: 1))"
             cell.detail.text = "\(dataForIndex.placeType.components(separatedBy:" ")[0]))" + " \u{2022} " + String(repeating: "\u{20B9}", count: dataForIndex.cost) + "  \(round(dataForIndex.distance))Km"
             cell.address.text = dataForIndex.address
             cell.placeImage.image = detailViewModel.fetchImageForGivenPlace(url: dataForIndex.imageUrl)

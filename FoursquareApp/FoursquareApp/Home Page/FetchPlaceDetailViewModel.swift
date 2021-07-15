@@ -88,4 +88,16 @@ class FetchPlaceDetailViewModel {
         }
         return data.count
     }
+    
+    func removeFavourite(placeid: Int) {
+        guard let details = favouritePlaceList else {
+            return
+        }
+        for i in 0 ..< details.count {
+            
+            if details[i].placeId == placeid {
+                favouritePlaceList?.remove(at: i)
+            }
+        }
+    }
 }

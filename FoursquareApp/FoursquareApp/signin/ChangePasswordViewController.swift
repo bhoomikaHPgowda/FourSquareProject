@@ -20,13 +20,12 @@ class ChangePasswordViewController: UIViewController , UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationController?.navigationBar.isHidden = true
         conformPassword.delegate = self
         password.delegate = self
         passwordLabel.frame = CGRect(x: 130, y: 190, width: 110, height: 21)
         conformPasswordLabel.frame = CGRect(x: 120, y: 260, width: 130, height: 21)
-        // Do any additional setup after loading the view.
-    
     }
     
     @IBAction func changePasswordSubmit(_ sender: Any) {
@@ -34,8 +33,10 @@ class ChangePasswordViewController: UIViewController , UITextFieldDelegate{
         guard let password = password.text,
               let conformPasword = conformPassword.text
         else {
+            
             return
         }
+        
         if (password == conformPasword) {
             
             loginViewModel.changePassword(email: emailID, password: password, completionHandler: {
@@ -56,7 +57,7 @@ class ChangePasswordViewController: UIViewController , UITextFieldDelegate{
                     self.navigationController?.pushViewController(loginViewController, animated: true)
                 }
             })
-        }else{
+        } else{
         
             displayAlertMessage(title: AlertMessages.passwordMissmatch.rawValue,  Discription: AlertMessages.enterPassword.rawValue)
         }
@@ -64,15 +65,14 @@ class ChangePasswordViewController: UIViewController , UITextFieldDelegate{
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        
         if(passwordLabel.center.y == 200.5) && (textField.tag == 1){
+            
             passwordLabel.center.y -= 30
         }
         if(conformPasswordLabel.center.y == 270.5) && (textField.tag == 2){
+            
             conformPasswordLabel.center.y -= 30
         }
-        
     }
-    
-
-
 }

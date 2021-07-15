@@ -19,6 +19,7 @@ class RegisterUserViewController: UIViewController {
     @IBOutlet weak var confirmPassword: UITextField!
     
     var loginViewModel = LoginViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,21 +31,25 @@ class RegisterUserViewController: UIViewController {
         UILabel.addphoneNumberLabel(label: mobileNumberLabel)
         UILabel.addPasswordLabel(label: passwordLabel)
         UILabel.addConformPasswordLabel(label: conformpasswordLabel)
-        // Do any additional setup after loading the view.
     }
     
 
     @IBAction func SubmitTapped(_ sender: CustomButton) {
+        
         guard let email = email.text,
               let mobileNumber = mobileNumber.text,
               let password = password.text,
               let confirmPassword = confirmPassword.text
         else {
+            
             return
         }
+        
         if password != confirmPassword {
+            
             displayAlertMessage(title: AlertMessages.passwordMissmatch.rawValue,  Discription: AlertMessages.enterPassword.rawValue)
         } else {
+            
             loginViewModel.registerUser(email: email, mobileNumber: mobileNumber, password: password, completionHandler: {
                 statusCode
                 in
@@ -52,30 +57,25 @@ class RegisterUserViewController: UIViewController {
             })
             self.navigationController?.popViewController(animated: true)
         }
-        
-        
     }
-
-
 }
 
 extension RegisterUserViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        
         if (emailLabel.tag == 1 )  && (emailLabel.center.y == 190.0){
+            
             emailLabel.center.y -= 20
+        } else if (mobileNumberLabel.tag == 2) && (mobileNumberLabel.center.y == 265.0){
             
-        }else if (mobileNumberLabel.tag == 2) && (mobileNumberLabel.center.y == 265.0){
             mobileNumberLabel.center.y -= 20
+        } else if (passwordLabel.tag == 3) && (passwordLabel.center.y == 335.0) {
             
-        }else if (passwordLabel.tag == 3) && (passwordLabel.center.y == 335.0) {
             passwordLabel.center.y -= 20
+        } else if(conformpasswordLabel.tag == 4) && (conformpasswordLabel.center.y == 405) {
             
-        }else if(conformpasswordLabel.tag == 4) && (conformpasswordLabel.center.y == 405) {
             conformpasswordLabel.center.y -= 20
-            
         }
-       
     }
-    
 }

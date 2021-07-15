@@ -307,7 +307,7 @@ class NetworkManagerForFetchPlaceDetail {
        
      
        var request = URLRequest(url: url)
-       request.addValue(token, forHTTPHeaderField: "Authorization")
+       request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
        request.httpMethod = "POST"
        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
