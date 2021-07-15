@@ -23,6 +23,7 @@ class SearchCityViewController: UIViewController {
     @IBOutlet weak var nearMe: CustomSearchBar!
     var delegate: UpdatefavouritesList?
     var viewModel = SearchViewModel()
+    var userDetails: UserDetail?
     var name: String?
     var emptySearchScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchEmptyViewController") as! SearchEmptyViewController
     var searchScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController")  as! SearchViewController
@@ -40,6 +41,7 @@ class SearchCityViewController: UIViewController {
         nearMe.delegate = self
         add(viewController: emptySearchScreen, mode: .emptyScreen)
         print(name)
+
        
  
     }
@@ -57,6 +59,10 @@ class SearchCityViewController: UIViewController {
 
         
        
+
+        print("userDetails?.email = \(String(describing: userDetails?.email))")
+        // Do any additional setup after loading the view.
+
     }
     
     @IBAction func filter(_ sender: UIButton) {
@@ -108,11 +114,6 @@ class SearchCityViewController: UIViewController {
             viewController.view.frame = searchView.bounds
             viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         }
-           
-           
-            
-            
-        
     }
     
      func remove(asChildViewController viewController: UIViewController) {
@@ -150,6 +151,7 @@ extension SearchCityViewController: UISearchBarDelegate {
             photoDetails
             in
             DispatchQueue.main.async {
+                self.displayScreen.userDetails = self.userDetails
                 self.displayScreen.placedetail = photoDetails
                 self.add(viewController: self.displayScreen, mode: .searchScreen)
                 self.displayScreen.placeList.reloadData()
@@ -161,6 +163,7 @@ extension SearchCityViewController: UISearchBarDelegate {
     }
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.resignFirstResponder()
+        
         print("cakeed")
         return true
     }

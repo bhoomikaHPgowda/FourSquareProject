@@ -103,8 +103,7 @@ class HomePageViewController: UIViewController {
                }
             }
         }
-        
-       
+
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
