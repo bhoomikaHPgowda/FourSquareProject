@@ -43,6 +43,23 @@ class HomePageViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         
         print("\(userDetails.email) is received")
+        statusBarSetup()
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    func statusBarSetup() {
+        
+        if #available(iOS 13.0, *) {
+                    let statusBar = UIView(frame: UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
+            statusBar.backgroundColor = UIColor.statusBarColor()
+            statusBar.tintColor = .white
+                    UIApplication.shared.keyWindow?.addSubview(statusBar)
+                } else {
+                     UIApplication.shared.statusBarView?.backgroundColor = UIColor.statusBarColor()
+                    UIApplication.shared.statusBarView?.tintColor = UIColor.white
+                }
     }
     
     func fetchDataForNearViewController(latitude: Double, longitude: Double) {
@@ -76,7 +93,18 @@ class HomePageViewController: UIViewController {
             
             destination.delegate = self
             destination.userDetails = userDetails
+        } else {
+            if (segue.identifier == "search") {
+                print("segue called")
+                if let destination  = segue.destination as? SearchCityViewController{
+                   
+                   destination.delegate = self
+                  
+               }
+            }
         }
+        
+       
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -155,6 +183,37 @@ class HomePageViewController: UIViewController {
         viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
         viewController.removeFromParent()
+    }
+    
+    func addToFavouriteList(placeDetail: PlaceDetail) {
+        
+        detailViewModel.addOrDeleteFavourite(userId: userDetails.id, token: userDetails.token, placeId: placeDetail.placeId, requestMethod: .addToFavourite, completionHandler: {
+            statusCode
+            in
+            print("added succefully\(statusCode)")
+            if statusCode == 200 {
+                DispatchQueue.main.async {
+                    self.detailViewModel.favouritePlaceList!.append(placeDetail)
+                }
+                
+            }
+            
+            
+        })
+    }
+    
+    func deleteFavouriteFromList(placeDetail: PlaceDetail) {
+        
+        detailViewModel.addOrDeleteFavourite(userId: userDetails.id, token: userDetails.token, placeId: placeDetail.placeId, requestMethod: .deleteFromFavourite, completionHandler: {
+            statusCode
+            in
+            print("added succefully\(statusCode)")
+            if statusCode == 200 {
+                DispatchQueue.main.async {
+                    self.detailViewModel.removeFavourite(placeid: placeDetail.placeId)
+                }
+            }
+        })
     }
     
 }
@@ -359,4 +418,23 @@ extension HomePageViewController : CLLocationManagerDelegate {
         }
 
     }
+}
+
+
+
+extension HomePageViewController: UpdatefavouritesList {
+    func deleteFavourite(placeDetail: PlaceDetail) {
+        deleteFavouriteFromList(placeDetail: placeDetail)
+    }
+    
+    func isFavourite(placeDetail: PlaceDetail) -> Bool {
+        return detailViewModel.isFavourite(placeId: placeDetail.placeId)
+    }
+    
+    func addToFavouirtes(placeDetail: PlaceDetail) {
+        print("12343343555  -----\(placeDetail.address)")
+        addToFavouriteList(placeDetail: placeDetail)
+    }
+    
+    
 }

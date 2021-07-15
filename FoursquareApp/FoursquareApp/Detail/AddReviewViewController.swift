@@ -84,10 +84,11 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
         print("key board showed")
         //topConstraints.constant = 80
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            
                 let keyboardRectangle = keyboardFrame.cgRectValue
                 let keyboardHeight = keyboardRectangle.height
             submit.frame.origin.y = keyboardHeight + 80
-            }
+        }
         
     }
     
@@ -103,10 +104,12 @@ class AddReviewViewController: UIViewController, UITextViewDelegate {
 extension AddReviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            imageview.image = image
             
+            imageview.image = image
         }
+        
         select.frame.origin.x = 90
         dismiss(animated: true, completion: nil)
     }

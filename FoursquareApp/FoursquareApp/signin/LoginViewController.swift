@@ -13,9 +13,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var orButton: UIButton!
-    var loginViewModel = LoginViewModel()
-
+    @IBOutlet weak var emailTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordLabelTopConstraint: NSLayoutConstraint!
+    
+    var loginViewModel = LoginViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,9 +24,12 @@ class LoginViewController: UIViewController {
         orButton.layer.cornerRadius = 0.5 * orButton.bounds.size.width
         email.delegate = self
         password.delegate = self
-   
     }
-    @IBOutlet weak var emailTopConstraint: NSLayoutConstraint!
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        
+        return .lightContent
+    }
     
     @IBAction func login(_ sender: CustomButton) {
         
@@ -47,7 +51,7 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 
                 if detail.statusCode == 200 {
-                    print("200000000000")
+                    
                     let homePageViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomePageViewController") as! HomePageViewController
                     homePageViewController.userDetails = detail
                     self.navigationController?.pushViewController(homePageViewController, animated: true)
@@ -63,23 +67,24 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let temp = segue.destination as? ForgotPasswordViewController {
-            temp.email = email.text ?? "nil"
-            
-        }
         
+        if let temp = segue.destination as? ForgotPasswordViewController {
+            
+            temp.email = email.text ?? "nil"
+        }
     }
 }
 
 extension LoginViewController: UITextFieldDelegate {
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        
         if textField.tag == 1 && emailTopConstraint.constant != 45 {
+            
             emailTopConstraint.constant = emailTopConstraint.constant - 25
         } else if passwordLabelTopConstraint.constant != 20 {
+            
             passwordLabelTopConstraint.constant = passwordLabelTopConstraint.constant - 18
         }
-        
     }
-    
-    
 }

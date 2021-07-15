@@ -6,6 +6,12 @@
 //
 
 import UIKit
+protocol UpdatefavouritesList {
+    
+    func addToFavouirtes(placeDetail: PlaceDetail)
+    func isFavourite(placeDetail: PlaceDetail) -> Bool
+    func deleteFavourite(placeDetail: PlaceDetail)
+}
 
 class SearchCityViewController: UIViewController {
 
@@ -15,6 +21,7 @@ class SearchCityViewController: UIViewController {
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var search: CustomSearchBar!
     @IBOutlet weak var nearMe: CustomSearchBar!
+    var delegate: UpdatefavouritesList?
     var viewModel = SearchViewModel()
     var name: String?
     var emptySearchScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchEmptyViewController") as! SearchEmptyViewController
@@ -33,12 +40,24 @@ class SearchCityViewController: UIViewController {
         nearMe.delegate = self
         add(viewController: emptySearchScreen, mode: .emptyScreen)
         print(name)
-        guard let statusBarView = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else {
-            return
-        }
-    statusBarView.backgroundColor = UIColor.red
+       
+ 
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+       
+            if (segue.identifier == "Search") {
+                print("segue called")
+                if let destination  = segue.destination as? DisplayCityListViewController{
+                   
+                   destination.delegate = self
+                  
+               }
+            }
+
+        
+       
+    }
     
     @IBAction func filter(_ sender: UIButton) {
         if let city = search.text {
@@ -134,6 +153,7 @@ extension SearchCityViewController: UISearchBarDelegate {
                 self.displayScreen.placedetail = photoDetails
                 self.add(viewController: self.displayScreen, mode: .searchScreen)
                 self.displayScreen.placeList.reloadData()
+                self.displayScreen.delegate = self
             } 
             
         })
@@ -161,4 +181,24 @@ extension SearchCityViewController: UISearchBarDelegate {
     
     
 }
-
+extension SearchCityViewController: SendFavouriteRestaurentDetail {
+    func sendDeleteFavourite(placeDetail: PlaceDetail) {
+        delegate?.deleteFavourite(placeDetail: placeDetail)
+    }
+    
+    func isFavourite(placeDetail: PlaceDetail) -> Bool {
+        if let isFavourite = delegate?.isFavourite(placeDetail: placeDetail) {
+            return isFavourite
+        }
+        return false
+    }
+    
+    
+    
+    func sendAddToFavouirteData(placeDetail: PlaceDetail) {
+        print("id12345667 =====\(placeDetail.address)")
+        delegate?.addToFavouirtes(placeDetail: placeDetail)
+    }
+    
+    
+}

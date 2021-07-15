@@ -7,12 +7,20 @@
 
 import UIKit
 
+protocol SendFavouriteRestaurentDetail {
+    
+    func sendAddToFavouirteData(placeDetail: PlaceDetail)
+    func isFavourite(placeDetail: PlaceDetail)-> Bool
+    func sendDeleteFavourite(placeDetail: PlaceDetail)
+}
+
 class DisplayCityListViewController: UIViewController {
 
 
     @IBOutlet weak var placeList: UITableView!
     var placedetail: [PlaceDetail]?
     var searchViewModel = SearchViewModel()
+    var delegate: SendFavouriteRestaurentDetail?
     override func viewDidLoad() {
         super.viewDidLoad()
         placeList.delegate = self
@@ -22,14 +30,32 @@ class DisplayCityListViewController: UIViewController {
     }
     
     @IBAction func mapView(_ sender: Any) {
+        print("mapview called")
+        
+        print("dlefgate cakkkked")
         var displayMapViewViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DisplayMapViewViewController") as! DisplayMapViewViewController
         if let detail = placedetail {
             displayMapViewViewController.data = detail
         }
+        
         navigationController?.pushViewController(displayMapViewViewController, animated: true)
     }
     
-
+    @IBAction func addToFavouritesTapped(_ sender: CustomAddToFavoriteButton) {
+        if let addToFavoriteButton = sender as? CustomAddToFavoriteButton {
+            
+            addToFavoriteButton.toggle()
+        }
+        guard let data = placedetail else {
+            return
+        }
+        if sender.isSelected {
+            delegate?.sendAddToFavouirteData(placeDetail: data[sender.tag - 1] )
+        } else {
+            delegate?.sendDeleteFavourite(placeDetail: data[sender.tag - 1])
+        }
+    }
+    
 }
 
 extension DisplayCityListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -69,13 +95,15 @@ extension DisplayCityListViewController: UITableViewDelegate, UITableViewDataSou
             cell.rating.backgroundColor = UIColor.ratingColor(rating: data[indexPath.row].rating)
             cell.detail.text = "\(data[indexPath.row].placeType.components(separatedBy:" ")[0]) " + " \u{2022} " + String(repeating: "\u{20B9}", count: data[indexPath.row].cost) + " \(round(data[indexPath.row].distance))Km"
             cell.placeImage.image = searchViewModel.fetchImageForGivenPlace(url: data[indexPath.row].imageUrl)
+            cell.addToFavourite.tag = indexPath.row + 1
 
-//            cell.addToFavouriteButton.tag = indexPath.row + 1
-//            if detailViewModel.isFavourite(placeId: dataForIndex.placeId) {
-//                cell.addToFavouriteButton.isSelected = true
-//            } else {
-//                cell.addToFavouriteButton.isSelected = false
-//            }
+
+            if let isFavourite = delegate?.isFavourite(placeDetail: data[indexPath.row]), isFavourite == true {
+                print("isFavouirtes")
+                cell.addToFavourite.isSelected = true
+            } else {
+                cell.addToFavourite.isSelected = false
+            }
            return cell
         } else {
             return SearchedCityTableViewCell()

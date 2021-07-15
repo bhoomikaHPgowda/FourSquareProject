@@ -7,11 +7,15 @@
 
 import Foundation
 import UIKit
+
 class LoginViewModel {
+    
     var networkManger = NetworkManger()
+    
     func registerUser(email: String, mobileNumber: String, password: String, completionHandler: @escaping(Int) -> ()) {
         
         networkManger.Register(email: email, mobileNumber: mobileNumber, password: password, completionHandler: {
+            
             statuscode
             in
             print("network manger returned")
@@ -22,6 +26,7 @@ class LoginViewModel {
     func authenticatUser(email: String, password: String, completionHandler: @escaping(UserDetail) -> ()){
         
         networkManger.authenticateUserDetail(email: email, password: password, completionHandler: {
+            
             userData
             in
             print("user code==\(userData.statusCode)")
@@ -32,6 +37,7 @@ class LoginViewModel {
     func changePassword(email: String, password: String, completionHandler: @escaping(Int) -> ()) {
         
         networkManger.updatePassword(email: email, password: password, completionHandler: {
+            
             statusCode
             in
             print("network manger returned")
